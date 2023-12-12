@@ -9,34 +9,77 @@ interface Props {
 }
 
 const FormModal: React.FC<Props> = ({ open, setOpen }) => {
-  const [keywords, setKeywords] = useState("");
-  const [keywordList, setKeywordList] = useState<string[]>([]);
-
-  const [value, setValue] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    keyBenefits: "",
+    keywords: [],
+    location: "--select category--",
+    partnerType: "--select partner type---",
+    industry: "",
+    applicationAndMarketUtility: "",
+    email: "",
+    contact: "",
+    files: [],
   });
 
-  const handleValueChange = (newValue: any) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
+  const [newKeyword, setNewKeyword] = useState("");
+  
+
+  
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleAddKeyword = (e: FormEvent) => {
-    e.preventDefault();
-    if (keywords.trim() !== "") {
-      setKeywordList((prevList) => [...prevList, keywords.trim()]);
-      setKeywords("");
+
+  
+  const handleAddKeyword = () => {
+    const newKeyword = formData.newKeyword.trim();
+
+    if (newKeyword !== "") {
+      setFormData((prevData) => ({
+        ...prevData,
+        keywords: [...prevData.keywords, newKeyword],
+        newKeyword: "", // clear the input after adding a keyword
+      }));
     }
   };
 
-  const handleRemoveKeyword = (e: FormEvent, index: number) => {
-    e.preventDefault();
-    setKeywordList((prevList) => {
-      const newList = [...prevList];
-      newList.splice(index, 1);
-      return newList;
+  const handleRemoveKeyword = (index) => {
+    setFormData((prevData) => {
+      const newKeywords = [...prevData.keywords];
+      newKeywords.splice(index, 1);
+      return { ...prevData, keywords: newKeywords };
     });
+  };
+
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3001/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully");
+        setOpen(false);
+      } else {
+        console.error("Error submitting form");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -84,9 +127,12 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                     >
                       Add Your Innovation
                     </Dialog.Title>
-                    <form className="mt-2  space-y-3 w-full">
-                      <input
-                        placeholder="Name of innovation/technology"
+                    <form onSubmit={handleSubmit} className="mt-2 space-y-3 w-full">                      <input
+                      type="text"
+                      name="innovation_name"
+                      placeholder="Enter your technology or innovation"
+                      value={formData.innovation_name}
+                      onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
 
@@ -95,128 +141,125 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         rows={4}
                         name="description"
                         id="description"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue={""}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={formData.comment}
+                        onChange={handleInputChange}
                       />
                       <textarea
                         placeholder="Key Benefits"
                         rows={4}
-                        name="key-benefits"
-                        id="key-benefits"
+                        name="keyBenefits"
+                        id="keyBenefits"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue={""}
+                        value={formData.keyBenefits}
+                        onChange={handleInputChange}
                       />
 
-                      <div className="flex  max-w-min rounded-md border  ">
-                        <input
-                          value={keywords}
-                          onChange={(e) => setKeywords(e.target.value)}
-                          placeholder="Add Keyword"
-                          className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
-                        />
-                        <button
-                          onClick={(e) => handleAddKeyword(e)}
-                          className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
-                        >
-                          <Plus size={20} color="#d6cdcd" />
-                        </button>
-                      </div>
-                      <div className="flex  max-w-min rounded-md border  ">
-                        <input
-                          value={keywords}
-                          onChange={(e) => setKeywords(e.target.value)}
-                          placeholder="Add Keyword"
-                          className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
-                        />
-                        <button
-                          onClick={(e) => handleAddKeyword(e)}
-                          className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
-                        >
-                          <Plus size={20} color="#d6cdcd" />
-                        </button>
+                      
+                        <div className="flex items-center space-x-2">
+                          <div className="flex max-w-min rounded-md border">
+                            <input
+                              value={formData.newKeyword}
+                              onChange={handleInputChange}
+                              placeholder="Add Keyword"
+                              name="newKeyword"
+                              className="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleAddKeyword}
+                              className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md"
+                            >
+                              <Plus size={20} color="#d6cdcd" />
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-3 grid-rows-3 gap-1">
+                          {formData.keywords.map((item, index) => (
+                          <span
+                            key={index}
+                            className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-pointer" // Changed to cursor-pointer
+                          >
+                            <span>{item}</span>
+                            <XMarkIcon
+                              className="cursor-pointer" // Added cursor-pointer
+                              onClick={() => handleRemoveKeyword(index)}
+                            />
+                          </span>
+                        ))}
+
+                          </div>
                       </div>
                       <select
-                        id="location"
-                        name="location"
+                        id="category"
+                        name="category"
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue="--select category--"
+                        value={formData.category}
+                        onChange={handleInputChange}
                       >
-                        <option>--Select status---</option>
-                        <option>Research</option>
-                        <option>Development</option>
-                        <option>Internship</option>
-                        <option>Training</option>
-                        <option>Course development</option>
-                        <option>Innovation</option>
-                        <option>Commercialism</option>
-                        <option>Multi-purpose</option>
+                        <option>--select category---</option>
+                        <option value="Research">Research</option>
+                        <option value="Development">Development</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Training">Training</option>
+                        <option value="Course development">Course development</option>
+                        <option value="Innovation">Innovation</option>
+                        <option value="Commercialism">Commercialism</option>
+                        <option value="Multi-purpose">Multi-purpose</option>
                       </select>
+
+
                       <select
-                        id="location"
-                        name="location"
+                        id="partner_type"
+                        name="partner_type"
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue="--select partner type---"
+                        value={formData.partner_type}
+                        onChange={handleInputChange}
                       >
-                        <option>--Select industry---</option>
-                        <option>Local Company</option>
-                        <option>Foreign Entity</option>
-                        <option>Ministry</option>
-                        <option>Department or Agency of Government</option>
+                        <option value="--select partner type---">--select partner type---</option>
+                        <option value="Local Company">Local Company</option>
+                        <option value="Foreign Entity">Foreign Entity</option>
+                        <option value="Ministry">Ministry</option>
+                        <option value="Department or Agency of Government">Department or Agency of Government</option>
                       </select>
 
                       <input
-                        placeholder="Industry"
-                        className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                      placeholder="Industry"
+                      className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      type="text"
+                      name="industry"
+                      
+                      value={formData.industry}
+                      onChange={handleInputChange}
                       />
+
                       <textarea
+                      type="text"
                         placeholder="Application and Market Utility"
                         rows={4}
-                        name="applicatio-and-market-utility"
-                        id="applicatio-and-market-utility"
+                        name="applicationAndMarketUtility"
+                        id="applicationAndMarketUtility"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue={""}
+                        value={formData.applicationAndMarketUtility}
+                        onChange={handleInputChange}
                       />
-                      <div className="flex items-center space-x-2">
-                        <div className="flex  max-w-min rounded-md border  ">
-                          <input
-                            value={keywords}
-                            onChange={(e) => setKeywords(e.target.value)}
-                            placeholder="Add Keyword"
-                            className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
-                          />
-                          <button
-                            onClick={(e) => handleAddKeyword(e)}
-                            className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
-                          >
-                            <Plus size={20} color="#d6cdcd" />
-                          </button>
-                        </div>
-
-                        <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
-                          {keywordList.map((item, index) => (
-                            <span
-                              key={index}
-                              className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
-                            >
-                              <span>{item}</span>
-                              <X
-                                size={12}
-                                className="cursor-pointer"
-                                onClick={(e) => handleRemoveKeyword(e, index)}
-                              />
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
+                      
                       <input
-                        placeholder="email"
-                        className="block  w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       />
 
                       <input
-                        placeholder="contact"
-                        className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                      type="text"
+                      name="contact"
+                      placeholder="Contact Information"
+                      className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      value={formData.contact}
+                      onChange={handleInputChange}
                       />
 
                       {/* <div>
