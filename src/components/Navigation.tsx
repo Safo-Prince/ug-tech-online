@@ -2,7 +2,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Add, LogoutCurve } from "iconsax-react";
 import { headerNavigation } from "../constants/constants";
 
-const Navigation: React.FC = () => {
+interface Props {
+  setOpen: (arg: boolean) => void;
+}
+
+const Navigation: React.FC<Props> = ({ setOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,7 +27,7 @@ const Navigation: React.FC = () => {
 
           <li>
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => setOpen(true)}
               className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
             >
               <p>Add your Innovation</p>

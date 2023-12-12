@@ -5,8 +5,11 @@ import Navigation from "./Navigation";
 // import MobileMenu from "./MobileMenu";
 import { HambergerMenu } from "iconsax-react";
 
-const Header: React.FC = () => {
-  const [isOpen, setOpen] = useState(false);
+interface Props {
+  setOpen: (arg: boolean) => void;
+}
+
+const Header: React.FC<Props> = ({ setOpen }) => {
   // const navigate = useNavigate();
 
   return (
@@ -23,7 +26,7 @@ const Header: React.FC = () => {
           />
 
           <div className="hidden sm:block">
-            <Navigation />
+            <Navigation setOpen={setOpen} />
           </div>
 
           <HambergerMenu

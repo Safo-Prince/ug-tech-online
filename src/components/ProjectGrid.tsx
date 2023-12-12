@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import projectImage from "../assets/project-image.png";
 import ProjectCard from "./ProjectCard";
-import ProjectShimmer from "./shimmer/ProjectShimmer";
+import ProjectShimmer from "./shimmers/ProjectShimmer";
 
 const projects = [
   {
