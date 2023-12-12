@@ -11,8 +11,8 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className=" w-full bg-[#153D6D] flex items-center p-3  ">
-        <h1 className="text-[#E0E0E0] left-10">UG TechOnline</h1>
+      <div className=" w-full bg-[#153D6D] flex items-center sm:p-3 p-1 pl-2  font-lato ">
+        <h1 className="text-[#E0E0E0] left-10 text-xs">UG TechOnline</h1>
       </div>
       <div className="border-b py-5 sm:py-10">
         <div className="w-full  mx-auto max-w-7xl  px-6 lg:px-8 flex  items-center  justify-between  ">

@@ -16,7 +16,6 @@ const Filter: React.FC = () => {
         <option>Active</option>
         <option>Terminated</option>
       </select>
-      <FileMinus size={25} color="black" className="cursor-pointer" />
     </div>
   );
 };

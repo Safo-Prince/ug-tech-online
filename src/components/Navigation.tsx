@@ -24,10 +24,10 @@ const Navigation: React.FC = () => {
           <li>
             <button
               onClick={() => navigate("/login")}
-              className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center "
+              className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
             >
-              Add your Innovation
-              <Add size="20" color="white" />
+              <p>Add your Innovation</p>
+              <Add size="20" color="white " className="self-center" />
             </button>
           </li>
         </ul>
