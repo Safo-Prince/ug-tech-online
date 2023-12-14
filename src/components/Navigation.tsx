@@ -7,37 +7,38 @@ interface Props {
 }
 
 const Navigation: React.FC<Props> = ({ setOpen }) => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <>
-      {location.pathname === "/" && (
-        <ul className=" flex sm:flex-row flex-col sm:items-center  sm:gap-x-3 font-lato font-medium sm:text-lg text-sm space-y-3 sm:space-y-0  text-[#f2f2f2 ] border-red-200  ">
-          {headerNavigation.map((item, index) => (
-            <li key={index}>
-              <a
-                href={item.href}
-                className="text-gray-600 hover:text-gray-400 cursor-pointer "
+      {pathname === "/" ||
+        (pathname === "/project-details" && (
+          <ul className=" flex sm:flex-row flex-col sm:items-center  sm:gap-x-3 font-lato font-medium sm:text-lg text-sm space-y-3 sm:space-y-0  text-[#f2f2f2 ] border-red-200  ">
+            {headerNavigation.map((item, index) => (
+              <li key={index}>
+                <a
+                  href={item.href}
+                  className="text-gray-600 hover:text-gray-400 cursor-pointer "
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+
+            <li>
+              <button
+                onClick={() => setOpen(true)}
+                className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
               >
-                {item.name}
-              </a>
+                <p>Add your Innovation</p>
+                <Add size="20" color="white " className="self-center" />
+              </button>
             </li>
-          ))}
+          </ul>
+        ))}
 
-          <li>
-            <button
-              onClick={() => setOpen(true)}
-              className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
-            >
-              <p>Add your Innovation</p>
-              <Add size="20" color="white " className="self-center" />
-            </button>
-          </li>
-        </ul>
-      )}
-
-      {location.pathname === "/admin" && (
+      {pathname === "/admin" && (
         <div className="  sm:flex items-center justify-center sm:space-x-3 space-y-3">
           <h1 className="font-lato font-medium text-lg  sm:mt-2 ">
             Administrator

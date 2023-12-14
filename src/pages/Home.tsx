@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <FormModal open={open} setOpen={setOpen} />
       <Header setOpen={setOpen} />
-      <Hero />
+      <Hero title="UG Online Technologies Portal" />
       <Main />
       <Footer />
     </div>

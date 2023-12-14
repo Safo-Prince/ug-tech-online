@@ -54,7 +54,7 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
+      staggerChildren: 0.2,
       duration: 0.5,
     },
   },

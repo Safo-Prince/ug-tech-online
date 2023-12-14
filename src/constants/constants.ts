@@ -33,13 +33,9 @@ export const footerNavigation = {
 };
 
 export const columns = [
-  { name: "Sent on" },
+  { name: "Tech ID" },
+  { name: "Applied on" },
   { name: "Name" },
-  { name: "Partner" },
-  { name: "College" },
-  { name: "Category" },
   { name: "Status" },
-  { name: "Actions" },
+  { name: "Action" },
 ];
-
-

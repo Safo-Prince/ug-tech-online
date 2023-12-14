@@ -1,6 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
-import projectImage from "../assets/project-image.png";
+import { useNavigate } from "react-router-dom";
 
 interface Project {
   image: string;
@@ -21,10 +20,13 @@ const item = {
   },
 };
 const ProjectCard = ({ project }: Props) => {
+  const navigate = useNavigate();
   return (
     <motion.div
+      whileHover={{ scale: 1 }}
+      whileTap={{ scale: 0.9 }}
       variants={item}
-      className=" w-full sm:w-80 xl:w-96   border rounded-md p-3   shadow-sm space-y-2  transition-all cursor-pointer"
+      className=" w-full sm:w-80 xl:w-96   border rounded-md p-3   shadow-sm space-y-2   cursor-pointer"
     >
       <img src={project.image} className="rounded-md object-cover " />
       <div>
@@ -33,7 +35,10 @@ const ProjectCard = ({ project }: Props) => {
       </div>
       <div>
         <p className="text-[#56585B] xl:text-lg">{project.description}</p>
-        <button className="bg-[#153D6D] text-white py-1 px-3  rounded-md text-sm mt-2">
+        <button
+          onClick={() => navigate("/project-details")}
+          className="bg-[#153D6D] text-white py-1 px-3  rounded-md text-sm mt-2"
+        >
           Details
         </button>
       </div>
