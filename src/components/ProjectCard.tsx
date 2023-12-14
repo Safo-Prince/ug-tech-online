@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import projectImage from "../assets/project-image.png";
 
 interface Project {
@@ -12,9 +13,19 @@ interface Props {
   project: Project;
 }
 
+const item = {
+  hidden: { opacity: 0, scale: 0 },
+  show: {
+    opacity: 1,
+    scale: 1,
+  },
+};
 const ProjectCard = ({ project }: Props) => {
   return (
-    <div className=" w-full sm:w-80 xl:w-96   border rounded-md p-3   shadow-sm space-y-2 hover:scale-95 transition-all cursor-pointer">
+    <motion.div
+      variants={item}
+      className=" w-full sm:w-80 xl:w-96   border rounded-md p-3   shadow-sm space-y-2  transition-all cursor-pointer"
+    >
       <img src={project.image} className="rounded-md object-cover " />
       <div>
         <h1 className="text-black text-sm">{project.project_id}</h1>
@@ -26,7 +37,7 @@ const ProjectCard = ({ project }: Props) => {
           Details
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

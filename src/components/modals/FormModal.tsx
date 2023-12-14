@@ -1,4 +1,4 @@
-import { Children, FormEvent, Fragment, useState, ReactNode } from "react";
+import { FormEvent, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Plus, X } from "@phosphor-icons/react";
@@ -8,35 +8,60 @@ interface Props {
   setOpen: (arg: boolean) => void;
 }
 
-const FormModal: React.FC<Props> = ({ open, setOpen }) => {
-  const [keywords, setKeywords] = useState("");
-  const [keywordList, setKeywordList] = useState<string[]>([]);
+interface FormInput {
+  keyword: string;
+  developer: string;
+  link: string;
+}
 
-  const [value, setValue] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+interface InputList {
+  keywords: string[];
+  developers: string[];
+  links: string[];
+}
+
+const FormModal: React.FC<Props> = ({ open, setOpen }) => {
+  const [input, setInput] = useState<FormInput>({
+    keyword: "",
+    developer: "",
+    link: "",
   });
 
-  const handleValueChange = (newValue: any) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
-  };
+  const [inputList, setInputList] = useState<InputList>({
+    keywords: [],
+    developers: [],
+    links: [],
+  });
 
-  const handleAddKeyword = (e: FormEvent) => {
+  console.log(inputList);
+  const handleAddInput = (
+    e: FormEvent,
+    inputType: keyof FormInput,
+    inputListType: keyof InputList
+  ) => {
     e.preventDefault();
-    if (keywords.trim() !== "") {
-      setKeywordList((prevList) => [...prevList, keywords.trim()]);
-      setKeywords("");
+
+    if (input[inputType].trim() !== "") {
+      setInputList((prev) => ({
+        ...prev,
+        [inputListType]: [
+          ...(prev[inputListType] || []),
+          input[inputType].trim(),
+        ],
+      }));
+
+      setInput({
+        ...input,
+        [inputType]: "",
+      });
     }
   };
 
-  const handleRemoveKeyword = (e: FormEvent, index: number) => {
-    e.preventDefault();
-    setKeywordList((prevList) => {
-      const newList = [...prevList];
-      newList.splice(index, 1);
-      return newList;
-    });
+  const handleRemoveInput = (type: string, index: number) => {
+    setInputList((prev) => ({
+      ...prev,
+      [type]: prev[type as keyof InputList].filter((_, i) => i !== index),
+    }));
   };
 
   return (
@@ -89,10 +114,14 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         placeholder="Name of innovation/technology"
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
+                      <input
+                        placeholder="Student/Staff ID"
+                        className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                      />
 
                       <textarea
                         placeholder="Description"
-                        rows={4}
+                        rows={2}
                         name="description"
                         id="description"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
@@ -100,40 +129,97 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       />
                       <textarea
                         placeholder="Key Benefits"
-                        rows={4}
+                        rows={2}
                         name="key-benefits"
                         id="key-benefits"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                         defaultValue={""}
                       />
 
-                      <div className="flex  max-w-min rounded-md border  ">
-                        <input
-                          value={keywords}
-                          onChange={(e) => setKeywords(e.target.value)}
-                          placeholder="Add Keyword"
-                          className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
-                        />
-                        <button
-                          onClick={(e) => handleAddKeyword(e)}
-                          className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
-                        >
-                          <Plus size={20} color="#d6cdcd" />
-                        </button>
+                      <div className="flex items-center space-x-2">
+                        <div className="flex  max-w-min rounded-md border  ">
+                          <input
+                            value={input.keyword}
+                            onChange={(e) =>
+                              setInput({ ...input, keyword: e.target.value })
+                            }
+                            placeholder="Add Keyword"
+                            className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                          />
+                          <button
+                            onClick={(e) =>
+                              handleAddInput(e, "keyword", "keywords")
+                            }
+                            className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
+                          >
+                            <Plus size={20} color="#d6cdcd" />
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
+                          {inputList.keywords.map((item, index) => (
+                            <span
+                              key={index}
+                              className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                            >
+                              <span>
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
+                                  : item}
+                              </span>
+                              <X
+                                size={12}
+                                className="cursor-pointer"
+                                onClick={() =>
+                                  handleRemoveInput("keywords", index)
+                                }
+                              />
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex  max-w-min rounded-md border  ">
-                        <input
-                          value={keywords}
-                          onChange={(e) => setKeywords(e.target.value)}
-                          placeholder="Add Keyword"
-                          className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
-                        />
-                        <button
-                          onClick={(e) => handleAddKeyword(e)}
-                          className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
-                        >
-                          <Plus size={20} color="#d6cdcd" />
-                        </button>
+                      <div className="flex items-center space-x-2">
+                        <div className="flex  max-w-min rounded-md border  ">
+                          <input
+                            value={input.developer}
+                            onChange={(e) =>
+                              setInput({
+                                ...input,
+                                developer: e.target.value,
+                              })
+                            }
+                            placeholder="Add Developer"
+                            className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                          />
+                          <button
+                            onClick={(e) =>
+                              handleAddInput(e, "developer", "developers")
+                            }
+                            className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
+                          >
+                            <Plus size={20} color="#d6cdcd" />
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
+                          {inputList.developers.map((item, index) => (
+                            <span
+                              key={index}
+                              className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                            >
+                              <span>
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
+                                  : item}
+                              </span>
+                              <X
+                                size={12}
+                                className="cursor-pointer"
+                                onClick={() =>
+                                  handleRemoveInput("developers", index)
+                                }
+                              />
+                            </span>
+                          ))}
+                        </div>
                       </div>
                       <select
                         id="location"
@@ -170,22 +256,24 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       />
                       <textarea
                         placeholder="Application and Market Utility"
-                        rows={4}
-                        name="applicatio-and-market-utility"
-                        id="applicatio-and-market-utility"
+                        rows={2}
+                        name="application-and-market-utility"
+                        id="application-and-market-utility"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                         defaultValue={""}
                       />
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center  space-x-2">
                         <div className="flex  max-w-min rounded-md border  ">
                           <input
-                            value={keywords}
-                            onChange={(e) => setKeywords(e.target.value)}
-                            placeholder="Add Keyword"
+                            value={input.link}
+                            onChange={(e) =>
+                              setInput({ ...input, link: e.target.value })
+                            }
+                            placeholder="Add links"
                             className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
-                            onClick={(e) => handleAddKeyword(e)}
+                            onClick={(e) => handleAddInput(e, "link", "links")}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
                             <Plus size={20} color="#d6cdcd" />
@@ -193,16 +281,22 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         </div>
 
                         <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
-                          {keywordList.map((item, index) => (
+                          {inputList.links.map((item, index) => (
                             <span
                               key={index}
-                              className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                              className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
                             >
-                              <span>{item}</span>
+                              <span>
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
+                                  : item}
+                              </span>
                               <X
                                 size={12}
                                 className="cursor-pointer"
-                                onClick={(e) => handleRemoveKeyword(e, index)}
+                                onClick={() =>
+                                  handleRemoveInput("links", index)
+                                }
                               />
                             </span>
                           ))}
@@ -218,15 +312,6 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         placeholder="contact"
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
-
-                      {/* <div>
-                        <p className="pl-2">Start Date ~ End Date</p>
-                        <Datepicker
-                          value={value}
-                          onChange={handleValueChange}
-                        />
-                      </div> */}
-
                       <div className="">
                         <div className="flex items-center space-x-3">
                           <label

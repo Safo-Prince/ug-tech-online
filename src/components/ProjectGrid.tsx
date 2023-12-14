@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import projectImage from "../assets/project-image.png";
 import ProjectCard from "./ProjectCard";
 import ProjectShimmer from "./shimmers/ProjectShimmer";
@@ -48,6 +49,22 @@ const projects = [
   },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      duration: 0.5,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
 const numCards = 6;
 const items = Array.from({ length: numCards }, (_, index) => index);
 const ProjectGrid = () => {
@@ -58,13 +75,24 @@ const ProjectGrid = () => {
   }, []);
   return (
     <>
-      <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6  xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8">
-        {isLoading
-          ? items.map((_, index) => <ProjectShimmer key={index} />)
-          : projects.map((project) => (
-              <ProjectCard key={project.project_id} project={project} />
-            ))}
-      </div>
+      {isLoading ? (
+        <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6  xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8">
+          {items.map((_, index) => (
+            <ProjectShimmer key={index} />
+          ))}
+        </div>
+      ) : (
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6  xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8"
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.project_id} project={project} />
+          ))}
+        </motion.div>
+      )}
     </>
   );
 };
