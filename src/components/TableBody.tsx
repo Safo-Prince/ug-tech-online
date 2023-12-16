@@ -39,8 +39,8 @@ const TableBody: React.FC = () => {
                 <button onClick={() => setOpen(true)}>
                   <Eye size="25" color="black" className="cursor-pointer" />
                 </button>
-                <button className="px-2 py-2 rounded-full bg-[#33A70A]">
-                  <Check weight="bold" size={10} color="white" />
+                <button className="px-1 py-1 rounded-full bg-[#33A70A]">
+                  <Check weight="bold" size={12} color="white" />
                 </button>
                 <button>
                   <DotsThreeVertical weight="bold" size={25} />

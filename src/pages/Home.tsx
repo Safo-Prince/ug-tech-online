@@ -4,11 +4,18 @@ import Hero from "../components/Hero";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import FormModal from "../components/modals/FormModal";
+import SubmissionModal from "../components/modals/SubmissionModal";
 const Home = () => {
   const [open, setOpen] = useState(false);
+  const [submissionOpen, setSubmissionOpen] = useState(false);
   return (
     <div>
-      <FormModal open={open} setOpen={setOpen} />
+      <SubmissionModal open={submissionOpen} setOpen={setSubmissionOpen} />
+      <FormModal
+        open={open}
+        setOpen={setOpen}
+        setSubmissionOpen={setSubmissionOpen}
+      />
       <Header setOpen={setOpen} />
       <Hero title="UG Online Technologies Portal" />
       <Main />

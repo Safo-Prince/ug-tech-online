@@ -86,7 +86,7 @@ const ProjectGrid = () => {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6  xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8"
+          className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-x-4 gap-y-8  xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8"
         >
           {projects.map((project) => (
             <ProjectCard key={project.project_id} project={project} />
@@ -96,5 +96,7 @@ const ProjectGrid = () => {
     </>
   );
 };
+
+// grid grid-cols-1 gap-6  lg:grid-cols-4
 
 export default ProjectGrid;

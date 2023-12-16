@@ -3,8 +3,8 @@ import fertilizer from "../assets/fertilizer.png";
 
 const ProjectDetailsBody = () => {
   return (
-    <div className="max-w-7xl mx-auto lg:px-6 px-8 min-h-min  py-10 font-lato my-20 flex  space-x-4 justify-between">
-      <div className="w-1/2 h-full flex flex-col space-y-4  ">
+    <div className="max-w-7xl mx-auto lg:px-6 px-8 min-h-min  py-10 font-lato sm:my-20 my-5 flex sm:flex-row flex-col space-x-4 sm:justify-between  space-y-4 sm:space-y-0 ">
+      <div className="sm:w-1/2  h-full flex flex-col space-y-4  ">
         <img
           src={fertilizer}
           alt="project-image"
@@ -62,7 +62,7 @@ const ProjectDetailsBody = () => {
         </div>
       </div>
 
-      <div className="w-96 border bg-[#EDEFEF] rounded-lg p-10 border-[#B8B8B8] shadow-sm space-y-4">
+      <div className="sm:w-96 border bg-[#EDEFEF] rounded-lg p-10 border-[#B8B8B8] shadow-sm space-y-4">
         <div>
           <h1 className="font-bold  text-lg">Keywords:</h1>
           <ul className="list-disc list-inside ">
