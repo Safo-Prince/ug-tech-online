@@ -7,7 +7,7 @@ interface Props {
   setOpen: (arg: boolean) => void;
 }
 
-const SubmissionModal: React.FC<Props> = ({ open, setOpen }) => {
+const AprrovalModal: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <Transition.Root static show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {}}>
@@ -44,11 +44,10 @@ const SubmissionModal: React.FC<Props> = ({ open, setOpen }) => {
                       </div>
 
                       <h1 className=" text-lg font-bold text-center mt-4">
-                        Your innovation has been successfully submitted
+                        You have approved Quad-pedal Robot
                       </h1>
                       <p className="text-base text-center mt-4 text-[#3D3D3D]">
-                        You will be notified once your innovation has been
-                        approved.
+                        The developers of this project will be notified.
                       </p>
                     </div>
                   </div>
@@ -62,4 +61,4 @@ const SubmissionModal: React.FC<Props> = ({ open, setOpen }) => {
   );
 };
 
-export default SubmissionModal;
+export default AprrovalModal;

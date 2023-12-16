@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { Eye } from "iconsax-react";
+import { Eye, TrendUp } from "iconsax-react";
 import { Check, DotsThreeVertical } from "@phosphor-icons/react";
 
 import TableModal from "./modals/TableModal";
 import TableShimmer from "./shimmers/TableShimmer";
 
-const TableBody: React.FC = () => {
+interface Props {
+  setApprovalOpen: (arg: boolean) => void;
+}
+
+const TableBody: React.FC<Props> = ({ setApprovalOpen }) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +43,10 @@ const TableBody: React.FC = () => {
                 <button onClick={() => setOpen(true)}>
                   <Eye size="25" color="black" className="cursor-pointer" />
                 </button>
-                <button className="px-1 py-1 rounded-full bg-[#33A70A]">
+                <button
+                  onClick={() => setApprovalOpen(true)}
+                  className="px-1 py-1 rounded-full bg-[#33A70A]"
+                >
                   <Check weight="bold" size={12} color="white" />
                 </button>
                 <button>

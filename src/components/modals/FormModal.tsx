@@ -75,8 +75,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     setTimeout(() => {
       setOpen(false);
       setSubmissionOpen(true);
-
       setButtonText("submit");
+
+      setTimeout(() => {
+        setSubmissionOpen(false);
+      }, 3000);
     }, 3000);
   };
   return (
