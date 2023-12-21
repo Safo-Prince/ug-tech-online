@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ setOpen }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -22,7 +22,7 @@ const Header: React.FC<Props> = ({ setOpen }) => {
           <img
             src={logo}
             className=" cursor-pointer sm:w-44 w-28 self-center"
-            // onClick={() => navigate("/")}
+            onClick={() => navigate("/")}
           />
 
           <div className="hidden sm:block">

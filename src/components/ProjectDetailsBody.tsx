@@ -1,0 +1,138 @@
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import fertilizer from "../assets/fertilizer.png";
+
+const ProjectDetailsBody = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [projectDetails, setProjectDetails] = useState({
+    // other properties,
+    
+  });
+  
+
+  useEffect(() => {
+    // Fetch project details based on the ID from the backend
+    const fetchProjectDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:3002/api/projects/${id}`);
+        const data = await response.json();
+        setProjectDetails(data);
+      } catch (error) {
+        console.error("Error fetching project details:", error);
+      }
+    };
+
+    fetchProjectDetails();
+  }, [id]);
+
+  if (!projectDetails) {
+    return <div>Loading...</div>; // Add a loading indicator
+  }
+
+  const {
+    innovation_name,
+    description,
+    keyBenefits,
+    applicationAndMarketUtility,
+    keywords,
+    developers,
+    location,
+    status,
+    contact,
+    files, // Assuming files is an array of file paths
+  } = projectDetails;
+
+  return (
+    <div className="max-w-7xl mx-auto lg:px-6 px-8 min-h-min  py-10 font-lato sm:my-20 my-5 flex sm:flex-row flex-col space-x-4 sm:justify-between  space-y-4 sm:space-y-0 ">
+      <div className="sm:w-1/2  h-full flex flex-col space-y-4  ">
+        {files && files.length > 0 ? (
+          <img
+          src={
+            projectDetails.files &&
+            typeof projectDetails.files === 'string' &&
+            projectDetails.files.length > 0
+              ? `http://localhost:3002/${projectDetails.files.split(',')[0].trim()}`
+              : `http://localhost:3002/placeholder-image.jpg` // Replace with your placeholder image URL or remove it
+          }
+          className="rounded-md object-cover"
+          alt={projectDetails.title}
+          style={{ width: '80%', height: '400px' }}
+        />
+        ) : (
+          <div className="placeholder-image">No Image</div>
+        )}
+        <div>
+          <h1 className="font-bold  text-lg mt-4">Description</h1>
+          <p className="text-[#56585B] xl:text-lg mt-2">{description}</p>
+        </div>
+        <div>
+          <h1 className="font-bold  text-lg">Application and Market Utility</h1>
+          <p className="text-[#56585B] xl:text-lg mt-2">{applicationAndMarketUtility}</p>
+        </div>
+        <div>
+          <h1 className="font-bold   text-lg">Key Benefits:</h1>
+          <ul className="list-inside list-disc mt-2 ">
+            <li className="text-[#56585B] xl:text-lg">{keyBenefits}</li>
+          </ul>
+        </div>
+        {/* ... Additional project details */}
+      </div>
+
+      <div className="sm:w-96 border bg-[#EDEFEF] rounded-lg p-10 border-[#B8B8B8] shadow-sm space-y-4">
+          <h1 className="font-bold  text-lg">Keywords:</h1>
+          <ul className="list-disc list-inside ">
+            {typeof projectDetails.keywords === 'string' && projectDetails.keywords.length > 0 ? (
+              projectDetails.keywords.split(',').map((keyword) => (
+                <li key={keyword.trim()} className="text-[#56585B] xl:text-lg">
+                  {keyword.trim()}
+                </li>
+              ))
+            ) : (
+              <li className="text-[#56585B] xl:text-lg">No keywords available</li>
+            )}
+          </ul>
+
+
+              <div>
+                <h1 className="font-bold  text-lg">Developers:</h1>
+                <ul className="list-disc list-inside ">
+                  {typeof projectDetails.developers === 'string' && projectDetails.developers.length > 0 ? (
+                    projectDetails.developers.split(',').map((developer) => (
+                      <li key={developer.trim()} className="text-[#56585B] xl:text-lg">
+                        {developer.trim()}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-[#56585B] xl:text-lg">No developers listed</li>
+                  )}
+                </ul>
+              </div>
+
+
+              <div>
+                <h1 className="font-bold  text-lg mt-4">Status</h1>
+                <p className="text-[#56585B] xl:text-lg mt-2">{status}</p>
+              </div>
+
+              <div>
+                <h1 className="font-bold  text-lg mt-4">College</h1>
+                <p className="text-[#56585B] xl:text-lg mt-2">{location}</p>
+              </div>
+
+              <div>
+                <h1 className="font-bold  text-lg mt-4">Contact</h1>
+                <p className="text-[#56585B] xl:text-lg mt-2">{contact}</p>
+              </div>
+
+
+
+
+          
+        </div>
+
+    </div>
+  );
+};
+
+export default ProjectDetailsBody;

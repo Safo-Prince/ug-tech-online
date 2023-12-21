@@ -10,23 +10,27 @@ interface Props {
 
 const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    innovation_name: "",
     description: "",
     keyBenefits: "",
+    newKeyword: "",
     keywords: [],
-    location: "--select category--",
+    newDeveloper:"",
+    developers: [],
     partnerType: "--select partner type---",
     industry: "",
     applicationAndMarketUtility: "",
+    newLink:"",
+    links: [],
     email: "",
     contact: "",
+    status: "",
     files: [],
   });
 
   const [newKeyword, setNewKeyword] = useState("");
-  
-
-  
+  const [newDeveloper, setNewDeveloper] = useState("");
+  const [newLink, setNewLink] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,20 +40,19 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     }));
   };
 
-
-  
   const handleAddKeyword = () => {
     const newKeyword = formData.newKeyword.trim();
 
     if (newKeyword !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
+      {/* @ts-ignore */}
+      setFormData((prevData) => ({ ...prevData,
         keywords: [...prevData.keywords, newKeyword],
         newKeyword: "", // clear the input after adding a keyword
       }));
     }
   };
 
+  {/* @ts-ignore */}
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -58,29 +61,110 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     });
   };
 
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3001/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        console.log("Form submitted successfully");
-        setOpen(false);
-      } else {
-        console.error("Error submitting form");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+  const handleAddDeveloper = () => {
+    const newDeveloper = formData.newDeveloper.trim();
+  
+    if (newDeveloper !== "") {
+      {/* @ts-ignore */}
+      setFormData((prevData) => ({ ...prevData,
+        developers: [...prevData.developers, newDeveloper],
+        newDeveloper: "", // clear the input after adding a developer
+      }));
     }
   };
+  
+  {/* @ts-ignore */}
+  const handleRemoveDeveloper = (index) => {
+    setFormData((prevData) => {
+      const newDevelopers = [...prevData.developers];
+      newDevelopers.splice(index, 1);
+      return { ...prevData, developers: newDevelopers };
+    });
+  };
+
+  const handleAddLink = () => {
+    const newLink = formData.newLink.trim();
+  
+    if (newLink !== "") {
+      {/* @ts-ignore */}
+      setFormData((prevData) => ({ ...prevData,
+        links: [...prevData.links, newLink],
+        newLink: "", // clear the input after adding a link
+      }));
+    }
+  };
+  
+  {/* @ts-ignore */}
+  const handleRemoveLink = (index) => {
+    setFormData((prevData) => {
+      const newLinks = [...prevData.links];
+      newLinks.splice(index, 1);
+      return { ...prevData, links: newLinks };
+    });
+  };
+
+    {/* @ts-ignore */}
+    const handleFileChange = (e) => {
+      {/* @ts-ignore */}
+      const selectedFiles = Array.from(e.target.files);
+      {/* @ts-ignore */}
+      setFormData((prevData) => ({
+        ...prevData,
+        files: [...prevData.files, ...selectedFiles],
+      }));
+    };
+  
+    {/* @ts-ignore */}
+    const handleRemoveFile = (index) => {
+      setFormData((prevData) => {
+        const newFiles = [...prevData.files];
+        newFiles.splice(index, 1);
+        return { ...prevData, files: newFiles };
+      });
+    };
+
+
+
+    //const response = await fetch("http://localhost:3002/submit-form",
+
+
+    const handleSubmit = async (e: FormEvent) => {
+      e.preventDefault();
+  
+      try {
+        const formDataToSend = new FormData();
+        // Append files to FormData
+        if (formData.files) {
+          for (let i = 0; i < formData.files.length; i++) {
+            formDataToSend.append("files", formData.files[i]);
+          }
+        }
+  
+        // Append other form data properties
+        Object.keys(formData).forEach((key) => {
+          if (key !== "files") {
+            {/* @ts-ignore */}
+            formDataToSend.append(key, formData[key]);
+          }
+        });
+  
+        const response = await fetch("http://localhost:3002/submit-form", {
+          method: "POST",
+          body: formDataToSend,
+        });
+  
+        if (response.ok) {
+          console.log("Form submitted successfully");
+          setOpen(false);
+          // Refresh the page to clear input fields
+          window.location.reload();
+        } else {
+          console.error("Error submitting form");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
 
   return (
     <Transition.Root static show={open} as={Fragment}>
@@ -156,6 +240,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       />
 
                       
+                       {/* Add Keyword */}
                         <div className="flex items-center space-x-2">
                           <div className="flex max-w-min rounded-md border">
                             <input
@@ -175,45 +260,78 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           </div>
 
                           <div className="grid grid-cols-3 grid-rows-3 gap-1">
-                          {formData.keywords.map((item, index) => (
-                          <span
-                            key={index}
-                            className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-pointer" // Changed to cursor-pointer
-                          >
-                            <span>{item}</span>
-                            <XMarkIcon
-                              className="cursor-pointer" // Added cursor-pointer
-                              onClick={() => handleRemoveKeyword(index)}
-                            />
-                          </span>
-                        ))}
-
+                            {formData.keywords.map((item, index) => (
+                              <span
+                                key={index}
+                                className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-pointer"
+                              >
+                                <span>{item}</span>
+                                <XMarkIcon
+                                  className="cursor-pointer"
+                                  onClick={() => handleRemoveKeyword(index)}
+                                />
+                              </span>
+                            ))}
                           </div>
-                      </div>
-                      <select
-                        id="category"
-                        name="category"
+                        </div>
+
+                        {/* Add Developer */}
+                        <div className="flex items-center space-x-2">
+                          <div className="flex max-w-min rounded-md border">
+                            <input
+                              value={formData.newDeveloper}
+                              onChange={handleInputChange}
+                              placeholder="Add Developers"
+                              name="newDeveloper"
+                              className="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleAddDeveloper}
+                              className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md"
+                            >
+                              <Plus size={20} color="#d6cdcd" />
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-3 grid-rows-3 gap-1">
+                            {formData.developers.map((item, index) => (
+                              <span
+                                key={index}
+                                className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-pointer"
+                              >
+                                <span>{item}</span>
+                                <XMarkIcon
+                                  className="cursor-pointer"
+                                  onClick={() => handleRemoveDeveloper(index)}
+                                />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+
+
+
+
+                        <select
+                        id="status"
+                        name="status"
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        value={formData.category}
+                        value={formData.status}
                         onChange={handleInputChange}
                       >
-                        <option>--select category---</option>
-                        <option value="Research">Research</option>
-                        <option value="Development">Development</option>
-                        <option value="Internship">Internship</option>
-                        <option value="Training">Training</option>
-                        <option value="Course development">Course development</option>
-                        <option value="Innovation">Innovation</option>
-                        <option value="Commercialism">Commercialism</option>
-                        <option value="Multi-purpose">Multi-purpose</option>
+                        <option value="">-- Select Status---</option>
+                        <option value="Active">Active</option>
+                        <option value="Terminated">Terminated</option>
                       </select>
 
 
                       <select
-                        id="partner_type"
-                        name="partner_type"
+                        id="partnerType"
+                        name="partnerType"
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        value={formData.partner_type}
+                        value={formData.partnerType}
                         onChange={handleInputChange}
                       >
                         <option value="--select partner type---">--select partner type---</option>
@@ -223,15 +341,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         <option value="Department or Agency of Government">Department or Agency of Government</option>
                       </select>
 
-                      <input
-                      placeholder="Industry"
-                      className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      type="text"
-                      name="industry"
                       
-                      value={formData.industry}
-                      onChange={handleInputChange}
-                      />
 
                       <textarea
                       type="text"
@@ -243,6 +353,45 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         value={formData.applicationAndMarketUtility}
                         onChange={handleInputChange}
                       />
+
+
+                        <div className="flex items-center space-x-2">
+                          <div className="flex max-w-min rounded-md border">
+                            <input
+                              value={formData.newLink}
+                              onChange={handleInputChange}
+                              placeholder="Add Link"
+                              name="newLink"
+                              className="block rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleAddLink}
+                              className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md"
+                            >
+                              <Plus size={20} color="#d6cdcd" />
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-3 grid-rows-3 gap-1">
+                            {formData.links.map((item, index) => (
+                              <span
+                                key={index}
+                                className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-pointer"
+                              >
+                                <span>{item}</span>
+                                <XMarkIcon
+                                  className="cursor-pointer"
+                                  onClick={() => handleRemoveLink(index)}
+                                />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+
+
+                       
                       
                       <input
                       type="email"
@@ -262,32 +411,40 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       onChange={handleInputChange}
                       />
 
-                      {/* <div>
-                        <p className="pl-2">Start Date ~ End Date</p>
-                        <Datepicker
-                          value={value}
-                          onChange={handleValueChange}
-                        />
-                      </div> */}
+                     
 
-                      <div className="">
-                        <div className="flex items-center space-x-3">
-                          <label
-                            id="input-file"
-                            className="cursor-pointer border-dotted border-2 w-10 h-10  flex items-center justify-center "
-                          >
-                            <input
-                              id="input-file"
-                              className="hidden"
-                              type="file"
-                              multiple
-                            />
-                            <Plus size={20} color="#d6cdcd" />
-                          </label>
-
-                          <span className="text-[#9F9F9F]">Add 3 images</span>
-                        </div>
-                      </div>
+            <div className="flex items-center space-x-3">
+              <label
+                id="input-file"
+                className="cursor-pointer border-dotted border-2 w-10 h-10  flex items-center justify-center"
+              >
+                <input
+                  id="input-file"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                  multiple // Allow multiple files
+                />
+                <Plus size={20} color="#d6cdcd" />
+              </label>
+              <span>Add 3 Images</span>
+            </div>
+            <div className="grid grid-cols-3 grid-rows-3 gap-1">
+            {formData.files && formData.files.map((file, index) => (
+                <div
+                  key={index}
+                  className="py-1.5 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                >
+                  {/* @ts-ignore */}
+                  <span>{file.name}</span>
+                  <X
+                    size={12}
+                    className="cursor-pointer"
+                    onClick={() => handleRemoveFile(index)}
+                  />
+                </div>
+              ))}
+            </div>
 
                       <button className="block w-full rounded-md border-0 py-1.5 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[#153D6D]">
                         Submit
