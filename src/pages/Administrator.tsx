@@ -6,11 +6,8 @@ import AdminTable from "../components/AdminTable";
 import AprrovalModal from "../components/modals/ApprovalModal";
 
 const Administrator: React.FC = () => {
-
   return (
     <div className="flex flex-col sm:h-screen">
-
-      
       <Header
         setOpen={() => {
           return;

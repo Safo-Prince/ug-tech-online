@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Add, LogoutCurve } from "iconsax-react";
 import { headerNavigation } from "../constants/constants";
+import { Handshake, User } from "@phosphor-icons/react";
 
 interface Props {
   setOpen: (arg: boolean) => void;
@@ -26,12 +27,18 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
               </a>
             </li>
           ))}
-
+          <li>
+            <button className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 ">
+              <Handshake size={20} className="self-center" />
+              <span>Partner</span>
+            </button>
+          </li>
           <li>
             <button
               onClick={() => navigate("/login")}
               className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
             >
+              <User size={20} className="self-center" />
               <span>Administrator</span>
             </button>
           </li>
@@ -40,8 +47,8 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
               onClick={() => setOpen(true)}
               className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
             >
-              <span>Add your Innovation</span>
               <Add size="20" color="white " className="self-center" />
+              <span>Add your Innovation</span>
             </button>
           </li>
         </ul>

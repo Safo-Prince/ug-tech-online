@@ -13,8 +13,8 @@ const Filter: React.FC = () => {
         defaultValue="choose filter ..."
       >
         <option>choose filter ...</option>
-        <option>Active</option>
-        <option>Terminated</option>
+        <option>Approved</option>
+        <option>Not Approved</option>
       </select>
     </div>
   );

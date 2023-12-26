@@ -109,7 +109,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6 ">
+                <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6  max-h-[97vh] overflow-y-scroll">
                   <div className="absolute right-0 top-0  pr-4 pt-4 sm:block">
                     <button
                       type="button"
@@ -158,15 +158,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           defaultValue={""}
                         />
 
-                        <div className="flex items-center space-x-2">
-                          <div className="flex  max-w-min rounded-md border  ">
+                        <div className="flex  flex-col space-y-1 items-center space-x-2">
+                          <div className="flex w-full  rounded-md border  ">
                             <input
                               value={input.keyword}
                               onChange={(e) =>
                                 setInput({ ...input, keyword: e.target.value })
                               }
                               placeholder="Add Keyword"
-                              className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                              className="block  w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                             />
                             <button
                               onClick={(e) =>
@@ -177,7 +177,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <Plus size={20} color="#d6cdcd" />
                             </button>
                           </div>
-                          <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
+                          <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1 ">
                             {inputList.keywords.map((item, index) => (
                               <span
                                 key={index}
@@ -199,8 +199,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                             ))}
                           </div>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="flex  max-w-min rounded-md border  ">
+                        <div className="flex  flex-col space-y-1 items-center space-x-2">
+                          <div className="flex  w-full rounded-md border  ">
                             <input
                               value={input.developer}
                               onChange={(e) =>
@@ -210,7 +210,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                                 })
                               }
                               placeholder="Add Developer"
-                              className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                              className="block w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                             />
                             <button
                               onClick={(e) =>
@@ -221,7 +221,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <Plus size={20} color="#d6cdcd" />
                             </button>
                           </div>
-                          <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
+                          <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1 ">
                             {inputList.developers.map((item, index) => (
                               <span
                                 key={index}
@@ -244,24 +244,28 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           </div>
                         </div>
                         <select
-                          id="location"
-                          name="location"
                           className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                           defaultValue="--select category--"
                         >
                           <option>--Select status---</option>
-                          <option>Research</option>
-                          <option>Development</option>
-                          <option>Internship</option>
-                          <option>Training</option>
-                          <option>Course development</option>
-                          <option>Innovation</option>
-                          <option>Commercialism</option>
-                          <option>Multi-purpose</option>
+                          <option>Basic Principles Observed</option>
+                          <option>Technology Concept Formulated</option>
+                          <option>Proof of Concept Validated</option>
+                          <option>Technology Validated In Lab</option>
+                          <option>
+                            Technology Validated in Relevant Environment
+                          </option>
+                          <option>
+                            Technology Demonstrated in Relevant Environment
+                          </option>
+                          <option>
+                            System Prototype Demonstrated in Operational
+                            Environment
+                          </option>
+                          <option>Actual System Completed and Qualified</option>
+                          <option>Full Scale Development</option>
                         </select>
                         <select
-                          id="location"
-                          name="location"
                           className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                           defaultValue="--select partner type---"
                         >
@@ -284,15 +288,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                           defaultValue={""}
                         />
-                        <div className="flex items-center  space-x-2">
-                          <div className="flex  max-w-min rounded-md border  ">
+                        <div className="flex flex-col items-center  space-x-2">
+                          <div className="flex w-full rounded-md border  ">
                             <input
                               value={input.link}
                               onChange={(e) =>
                                 setInput({ ...input, link: e.target.value })
                               }
                               placeholder="Add links"
-                              className="block  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                              className="block   w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                             />
                             <button
                               onClick={(e) =>
@@ -304,11 +308,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                             </button>
                           </div>
 
-                          <div className="grid grid-cols-3 grid-rows-3 gap-1 ">
+                          <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1  ">
                             {inputList.links.map((item, index) => (
                               <span
                                 key={index}
-                                className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                                className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between mt-2"
                               >
                                 <span>
                                   {item.length > 5

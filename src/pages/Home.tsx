@@ -17,7 +17,7 @@ const Home = () => {
         setSubmissionOpen={setSubmissionOpen}
       />
       <Header setOpen={setOpen} />
-      <Hero title="UG Online Technologies Portal" />
+      <Hero title="Innovation & Technology Portal" />
       <Main />
       <Footer />
     </div>

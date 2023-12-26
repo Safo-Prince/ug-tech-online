@@ -23,8 +23,7 @@ const ProjectCard = ({ project }: Props) => {
   const navigate = useNavigate();
   return (
     <motion.div
-      whileHover={{ scale: 1 }}
-      whileTap={{ scale: 0.9 }}
+      onClick={() => navigate("/project-details")}
       variants={item}
       className=" w-full sm:w-80 xl:w-96   border rounded-md p-3   shadow-sm space-y-2   cursor-pointer"
     >
@@ -34,11 +33,10 @@ const ProjectCard = ({ project }: Props) => {
         <h2 className="text-[#56585B] text-xl font-bold">{project.title}</h2>
       </div>
       <div>
-        <p className="text-[#56585B] xl:text-lg">{project.description}</p>
-        <button
-          onClick={() => navigate("/project-details")}
-          className="bg-[#153D6D] text-white py-1 px-3  rounded-md text-sm mt-2"
-        >
+        <p className="text-[#56585B] xl:text-lg line-clamp-3">
+          {project.description}
+        </p>
+        <button className="bg-[#153D6D] text-white py-1 px-3  rounded-md text-sm mt-2">
           Details
         </button>
       </div>
