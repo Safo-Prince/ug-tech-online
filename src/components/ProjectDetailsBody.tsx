@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import fertilizer from "../assets/fertilizer.png";
+import { Handshake, Timer } from "@phosphor-icons/react";
+import SetMeetingModal from "./modals/SetMeetingModal";
+import Notification from "./Notification";
+import PartnerWithUs from "./modals/ParrtnerWithUsModal";
 
 const ProjectDetailsBody = () => {
+  const [prompt, setPrompt] = useState("");
+
+  const [showNotification, setShowNotification] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [partnerOpen, setPartnerOpen] = useState(false);
+
+  useEffect(() => {
+    if (showNotification) {
+      setTimeout(() => setShowNotification(false), 4000);
+    }
+  });
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [projectDetails, setProjectDetails] = useState({
     // other properties,
     
   });
-  
 
   useEffect(() => {
     // Fetch project details based on the ID from the backend
@@ -44,7 +59,25 @@ const ProjectDetailsBody = () => {
   } = projectDetails;
 
   return (
-    <div className="max-w-7xl mx-auto lg:px-6 px-8 min-h-min  py-10 font-lato sm:my-20 my-5 flex sm:flex-row flex-col space-x-4 sm:justify-between  space-y-4 sm:space-y-0 ">
+    <>
+      <Notification
+        prompt={prompt}
+        setShowNotification={setShowNotification}
+        showNotification={showNotification}
+      />
+      <SetMeetingModal
+        open={open}
+        setOpen={setOpen}
+        setPrompt={setPrompt}
+        setShowNotification={setShowNotification}
+      />
+      <PartnerWithUs
+        open={partnerOpen}
+        setOpen={setPartnerOpen}
+        setPrompt={setPrompt}
+        setShowNotification={setShowNotification}
+      />
+      <div className="max-w-7xl mx-auto lg:px-6 px-8 min-h-min  py-10 font-lato sm:my-20 my-5 flex sm:flex-row flex-col space-x-4 sm:justify-between  space-y-4 sm:space-y-0 ">
       <div className="sm:w-1/2  h-full flex flex-col space-y-4  ">
         {files && files.length > 0 ? (
           <img
@@ -124,14 +157,27 @@ const ProjectDetailsBody = () => {
                 <h1 className="font-bold  text-lg mt-4">Contact</h1>
                 <p className="text-[#56585B] xl:text-lg mt-2">{contact}</p>
               </div>
-
-
-
-
           
         </div>
 
     </div>
+
+          <button
+            onClick={() => setOpen(true)}
+            className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
+            >
+            <Timer size={20} className="self-center" />
+            <span>Set Meeting</span>
+          </button>
+          <button
+            onClick={() => setPartnerOpen(true)}
+            className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
+            >
+            <Handshake size={20} className="self-center" />
+            <span>Partner With Us</span>
+          </button>
+        
+    </>
   );
 };
 

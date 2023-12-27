@@ -13,12 +13,8 @@ const Hero: React.FC<Props> = ({ title, techId }) => {
   return (
     <>
       <div
-        className={` hero-image bg-no-repeat bg-cover  w-full sm:h-80  h-32 flex flex-col items-center justify-end sm:pb-10  pb-3 sm:space-y-3 space-y-1
-        ${
-          pathname !== "/"
-            ? "justify-center"
-            : null
-        }
+        className={` hero-image bg-no-repeat bg-cover  w-full sm:h-80  h-32 flex flex-col items-center justify-end  sm:space-y-3 space-y-1
+        ${pathname !== "/" ? "justify-center " : " sm:pb-10  pb-3"}
         `}
       >
         <h1 className=" font-extrabold sm:font-semibold  text-base sm:text-2xl md:text-3xl lg:text-5xl font-poppins  text-white">

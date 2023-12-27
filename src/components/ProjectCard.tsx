@@ -27,8 +27,7 @@ const ProjectCard = ({ project }: Props) => {
 
   return (
     <motion.div
-      whileHover={{ scale: 1 }}
-      whileTap={{ scale: 0.9 }}
+      onClick={() => navigate("/project-details")}
       variants={item}
       className="w-full sm:w-80 xl:w-96 border rounded-md p-3 shadow-sm space-y-2 cursor-pointer"
     >

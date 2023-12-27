@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
-// import MobileMenu from "./MobileMenu";
+import MobileMenu from "./MobileMenu";
 import { HambergerMenu } from "iconsax-react";
 
 interface Props {
@@ -10,12 +10,15 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ setOpen }) => {
+  const [mobOIsPen, setMobIsOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
     <>
       <div className=" w-full bg-[#153D6D] flex items-center sm:p-3 p-1 pl-2  font-lato ">
-        <h1 className="text-[#E0E0E0] left-10 text-xs">UG TechOnline</h1>
+        <h1 className="text-[#E0E0E0] left-10 text-xs">
+          Innovation & Technology Portal
+        </h1>
       </div>
       <div className="border-b py-5 sm:py-10">
         <div className="w-full  mx-auto max-w-7xl  px-6 lg:px-8 flex  items-center  justify-between  ">
@@ -31,11 +34,15 @@ const Header: React.FC<Props> = ({ setOpen }) => {
 
           <HambergerMenu
             className="cursor-pointer sm:hidden"
-            onClick={() => setOpen(true)}
+            onClick={() => setMobIsOpen(true)}
             size="25"
             color="black"
           />
-          {/* <MobileMenu onOpen={setOpen} open={isOpen} /> */}
+          <MobileMenu
+            onOpen={setMobIsOpen}
+            open={mobOIsPen}
+            setOpen={setOpen}
+          />
         </div>
       </div>
     </>

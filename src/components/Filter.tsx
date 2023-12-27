@@ -23,9 +23,9 @@ const Filter: React.FC<FilterProps> = ({ onSelectFilter }) => {
         defaultValue="choose filter ..."
         onChange={handleFilterChange}
       >
-        <option value="">choose filter ...</option>
-        <option value="Active">Active</option>
-        <option value="Terminated">Terminated</option>
+        <option>choose filter ...</option>
+        <option>Approved</option>
+        <option>Not Approved</option>
       </select>
     </div>
   );
