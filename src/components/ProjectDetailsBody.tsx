@@ -24,7 +24,7 @@ const ProjectDetailsBody = () => {
   const [projectDetails, setProjectDetails] = useState({
     // other properties,
     
-  });
+  });git 
 
   useEffect(() => {
     // Fetch project details based on the ID from the backend

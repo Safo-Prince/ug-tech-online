@@ -123,7 +123,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: FormEvent) => {
     {
       /* @ts-ignore */
     }
