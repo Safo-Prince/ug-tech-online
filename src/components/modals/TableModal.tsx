@@ -44,7 +44,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
     const fetchModalData = async () => {
       try {
         {/* @ts-ignore */}
-        const response = await fetch(`http://localhost:3002/api/projects/${rowData.id}`);
+        const response = await fetch(`https://innovate.ug.edu.gh/api/projects/${rowData.id}`);
         const data = await response.json();
         setModalData(data);
         setIsLoading(false);
@@ -62,7 +62,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
   const handleApproval = async () => {
     try {
       // Call the API endpoint to update the approval status
-      const response = await fetch(`http://localhost:3002/api/approve-project/${modalData && modalData.id}`, {
+      const response = await fetch(`https://innovate.ug.edu.gh/api/approve-project/${modalData && modalData.id}`, {
         method: 'POST',
       });
       const data = await response.json();
