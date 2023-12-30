@@ -36,10 +36,10 @@ router.post('/login',urlencodedParser, (req, res) => {
   if (email === validUser.email && password === validUser.password) {
     req.session.user = validUser; // Store user information in the session
     isLoggedIn=true
-    alert('goood')
+    
     res.status(200).send({ message: 'Login successful' });
   } else {
-    alert('bad')
+    
     res.status(401).send({ message: 'Invalid credentials ' + req.body.email + ' try again' });
   }
 });
