@@ -7,7 +7,7 @@ import axios from "axios";
 import * as React from "react";
 //import AprrovalModal from "../components/modals/ApprovalModal";
 
-const baseURL = 'http://localhost:5173/loginstatus';
+const baseURL = 'https://innovate.ug.edu.gh/loginstatus';
 
 {
   /* @ts-ignore */

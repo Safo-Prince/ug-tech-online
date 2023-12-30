@@ -36,7 +36,7 @@ const ProjectDetailsBody = () => {
     // Fetch project details based on the ID from the backend
     const fetchProjectDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/api/projects/${id}`);
+        const response = await fetch(`https://innovate.ug.edu.gh/api/projects/${id}`);
         const data = await response.json();
         setProjectDetails(data);
       } catch (error) {
@@ -89,7 +89,7 @@ const ProjectDetailsBody = () => {
             /* @ts-ignore */
           }
           {/* @ts-ignore */}
-        {files && files.length > 0 ? ( <img src={ projectDetails.files && typeof projectDetails.files === 'string' && projectDetails.files.length > 0 ? `http://localhost:3002/${projectDetails.files.split(',')[0].trim()}` : `http://localhost:3002/placeholder-image.jpg` } className="rounded-md object-cover" alt={projectDetails.title}
+        {files && files.length > 0 ? ( <img src={ projectDetails.files && typeof projectDetails.files === 'string' && projectDetails.files.length > 0 ? `https://innovate.ug.edu.gh/${projectDetails.files.split(',')[0].trim()}` : `https://innovate.ug.edu.gh/placeholder-image.jpg` } className="rounded-md object-cover" alt={projectDetails.title}
           style={{ width: '80%', height: '400px' }}
         />
         ) : (

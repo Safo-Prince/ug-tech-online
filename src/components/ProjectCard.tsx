@@ -35,7 +35,7 @@ const ProjectCard = ({ project }: Props) => {
   >
             {/* @ts-ignore */}
 
-      {project.image_path ? ( <img src={`http://localhost:3002/${project.image_path}`} className="rounded-md object-cover" alt={project.title}
+      {project.image_path ? ( <img src={`https://innovate.ug.edu.gh/${project.image_path}`} className="rounded-md object-cover" alt={project.title}
         style={{ width: '100%', height: '200px' }}
       />
       ) : (

@@ -45,7 +45,7 @@ const SetMeetingModal: React.FC<Props> = ({
   
     try {
       // Make a POST request to the backend API
-      const response = await fetch('http://localhost:3002/api/submit-meeting-form', {
+      const response = await fetch('https://innovate.ug.edu.gh/api/submit-meeting-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

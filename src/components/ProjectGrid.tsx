@@ -12,7 +12,7 @@ const ProjectGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:3002/api/approved-projects");
+        const response = await fetch("https://innovate.ug.edu.gh/api/approved-projects");
         const data = await response.json();
         setProjects(data);
         setIsLoading(false);

@@ -184,7 +184,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
         }
       });
 
-      const response = await fetch("http://localhost:3002/submit-form", {
+      const response = await fetch("https://innovate.ug.edu.gh/submit-form", {
         method: "POST",
         body: formDataToSend,
       });

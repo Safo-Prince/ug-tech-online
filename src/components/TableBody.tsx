@@ -24,7 +24,7 @@ const TableBody: React.FC<Props> = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:3002/api/projects?filter=${selectedFilter}`);
+          const response = await fetch(`https://innovate.ug.edu.gh/api/projects?filter=${selectedFilter}`);
           const data = await response.json();
   
           const dataArray = Array.isArray(data) ? data : [data];

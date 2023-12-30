@@ -80,7 +80,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
   const handlePending = async () => {
     try {
       // Call the API endpoint to update the approval status
-      const response = await fetch(`http://localhost:3002/api/pend-project/${modalData && modalData.id}`, {
+      const response = await fetch(`https://innovate.ug.edu.gh/api/pend-project/${modalData && modalData.id}`, {
         method: 'POST',
       });
       const data = await response.json();
