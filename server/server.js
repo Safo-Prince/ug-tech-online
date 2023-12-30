@@ -17,8 +17,8 @@ app.use(cors());
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  //password: 'Blue12:34',
-  password:'Cj10856672',
+  password: 'Blue12:34',
+  //password:'Cj10856672',
   database: 'tech_online',
   waitForConnections: true,
   connectionLimit: 10,
