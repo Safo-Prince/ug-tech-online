@@ -1,10 +1,18 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const router = express.Router();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var isLoggedIn = false
+
+// Use CORS middleware
+//const corsOptions = {
+  //origin: ' http://localhost:5173',
+  //optionsSuccessStatus: 200,
+//};
+//router.use(cors(corsOptions));
+
 // Use session middleware
 router.use(
   session({
@@ -28,8 +36,10 @@ router.post('/login',urlencodedParser, (req, res) => {
   if (email === validUser.email && password === validUser.password) {
     req.session.user = validUser; // Store user information in the session
     isLoggedIn=true
+    alert('goood')
     res.status(200).send({ message: 'Login successful' });
   } else {
+    alert('bad')
     res.status(401).send({ message: 'Invalid credentials ' + req.body.email + ' try again' });
   }
 });

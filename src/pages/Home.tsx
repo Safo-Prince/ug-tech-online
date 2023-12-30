@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -11,10 +12,8 @@ const Home = () => {
   return (
     <div>
       <SubmissionModal open={submissionOpen} setOpen={setSubmissionOpen} />
-      <FormModal
-        open={open}
-        setOpen={setOpen}
-        setSubmissionOpen={setSubmissionOpen}
+      {/* @ts-ignore */}
+      <FormModal open={open} setOpen={setOpen} setSubmissionOpen={setSubmissionOpen}
       />
       <Header setOpen={setOpen} />
       <Hero title="Innovation & Technology Portal" />

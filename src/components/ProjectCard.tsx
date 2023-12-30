@@ -1,4 +1,5 @@
 // ProjectCard.jsx
+import * as React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -27,15 +28,14 @@ const ProjectCard = ({ project }: Props) => {
 
   return (
     <motion.div
-      onClick={() => navigate("/project-details")}
-      variants={item}
-      className="w-full sm:w-80 xl:w-96 border rounded-md p-3 shadow-sm space-y-2 cursor-pointer"
-    >
-      {project.image_path ? (
-        <img
-        src={`http://localhost:3002/${project.image_path}`}
-        className="rounded-md object-cover"
-        alt={project.title}
+    whileHover={{ scale: 1 }}
+    whileTap={{ scale: 0.9 }}
+    variants={item}
+    className="w-full sm:w-80 xl:w-96 border rounded-md p-3 shadow-sm space-y-2 cursor-pointer"
+  >
+            {/* @ts-ignore */}
+
+      {project.image_path ? ( <img src={`http://localhost:3002/${project.image_path}`} className="rounded-md object-cover" alt={project.title}
         style={{ width: '100%', height: '200px' }}
       />
       ) : (

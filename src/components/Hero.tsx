@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { SearchNormal1 } from "iconsax-react";
 import { useLocation } from "react-router-dom";
 import "../styles/hero.css";

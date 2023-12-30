@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Children, FormEvent, Fragment, useState, ReactNode } from "react";
+import { FormEvent, Fragment, useState,} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Plus, X } from "@phosphor-icons/react";
@@ -49,6 +49,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
+      {/* @ts-ignore */}
       setFormData((prevData) => ({
         ...prevData,
         keywords: [...prevData.keywords, newKeyword],
@@ -60,6 +61,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
+  {/* @ts-ignore */}
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -75,6 +77,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
+      {/* @ts-ignore */}
       setFormData((prevData) => ({
         ...prevData,
         developers: [...prevData.developers, newDeveloper],
@@ -86,6 +89,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
+  {/* @ts-ignore */}
   const handleRemoveDeveloper = (index) => {
     setFormData((prevData) => {
       const newDevelopers = [...prevData.developers];
@@ -101,6 +105,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
+      {/* @ts-ignore */}
       setFormData((prevData) => ({
         ...prevData,
         links: [...prevData.links, newLink],
@@ -112,6 +117,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
+  {/* @ts-ignore */}
   const handleRemoveLink = (index) => {
     setFormData((prevData) => {
       const newLinks = [...prevData.links];
@@ -127,10 +133,12 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     {
       /* @ts-ignore */
     }
+    {/* @ts-ignore */}
     const selectedFiles = Array.from(e.target.files);
     {
       /* @ts-ignore */
     }
+    {/* @ts-ignore */}
     setFormData((prevData) => ({
       ...prevData,
       files: [...prevData.files, ...selectedFiles],
@@ -140,6 +148,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
+  {/* @ts-ignore */}
   const handleRemoveFile = (index) => {
     setFormData((prevData) => {
       const newFiles = [...prevData.files];
@@ -148,7 +157,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     });
   };
 
-  //const response = await fetch("http://localhost:3002/submit-form",
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -169,6 +178,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
           {
             /* @ts-ignore */
           }
+          {/* @ts-ignore */}
+          {/* @ts-ignore */}
           formDataToSend.append(key, formData[key]);
         }
       });
@@ -262,7 +273,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         rows={2}
                         name="description"
                         id="description"
-                        value={formData.comment}
+                        value={formData.description}
                         onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
@@ -286,6 +297,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             className="block  w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
+                            type="button"
                             onClick={handleAddKeyword}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
@@ -299,8 +311,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
                             >
                               <span>
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {
+                                  /* @ts-ignore */
+                                }
+                                {/* @ts-ignore */}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -324,6 +339,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             className="block w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
+                          type="button"
                             onClick={handleAddDeveloper}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
@@ -337,8 +353,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
                             >
                               <span>
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {
+                                  /* @ts-ignore */
+                                }
+                                {/* @ts-ignore */}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -387,8 +406,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         <option>Department or Agency of Government</option>
                       </select>
 
-                      <textarea
-                        type="text"
+
+                      {/* @ts-ignore */}
+                      <textarea type="text"
                         placeholder="Application and Market Utility"
                         rows={4}
                         name="applicationAndMarketUtility"
@@ -409,6 +429,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             className="block   w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
+                          type="button"
                             onClick={handleAddLink}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
@@ -423,8 +444,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between mt-2"
                             >
                               <span>
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {
+                                  /* @ts-ignore */
+                                }
+                                {/* @ts-ignore */}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -490,7 +514,10 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           ))}
                       </div>
 
-                      <button className="block w-full rounded-md border-0 py-1.5 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[#153D6D]">
+                      <button 
+                        //onClick={handleSubmit}
+                        type="submit"
+                        className="block w-full rounded-md border-0 py-1.5 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[#153D6D]">
                         {buttonText}
                       </button>
                     </form>

@@ -12,7 +12,7 @@ const ProjectGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:3002/api/projects");
+        const response = await fetch("http://localhost:3002/api/approved-projects");
         const data = await response.json();
         setProjects(data);
         setIsLoading(false);
@@ -36,9 +36,8 @@ const ProjectGrid = () => {
       ) : (
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8"
-        >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        >{/* @ts-ignore */}
+          {projects.map((project) => ( <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
       )}

@@ -1,3 +1,5 @@
+import * as React from "react";
+
 const TableShimmer: React.FC = () => {
   const numRows = 10;
   const rows = Array.from({ length: numRows }, (_, index) => index);

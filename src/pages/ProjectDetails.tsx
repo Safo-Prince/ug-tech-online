@@ -1,5 +1,5 @@
+import * as React from "react";
 import { useState } from "react";
-
 import ProjectDetailsBody from "../components/ProjectDetailsBody";
 import FormModal from "../components/modals/FormModal";
 import Header from "../components/Header";
@@ -14,10 +14,8 @@ const ProjectDetails = () => {
   return (
     <div>
       <SubmissionModal open={submissionOpen} setOpen={setSubmissionOpen} />
-      <FormModal
-        open={open}
-        setOpen={setOpen}
-        setSubmissionOpen={setSubmissionOpen}
+      {/* @ts-ignore */}
+      <FormModal open={open} setOpen={setOpen} setSubmissionOpen={setSubmissionOpen}
       />
       <Header setOpen={setOpen} />
       <Hero title="Multi-nutrient supplement for ruminants" techId="SOA 03" />

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Check } from "@phosphor-icons/react";
@@ -7,6 +8,7 @@ interface Props {
   setOpen: (arg: boolean) => void;
 }
 
+{/* @ts-ignore */}
 const SubmissionModal: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <Transition.Root static show={open} as={Fragment}>

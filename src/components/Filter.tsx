@@ -1,6 +1,4 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { FileMinus } from "@phosphor-icons/react";
 
 interface FilterProps {
   onSelectFilter: (filter: string) => void;
@@ -24,7 +22,7 @@ const Filter: React.FC<FilterProps> = ({ onSelectFilter }) => {
         onChange={handleFilterChange}
       >
         <option>choose filter ...</option>
-        <option>Approved</option>
+        <option>Approved </option>
         <option>Not Approved</option>
       </select>
     </div>

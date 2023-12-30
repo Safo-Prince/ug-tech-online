@@ -24,13 +24,26 @@ interface Props {
 const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
 
   const [modalData, setModalData] = useState<any | null>(null);
+  {
+    /* @ts-ignore */
+  }
+  {/* @ts-ignore */}
   const [openModal, setOpenModal] = useState(false);
+  {
+    /* @ts-ignore */
+  }
+  {/* @ts-ignore */}
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
+  {
+    /* @ts-ignore */
+  }
+  {/* @ts-ignore */}
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchModalData = async () => {
       try {
+        {/* @ts-ignore */}
         const response = await fetch(`http://localhost:3002/api/projects/${rowData.id}`);
         const data = await response.json();
         setModalData(data);
@@ -45,6 +58,41 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
       fetchModalData();
     }
   }, [rowData]);
+
+  const handleApproval = async () => {
+    try {
+      // Call the API endpoint to update the approval status
+      const response = await fetch(`http://localhost:3002/api/approve-project/${modalData && modalData.id}`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      if (data.success) {
+        console.log('Project approved successfully');
+      } else {
+        console.error('Error approving project');
+      }
+    } catch (error) {
+      console.error('Error approving project:', error);
+    }
+  };
+
+
+  const handlePending = async () => {
+    try {
+      // Call the API endpoint to update the approval status
+      const response = await fetch(`http://localhost:3002/api/pend-project/${modalData && modalData.id}`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      if (data.success) {
+        console.log('Project approved successfully');
+      } else {
+        console.error('Error approving project');
+      }
+    } catch (error) {
+      console.error('Error approving project:', error);
+    }
+  };
 
   return (
     <Transition.Root static show={open} as={Fragment}>
@@ -101,9 +149,9 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     <div className="">
                       <h1 className="font-bold text-lg">Developers:</h1>
                       <ul className="list-disc list-inside">
-                        {modalData &&
-                          modalData.developers &&
-                          modalData.developers.split(',').map((developer, index) => (
+
+                        {/* @ts-ignore */}
+                        {modalData && modalData.developers && modalData.developers.split(',').map((developer, index) => (
                             <li key={index} className="text-[#56585B] xl:text-lg">
                               {developer.trim()} {/* Trim to remove any leading/trailing whitespaces */}
                             </li>
@@ -152,22 +200,23 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                       </ul>
                     </div>
                     <div className="mt-2">
-  <h1 className="font-bold text-lg">Relevant links:</h1>
-  {modalData && modalData.links && (
-    <ul className="list-disc list-inside">
-      {modalData.links.split(',').map((link, index) => (
-        <li key={index} className="text-[#007AA0] xl:text-lg">
-          <a href={link.trim()} target="_blank" rel="noopener noreferrer">
-            {`Link ${index + 1}`}
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
-  {!modalData || !modalData.links && (
-    <p className="text-[#56585B] xl:text-lg">No relevant links available.</p>
-  )}
-</div>
+                    <h1 className="font-bold text-lg">Relevant links:</h1>
+                    {modalData && modalData.newLink && (
+                      <ul className="list-disc list-inside">
+                        {/* @ts-ignore */}
+                        {modalData.newLink.split(',').map((link, index) => (
+                          <li key={index} className="text-[#007AA0] xl:text-lg">
+                            <a href={link.trim()} target="_blank" rel="noopener noreferrer">
+                              {`Link ${index + 1}`}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {!modalData || !modalData.newLink && (
+                      <p className="text-[#56585B] xl:text-lg">No relevant links available.</p>
+                    )}
+                  </div>
 
 
 
@@ -180,10 +229,10 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     </div>
                     <div className="space-y-3 flex flex-col items-start"></div>
                     <div className="flex justify-around mt-5 space-x-5">
-                      <button className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <button onClick={handleApproval} className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Accept
                       </button>
-                      <button className="rounded-md bg-[#F46969] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#f19494]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <button onClick={handlePending} className="rounded-md bg-[#F46969] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#f19494]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Pending
                       </button>
                     </div>

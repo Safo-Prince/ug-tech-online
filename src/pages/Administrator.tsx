@@ -1,15 +1,19 @@
-import { useState } from "react";
+//import { useState } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import AdminTable from "../components/AdminTable";
 import axios from "axios";
 import * as React from "react";
-import AprrovalModal from "../components/modals/ApprovalModal";
+//import AprrovalModal from "../components/modals/ApprovalModal";
 
-const baseURL = 'http://localhost:3002/loginstatus';
+const baseURL = 'http://localhost:5173/loginstatus';
 
-const Administrator: React.FC = () => {
+{
+  /* @ts-ignore */
+}
+/* @ts-ignore */
+export default function Administrator(props: any) {
   const [authStatus, setAuthStatus] = React.useState(null);
   React.useEffect(()=>{
     axios.get(baseURL).then((response) => {
@@ -36,4 +40,4 @@ const Administrator: React.FC = () => {
   );
 };
 
-export default Administrator;
+
