@@ -6,13 +6,42 @@ import "../styles/Loginform.css";
 
 const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  {
+    /* @ts-ignore */
+  }
+  /* @ts-ignore */
+  const [loginError, setLoginError] = useState(false);
+  {
+    /* @ts-ignore */
+  }
+  /* @ts-ignore */
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => navigate("/admin"), 3000);
+    try {
+      const response = await fetch("https://innovate.ug.edu.gh/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (response.ok) {
+        setLoginError(false);
+        setIsLoading(false);
+        navigate("/admin");
+      } else {
+        setLoginError(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -32,11 +61,15 @@ const LoginForm: React.FC = () => {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
+                   id="email"
+                   name="email"
+                   type="email"
+                   autoComplete="email"
+                   required
+                   value={credentials.email} // Bind value to state
+                   onChange={(e) =>
+                     setCredentials({ ...credentials, email: e.target.value })
+                   }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                 />
               </div>
@@ -58,6 +91,10 @@ const LoginForm: React.FC = () => {
                   type="password"
                   autoComplete="current-password"
                   required
+                  value={credentials.password} // Bind value to state
+                  onChange={(e) =>
+                    setCredentials({ ...credentials, password: e.target.value })
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                 />
               </div>
