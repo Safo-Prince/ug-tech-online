@@ -7,11 +7,11 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var isLoggedIn = false
 
 // Use CORS middleware
-const corsOptions = {
-  origin: ' https://innovate.ug.edu.gh',
-  optionsSuccessStatus: 200,
-};
-router.use(cors(corsOptions));
+//const corsOptions = {
+  //origin: ' https://innovate.ug.edu.gh',
+  //optionsSuccessStatus: 200,
+//};
+//router.use(cors(corsOptions));
 
 // Use session middleware
 router.use(
