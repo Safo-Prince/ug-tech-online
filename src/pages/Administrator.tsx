@@ -23,7 +23,7 @@ export default function Administrator(props: any) {
   console.log(authStatus);
   if(authStatus==false) {
     history.pushState({urlPath:''},"",'/login')
-    window.location.reload()
+    //window.location.reload()
   }
 
   return (
