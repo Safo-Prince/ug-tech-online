@@ -1,50 +1,45 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Eye} from "iconsax-react";
+import { Eye } from "iconsax-react";
 import { DotsThreeVertical } from "@phosphor-icons/react";
-import Filter from "./Filter";
-
 
 import TableModal from "./modals/TableModal";
 import TableShimmer from "./shimmers/TableShimmer";
 
 interface Props {
-  // Any additional props you may need
+  selectedFilter: string;
 }
-
-const TableBody: React.FC<Props> = () => {
+const TableBody: React.FC<Props> = ({ selectedFilter }) => {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
-  const [selectedFilter, setSelectedFilter] = useState(''); // For the filter
-    
-  
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`https://innovate.ug.edu.gh/api/projects?filter=${selectedFilter}`);
-          const data = await response.json();
-  
-          const dataArray = Array.isArray(data) ? data : [data];
-          const sortedData = dataArray.sort((a, b) => b.id - a.id);
-  
-          setTableData(sortedData);
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-  
-      fetchData();
-    }, [selectedFilter]);
+  // const [selectedFilter, setSelectedFilter] = useState("");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://innovate.ug.edu.gh/api/projects?filter=${selectedFilter}`
+        );
+        const data = await response.json();
 
-    const handleSelectFilter = (filter: string) => {
-      setSelectedFilter(filter);
+        const dataArray = Array.isArray(data) ? data : [data];
+        const sortedData = dataArray.sort((a, b) => b.id - a.id);
+
+        setTableData(sortedData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
+    fetchData();
+  }, [selectedFilter]);
+
+  // const handleSelectFilter = (filter: string) => {
+  //   setSelectedFilter(filter);
+  // };
 
   // Function to handle opening the modal
   const handleOpenModal = (rowData: any) => {
@@ -52,10 +47,16 @@ const TableBody: React.FC<Props> = () => {
     setSelectedRow(rowData);
   };
 
+  console.log(selectedFilter);
+
   return (
     <>
-      <Filter onSelectFilter={handleSelectFilter} />
-      <TableModal setOpen={setOpenModal} open={openModal} rowData={selectedRow} />
+      {/* <Filter onSelectFilter={handleSelectFilter} /> */}
+      <TableModal
+        setOpen={setOpenModal}
+        open={openModal}
+        rowData={selectedRow}
+      />
 
       {isLoading ? (
         <TableShimmer />
@@ -80,9 +81,9 @@ const TableBody: React.FC<Props> = () => {
                   <button onClick={() => handleOpenModal(rowData)}>
                     <Eye size="25" color="black" className="cursor-pointer" />
                   </button>
-                  <button>
+                  {/* <button>
                     <DotsThreeVertical size={25} />
-                  </button>
+                  </button> */}
                 </div>
               </td>
             </tr>

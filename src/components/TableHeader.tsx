@@ -13,7 +13,7 @@ const TableHeader: FC<Props> = ({ columns }): JSX.Element => {
           <th
             scope="col"
             key={index}
-            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 whitespace-nowrap"
           >
             {column.name}
           </th>
@@ -24,5 +24,3 @@ const TableHeader: FC<Props> = ({ columns }): JSX.Element => {
 };
 
 export default TableHeader;
-
-

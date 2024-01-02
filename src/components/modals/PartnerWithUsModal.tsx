@@ -12,17 +12,13 @@ interface Props {
   innovationName: string;
 }
 
-const PartnerWithUs: React.FC<Props> = ({
-  open,
-  setOpen,
-  innovationName
-}) => {
+const PartnerWithUs: React.FC<Props> = ({ open, setOpen, innovationName }) => {
   const [formData, setFormData] = useState({
-    company_name: '',
-    contact_person_name: '',
-    phone_number: '',
-    user_email: '',
-    purpose: '',
+    company_name: "",
+    contact_person_name: "",
+    phone_number: "",
+    user_email: "",
+    purpose: "",
   });
   const [buttonText, setButtonText] = useState("Send");
 
@@ -40,32 +36,35 @@ const PartnerWithUs: React.FC<Props> = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setButtonText('Sending...');
-  
+    setButtonText("Sending...");
+
     try {
       // Make a POST request to the backend API
-      const response = await fetch('https://innovate.ug.edu.gh/api/submit-meeting-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          innovation_name: innovationName,
-        }),
-      });
-  
+      const response = await fetch(
+        "https://innovate.ug.edu.gh/api/submit-meeting-form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            innovation_name: innovationName,
+          }),
+        }
+      );
+
       if (response.ok) {
-        console.log('Form submitted successfully');
+        console.log("Form submitted successfully");
         // Refresh the page to clear input fields
         window.location.reload();
       } else {
-        console.error('Error submitting form:', response.statusText);
+        console.error("Error submitting form:", response.statusText);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     } finally {
-      setButtonText('Send');
+      setButtonText("Send");
     }
   };
 
@@ -121,13 +120,14 @@ const PartnerWithUs: React.FC<Props> = ({
                             Name of The Company
                           </label>
                           <div className="mt-2">
-                          <input
-                            name="company_name"
-                            value={formData.company_name}
-                            onChange={handleInputChange}
-                            className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
-                            placeholder="Enter name of the company"
-                          />
+                            <input
+                              required
+                              name="company_name"
+                              value={formData.company_name}
+                              onChange={handleInputChange}
+                              className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
+                              placeholder="Enter name of the company"
+                            />
                           </div>
                         </div>
                         <div className="mt-3">
@@ -135,13 +135,14 @@ const PartnerWithUs: React.FC<Props> = ({
                             Name of Contact Person
                           </label>
                           <div className="mt-2">
-                          <input
-                            name="contact_person_name"
-                            value={formData.contact_person_name}
-                            onChange={handleInputChange}
-                            className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
-                            placeholder="Enter full name"
-                          />
+                            <input
+                              required
+                              name="contact_person_name"
+                              value={formData.contact_person_name}
+                              onChange={handleInputChange}
+                              className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
+                              placeholder="Enter full name"
+                            />
                           </div>
                         </div>
                         <div className="mt-3">
@@ -149,13 +150,14 @@ const PartnerWithUs: React.FC<Props> = ({
                             Contact Person's Phone Number
                           </label>
                           <div className="mt-2">
-                          <input
-                            name="phone_number"
-                            value={formData.phone_number}
-                            onChange={handleInputChange}
-                            className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
-                            placeholder="Enter phone number"
-                          />
+                            <input
+                              required
+                              name="phone_number"
+                              value={formData.phone_number}
+                              onChange={handleInputChange}
+                              className="block w-full bg-[#F8F8F8] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] disabled:ring-gray-200 sm:text-sm sm:leading-6"
+                              placeholder="Enter phone number"
+                            />
                           </div>
                         </div>
                         <div className="mt-3">
@@ -173,6 +175,7 @@ const PartnerWithUs: React.FC<Props> = ({
                               />
                             </div>
                             <input
+                              required
                               name="user_email"
                               value={formData.user_email}
                               onChange={handleInputChange}
@@ -189,14 +192,15 @@ const PartnerWithUs: React.FC<Props> = ({
                             Purpose
                           </label>
                           <div className="mt-2">
-                          <textarea
-                            name="purpose"
-                            value={formData.purpose}
-                            onChange={handleInputChange}
-                            rows={4}
-                            placeholder="Your message"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 bg-[#F8F8F8] focus:ring-[#153D6D]"
-                          />
+                            <textarea
+                              required
+                              name="purpose"
+                              value={formData.purpose}
+                              onChange={handleInputChange}
+                              rows={4}
+                              placeholder="Your message"
+                              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 bg-[#F8F8F8] focus:ring-[#153D6D]"
+                            />
                           </div>
                         </div>
 
