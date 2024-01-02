@@ -13,10 +13,7 @@ const Home = () => {
     <div className="min-h-screen  flex flex-col justify-between">
       <SubmissionModal open={submissionOpen} setOpen={setSubmissionOpen} />
       {/* @ts-ignore */}
-      <FormModal
-        open={open}
-        setOpen={setOpen}
-        setSubmissionOpen={setSubmissionOpen}
+      <FormModal open={open} setOpen={setOpen} setSubmissionOpen={setSubmissionOpen}
       />
       <Header setOpen={setOpen} />
       <Hero title="Innovation & Technology Portal" />

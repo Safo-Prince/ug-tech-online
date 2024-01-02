@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Eye } from "iconsax-react";
+{/* @ts-ignore */}
 import { DotsThreeVertical } from "@phosphor-icons/react";
 
 import TableModal from "./modals/TableModal";
@@ -65,7 +66,7 @@ const TableBody: React.FC<Props> = ({ selectedFilter }) => {
           {tableData.map((rowData) => (
             <tr key={rowData.project_id} className="px-10">
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                {rowData.id}
+              {`SOA 0${rowData.id}`}
               </td>
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 {rowData.upload_date}

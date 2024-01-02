@@ -369,7 +369,7 @@ app.post('/submit-form', upload.array('files', 3), async (req, res) => {
 
       const adminMailOptions = {
         from: 'sipp@ug.edu.gh',
-        to: 'mikesaxxmusic@gmail.com', // Use your admin email
+        to: 'irondicjonathan@@gmail.com', // Use your admin email
         subject: 'New Innovation Submission',
         text: 'A new innovation has been uploaded.',
       };
@@ -508,7 +508,7 @@ app.post('/api/approve-project/:id', async (req, res) => {
               from: 'sipp@ug.edu.gh',
               to: 'irondicjonathan@gmail.com', // Replace with the Pro VC email address
               subject: 'New Approved Project',
-              text: 'A new project has been approved. Review it on the platform.',
+              text: `A new project has been approved. Review it on the platform: https://innovate.ug.edu.gh/project-details/${projectId}`,
             };
 
             await transporter.sendMail(proVCMailOptions);
@@ -563,7 +563,16 @@ app.post('/api/pend-project/:id', async (req, res) => {
             from: 'sipp@ug.edu.gh',
             to: userEmail,
             subject: 'Project Still Under Review',
-            text: 'Your project is still under review',
+            text: `Dear Applicant,
+
+            Your Innovation application has been successfully received.
+            
+            Our team is currently reviewing your submission. If additional information is needed, we'll be in touch. Expect another email soon regarding the status of your application. Thank you.
+            
+            
+            Best regards,
+            
+            UG Innovations and Technology Team`,
           };
 
           try {

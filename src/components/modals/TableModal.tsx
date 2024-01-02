@@ -167,10 +167,10 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     </div>
                     <div>
                       <h1 className="font-bold  text-lg">Industry</h1>
-                      <p className="text-[#56585B] xl:text-lg ">{modalData && modalData.industry}</p>
+                      <p className="text-[#56585B] xl:text-lg ">{modalData && modalData.partnerType}</p>
                     </div>
                     <div className="mt-2">
-                      <h1 className="font-bold  text-lg">Overview</h1>
+                      <h1 className="font-bold  text-lg">Application and Market Utility</h1>
                       <p className="text-[#56585B] xl:text-lg ">
                       {modalData && modalData.applicationAndMarketUtility}
                       
@@ -185,27 +185,13 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                        
                       </ul>
                     </div>
-                    <div className="mt-2">
-                      <h1 className="font-bold  text-lg">Target Market:</h1>
-                      <ul className="list-disc list-inside ">
-                        <li className="text-[#56585B] xl:text-lg ">
-                          Ruminant farmers in areas where molasses or fruit
-                          wastes are readily available can take advantage of
-                          this technology to improve their production.
-                        </li>
-                        <li className="text-[#56585B] xl:text-lg">
-                          It is ideal for the large-scale production of
-                          multi-nutrient supplements for sale to ruminant
-                          farmers.
-                        </li>
-                      </ul>
-                    </div>
+                    
                     <div className="mt-2">
                     <h1 className="font-bold text-lg">Relevant links:</h1>
-                    {modalData && modalData.newLink && (
+                    {modalData && modalData.links && (
                       <ul className="list-disc list-inside">
                         {/* @ts-ignore */}
-                        {modalData.newLink.split(',').map((link, index) => (
+                        {modalData.links.split(',').map((link, index) => (
                           <li key={index} className="text-[#007AA0] xl:text-lg">
                             <a href={link.trim()} target="_blank" rel="noopener noreferrer">
                               {`Link ${index + 1}`}
@@ -214,20 +200,25 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                         ))}
                       </ul>
                     )}
-                    {!modalData || !modalData.newLink && (
+                    {!modalData || !modalData.links && (
                       <p className="text-[#56585B] xl:text-lg">No relevant links available.</p>
                     )}
                   </div>
 
 
 
-                    <div>
-                      <h1 className="font-bold  text-lg">Images:</h1>
-                      <div className="flex space-x-2">
-                        <img src={fertilizer} className="w-28 h rounded-lg" />
-                        <img src={imageTwo} className="w-28 rounded-lg" />
-                      </div>
+                  <div>
+                    <h1 className="font-bold text-lg">Images:</h1>
+                    <div className="flex space-x-2">
+                      {modalData && modalData.files && modalData.files.split(',').map((filePath, index) => (
+                        <img key={index} src={`https://innovate.ug.edu.gh/${filePath.trim()}`} className="w-28 h rounded-lg" alt={`Image ${index + 1}`} />
+                      ))}
                     </div>
+                    {!modalData || !modalData.files && (
+                      <p className="text-[#56585B] xl:text-lg">No images available.</p>
+                    )}
+                  </div>
+
                     <div className="space-y-3 flex flex-col items-start"></div>
                     <div className="flex justify-around mt-5 space-x-5">
                       <button onClick={handleApproval} className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">

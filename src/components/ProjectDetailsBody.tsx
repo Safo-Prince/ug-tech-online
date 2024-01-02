@@ -6,6 +6,7 @@ import { Handshake, Timer } from "@phosphor-icons/react";
 import Notification from "./Notification";
 import PartnerWithUs from "./modals/PartnerWithUsModal";
 import SetMeetingModal from "./modals/SetMeetingModal";
+import Hero from "../components/Hero";
 
 const ProjectDetailsBody = () => {
   const [prompt, setPrompt] = useState("");
@@ -54,21 +55,14 @@ const ProjectDetailsBody = () => {
   {
     /* @ts-ignore */
   }
-  const {
-    innovation_name,
-    description,
-    keyBenefits,
-    applicationAndMarketUtility,
-    keywords,
-    developers,
-    location,
-    status,
-    contact,
-    files, // Assuming files is an array of file paths
+  {/* @ts-ignore */}
+  const { innovation_name, description, keyBenefits, applicationAndMarketUtility, keywords, developers, location, status, contact, files, // Assuming files is an array of file paths
   } = projectDetails;
 
   return (
     <>
+    <Hero title= {innovation_name} techId="SOA 03" />
+
       <Notification
         prompt={prompt}
         setShowNotification={setShowNotification}
@@ -93,19 +87,7 @@ const ProjectDetailsBody = () => {
         <div className="sm:w-1/2  h-full flex flex-col space-y-4  ">
           {/* @ts-ignore */}
           {/* @ts-ignore */}
-          {files && files.length > 0 ? (
-            <img
-              src={
-                projectDetails.files &&
-                typeof projectDetails.files === "string" &&
-                projectDetails.files.length > 0
-                  ? `https://innovate.ug.edu.gh/${projectDetails.files
-                      .split(",")[0]
-                      .trim()}`
-                  : `https://innovate.ug.edu.gh/placeholder-image.jpg`
-              }
-              className="rounded-md object-cover"
-              alt={projectDetails.title}
+          {files && files.length > 0 ? ( <img src={ projectDetails.files && typeof projectDetails.files === "string" && projectDetails.files.length > 0 ? `https://innovate.ug.edu.gh/${projectDetails.files.split(",")[0].trim()}`: `https://innovate.ug.edu.gh/placeholder-image.jpg`} className="rounded-md object-cover" alt={projectDetails.title}
               // style={{ width: "100%", height: "400px" }}
             />
           ) : (
@@ -136,9 +118,7 @@ const ProjectDetailsBody = () => {
           <h1 className="font-bold  text-lg">Keywords:</h1>
           <ul className="list-disc list-inside ">
             {/* @ts-ignore */}
-            {typeof projectDetails.keywords === "string" &&
-            projectDetails.keywords.length > 0 ? (
-              projectDetails.keywords.split(",").map((keyword) => (
+            {typeof projectDetails.keywords === "string" && projectDetails.keywords.length > 0 ? ( projectDetails.keywords.split(",").map((keyword) => (
                 <li key={keyword.trim()} className="text-[#56585B] xl:text-lg">
                   {keyword.trim()}
                 </li>
@@ -154,9 +134,7 @@ const ProjectDetailsBody = () => {
             <h1 className="font-bold  text-lg">Developers:</h1>
             <ul className="list-disc list-inside ">
               {/* @ts-ignore */}
-              {typeof projectDetails.developers === "string" &&
-              projectDetails.developers.length > 0 ? (
-                projectDetails.developers.split(",").map((developer) => (
+              {typeof projectDetails.developers === "string" && projectDetails.developers.length > 0 ? ( projectDetails.developers.split(",").map((developer) => (
                   <li
                     key={developer.trim()}
                     className="text-[#56585B] xl:text-lg"
