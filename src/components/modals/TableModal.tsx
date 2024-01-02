@@ -161,7 +161,8 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     <div className="mt-2">
                       <h1 className="font-bold  text-lg">Development status</h1>
                       <p className="text-[#56585B] xl:text-lg ">
-                        At the pre -commercial stage.
+                      {modalData && modalData.status}
+
                       </p>
                     </div>
                     <div>

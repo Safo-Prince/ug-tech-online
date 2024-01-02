@@ -33,8 +33,7 @@ const ProjectCard = ({ project }: Props) => {
     variants={item}
     className="w-full sm:w-80 xl:w-96 border rounded-md p-3 shadow-sm space-y-2 cursor-pointer"
   >
-            {/* @ts-ignore */}
-
+    {/* @ts-ignore */}
       {project.image_path ? ( <img src={`https://innovate.ug.edu.gh/${project.image_path}`} className="rounded-md object-cover" alt={project.title}
         style={{ width: '100%', height: '200px' }}
       />
