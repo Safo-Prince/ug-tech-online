@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import fertilizer from "../../assets/fertilizer.png";
-import imageTwo from "../../assets/image2.png";
+
 
 interface Props {
   open: boolean;
@@ -68,6 +67,8 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
       const data = await response.json();
       if (data.success) {
         console.log('Project approved successfully');
+        // Reload the page
+        window.location.reload();
       } else {
         console.error('Error approving project');
       }
@@ -85,7 +86,9 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
       });
       const data = await response.json();
       if (data.success) {
-        console.log('Project approved successfully');
+        console.log('Project pended successfully');
+        // Reload the page
+        window.location.reload();
       } else {
         console.error('Error approving project');
       }
@@ -210,6 +213,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                   <div>
                     <h1 className="font-bold text-lg">Images:</h1>
                     <div className="flex space-x-2">
+                      {/* @ts-ignore */}
                       {modalData && modalData.files && modalData.files.split(',').map((filePath, index) => (
                         <img key={index} src={`https://innovate.ug.edu.gh/${filePath.trim()}`} className="w-28 h rounded-lg" alt={`Image ${index + 1}`} />
                       ))}
@@ -221,7 +225,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
 
                     <div className="space-y-3 flex flex-col items-start"></div>
                     <div className="flex justify-around mt-5 space-x-5">
-                      <button onClick={handleApproval} className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <button onClick={handleApproval} className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >
                         Accept
                       </button>
                       <button onClick={handlePending} className="rounded-md bg-[#F46969] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#f19494]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
