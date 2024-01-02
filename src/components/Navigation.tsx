@@ -12,7 +12,9 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  console.log(pathname);
+  const handleClick = () => {
+    window.open("https://partnerships.ug.edu.gh", "_blank");
+  };
 
   return (
     <>
@@ -22,6 +24,7 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
             <li key={index}>
               <a
                 href={item.href}
+                target="_blank"
                 className="text-gray-600 hover:text-gray-400 cursor-pointer "
               >
                 {item.name}
@@ -29,14 +32,13 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
             </li>
           ))}
           <li>
-            <a
-              href="https://partnerships.ug.edu.gh"
-              target="_blank"
-              className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 cursor-pointer "
+            <button
+              onClick={handleClick}
+              className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 cursor-pointer  "
             >
               <Handshake size={20} className="self-center" />
               <span>Partner</span>
-            </a>
+            </button>
           </li>
           <li>
             <button

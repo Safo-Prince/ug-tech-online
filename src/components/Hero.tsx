@@ -32,12 +32,12 @@ const Hero: React.FC<Props> = ({ title, techId }) => {
             <p className="font-lato italic text-white sm:text-lg  text-xs">
               Impacting businesses and lives through innovation...
             </p>
-            <div className="relative sm:mt-2  mt-1 rounded-full shadow-sm  sm:w-96 w-44  self-center">
+            <div className="relative sm:mt-2  mt-1 rounded-full shadow-sm  sm:w-96 w-72  self-center">
               <input
                 type="text"
                 name="account-number"
                 id="account-number"
-                className="block  w-full rounded-full border-0 sm:py-1.5 py-1 pr-10 pl-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[rgba(255,255,255,0.85)] text-xs  "
+                className="block  w-full rounded-full border-0 sm:py-1.5 py-1 pr-10 pl-4 text-gray-900 ring-1 focus:ring-[#324c6d]  placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[rgba(255,255,255,0.85)] text-xs  "
                 placeholder="search..."
               />
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">

@@ -1,7 +1,7 @@
 export const headerNavigation = [
   { name: "Home", href: "#" },
-  { name: "TTIPS Home", href: "#" },
-  { name: "Contact Us", href: "#" },
+  { name: "TTIPS Home", href: "https://www.ug.edu.gh/ttips/" },
+  { name: "Contact Us", href: "https://www.ug.edu.gh/ttips/contact" },
 ];
 
 export const footerNavigation = {
@@ -39,3 +39,22 @@ export const columns = [
   { name: "Status" },
   { name: "Action" },
 ];
+
+export const HomeFilter = [
+  { label: "All" },
+  { label: "Agri-Business" },
+  { label: "Arts & Crafts" },
+  { label: "Foods & Beverages" },
+  { label: "Banking,Financial Services including insurances" },
+  { label: "Environment & Sanitation" },
+  { label: "Energy & Climate Change" },
+  { label: "Engineering" },
+  { label: "Hospitalities & Tourism" },
+  {
+    label: "Information & Communication Technology including Software",
+  },
+  { label: "Health & Biotechnology" },
+  { label: "Engineering" },
+];
+
+export const tableFilter = [{ label: "Approved" }, { label: "Not Approved" }];

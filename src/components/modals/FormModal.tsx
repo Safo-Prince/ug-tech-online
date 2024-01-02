@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormEvent, Fragment, useState,} from "react";
+import { FormEvent, Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Plus, X } from "@phosphor-icons/react";
@@ -49,7 +49,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
-      {/* @ts-ignore */}
+      {
+        /* @ts-ignore */
+      }
       setFormData((prevData) => ({
         ...prevData,
         keywords: [...prevData.keywords, newKeyword],
@@ -61,7 +63,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -77,7 +81,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
-      {/* @ts-ignore */}
+      {
+        /* @ts-ignore */
+      }
       setFormData((prevData) => ({
         ...prevData,
         developers: [...prevData.developers, newDeveloper],
@@ -89,7 +95,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveDeveloper = (index) => {
     setFormData((prevData) => {
       const newDevelopers = [...prevData.developers];
@@ -105,7 +113,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       {
         /* @ts-ignore */
       }
-      {/* @ts-ignore */}
+      {
+        /* @ts-ignore */
+      }
       setFormData((prevData) => ({
         ...prevData,
         links: [...prevData.links, newLink],
@@ -117,7 +127,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveLink = (index) => {
     setFormData((prevData) => {
       const newLinks = [...prevData.links];
@@ -133,12 +145,16 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     {
       /* @ts-ignore */
     }
-    {/* @ts-ignore */}
+    {
+      /* @ts-ignore */
+    }
     const selectedFiles = Array.from(e.target.files);
     {
       /* @ts-ignore */
     }
-    {/* @ts-ignore */}
+    {
+      /* @ts-ignore */
+    }
     setFormData((prevData) => ({
       ...prevData,
       files: [...prevData.files, ...selectedFiles],
@@ -148,7 +164,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveFile = (index) => {
     setFormData((prevData) => {
       const newFiles = [...prevData.files];
@@ -156,8 +174,6 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       return { ...prevData, files: newFiles };
     });
   };
-
-
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -178,8 +194,12 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
           {
             /* @ts-ignore */
           }
-          {/* @ts-ignore */}
-          {/* @ts-ignore */}
+          {
+            /* @ts-ignore */
+          }
+          {
+            /* @ts-ignore */
+          }
           formDataToSend.append(key, formData[key]);
         }
       });
@@ -256,6 +276,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       onSubmit={handleSubmit}
                     >
                       <input
+                        required
                         type="text"
                         name="innovation_name"
                         placeholder="Enter your technology or innovation"
@@ -264,11 +285,13 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
                       <input
+                        required
                         placeholder="Student/Staff ID"
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
 
                       <textarea
+                        required
                         placeholder="Description"
                         rows={2}
                         name="description"
@@ -278,8 +301,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
                       <textarea
+                        required
                         placeholder="Key Benefits"
-                        rows={4}
+                        rows={2}
                         name="keyBenefits"
                         id="keyBenefits"
                         value={formData.keyBenefits}
@@ -290,6 +314,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex w-full  rounded-md border  ">
                           <input
+                            required
                             value={formData.newKeyword}
                             onChange={handleInputChange}
                             placeholder="Add Keyword"
@@ -311,11 +336,10 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
                             >
                               <span>
-                                {
-                                  /* @ts-ignore */
-                                }
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {/* @ts-ignore */}
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -332,6 +356,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex  w-full rounded-md border  ">
                           <input
+                            required
                             value={formData.newDeveloper}
                             onChange={handleInputChange}
                             placeholder="Add Developers"
@@ -339,7 +364,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             className="block w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
-                          type="button"
+                            type="button"
                             onClick={handleAddDeveloper}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
@@ -353,11 +378,10 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
                             >
                               <span>
-                                {
-                                  /* @ts-ignore */
-                                }
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {/* @ts-ignore */}
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -375,9 +399,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         value={formData.status}
                         onChange={handleInputChange}
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue="--select category--"
+                        defaultValue="--Select status--"
                       >
-                        <option>--Select status---</option>
+                        <option disabled>--Select status--</option>
                         <option>Basic Principles Observed</option>
                         <option>Technology Concept Formulated</option>
                         <option>Proof of Concept Validated</option>
@@ -397,20 +421,41 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       </select>
                       <select
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                        defaultValue="--select partner type---"
+                        defaultValue="--Select industry--"
                       >
-                        <option>--Select industry---</option>
-                        <option>Local Company</option>
-                        <option>Foreign Entity</option>
-                        <option>Ministry</option>
-                        <option>Department or Agency of Government</option>
+                        <option disabled>--Select industry--</option>
+                        <option value="Agri-Business">Agri-Business</option>
+                        <option value="Arts & Crafts">Arts & Crafts</option>
+                        <option value="Foods & Beverages">
+                          Foods & Beverages
+                        </option>
+                        <option value="Banking,Financial Services including insurances">
+                          Banking,Financial Services including insurances
+                        </option>
+                        <option value="Environment & Sanitation">
+                          Environment & Sanitation
+                        </option>
+                        <option value="Energy & Climate Change">
+                          Energy & Climate Change
+                        </option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Hospitalities & Tourism">
+                          Hospitalities & Tourism
+                        </option>
+                        <option value="Information & Communication Technology including Software">
+                          Information & Communication Technology including
+                          Software
+                        </option>
+                        <option value="Health & Biotechnology">
+                          Health & Biotechnology
+                        </option>
                       </select>
 
-
                       {/* @ts-ignore */}
-                      <textarea type="text"
+                      <textarea
+                        required
                         placeholder="Application and Market Utility"
-                        rows={4}
+                        rows={2}
                         name="applicationAndMarketUtility"
                         id="applicationAndMarketUtility"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
@@ -429,7 +474,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             className="block   w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
-                          type="button"
+                            type="button"
                             onClick={handleAddLink}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
@@ -444,11 +489,10 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between mt-2"
                             >
                               <span>
-                                {
-                                  /* @ts-ignore */
-                                }
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {/* @ts-ignore */}
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -462,6 +506,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       </div>
 
                       <input
+                        required
                         type="email"
                         name="email"
                         placeholder="Email Address"
@@ -471,6 +516,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       />
 
                       <input
+                        required
                         type="text"
                         name="contact"
                         placeholder="Contact Information"
@@ -514,10 +560,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           ))}
                       </div>
 
-                      <button 
+                      <button
                         //onClick={handleSubmit}
                         type="submit"
-                        className="block w-full rounded-md border-0 py-1.5 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[#153D6D]">
+                        className="block w-full rounded-md border-0 py-1.5 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[#153D6D]"
+                      >
                         {buttonText}
                       </button>
                     </form>

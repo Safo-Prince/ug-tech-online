@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "../styles/Loginform.css";
+import { EyeSlash, Eye } from "iconsax-react";
 
 const LoginForm: React.FC = () => {
+  const [showPassword, setShowPassword] = useState<Boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   {
     /* @ts-ignore */
@@ -57,19 +59,19 @@ const LoginForm: React.FC = () => {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                staff ID
+                Staff ID
               </label>
               <div className="mt-2">
                 <input
-                   id="email"
-                   name="email"
-                   type="email"
-                   autoComplete="email"
-                   required
-                   value={credentials.email} // Bind value to state
-                   onChange={(e) =>
-                     setCredentials({ ...credentials, email: e.target.value })
-                   }
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={credentials.email} // Bind value to state
+                  onChange={(e) =>
+                    setCredentials({ ...credentials, email: e.target.value })
+                  }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                 />
               </div>
@@ -84,11 +86,12 @@ const LoginForm: React.FC = () => {
                   Password
                 </label>
               </div>
-              <div className="mt-2">
+
+              <div className="mt-2 flex w-full rounded-md relative">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
                   value={credentials.password} // Bind value to state
@@ -97,6 +100,19 @@ const LoginForm: React.FC = () => {
                   }
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                 />
+                {showPassword ? (
+                  <Eye
+                    size="17"
+                    className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2"
+                    onClick={() => setShowPassword(false)}
+                  />
+                ) : (
+                  <EyeSlash
+                    size="17"
+                    className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2"
+                    onClick={() => setShowPassword(true)}
+                  />
+                )}
               </div>
             </div>
 
