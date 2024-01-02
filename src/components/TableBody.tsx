@@ -77,6 +77,9 @@ const TableBody: React.FC<Props> = ({ selectedFilter }) => {
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 {rowData.status}
               </td>
+              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+              {rowData.approved === 1 ? 'Approved' : 'Not Approved'}
+              </td>
               <td className="py-4 pl-4 pr-3 sm:pl-6">
                 <div className="flex items-center space-x-1">
                   <button onClick={() => handleOpenModal(rowData)}>

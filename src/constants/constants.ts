@@ -36,6 +36,7 @@ export const columns = [
   { name: "Tech ID" },
   { name: "Applied on" },
   { name: "Name" },
+  { name: "Stage" },
   { name: "Status" },
   { name: "Action" },
 ];
