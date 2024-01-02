@@ -51,7 +51,7 @@ router.use('/admin', (req, res, next) => {
     next(); // Continue to the next middleware
   } else {
     res.status(401).send({ message: 'Unauthorized' });
-    alert("wrong credentials")
+    
   }
 });
 
