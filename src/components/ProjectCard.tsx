@@ -48,7 +48,7 @@ const ProjectCard = ({ project }: Props) => {
         </div>
       )}
       <div>
-        <h1 className="text-black text-sm">{project.id}</h1>
+        <h1 className="text-black text-sm">{`SOA 0${project.id}`}</h1>
         <h2 className="text-[#56585B] text-xl font-bold">
           {project.innovation_name}
         </h2>

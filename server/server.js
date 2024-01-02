@@ -508,7 +508,18 @@ app.post('/api/approve-project/:id', async (req, res) => {
               from: 'sipp@ug.edu.gh',
               to: 'irondicjonathan@gmail.com', // Replace with the Pro VC email address
               subject: 'New Approved Project',
-              text: `A new project has been approved. Review it on the platform: https://innovate.ug.edu.gh/project-details/${projectId}`,
+              text: `Dear Sir,
+
+              An innovation project has been greenlit and uploaded to the UG Innovations Portal by the ORID Innovation Assessment team.
+              
+              To view the details and provide your invaluable insights, click: Access https://innovate.ug.edu.gh/project-details/${projectId}
+              
+              Your feedback is crucial in propelling this project forward. If you have any comments or misgivings about the project, please let us know. Thank you
+              
+              Best regards,
+              
+              UG Innovations Portal Assessment Team
+              `,
             };
 
             await transporter.sendMail(proVCMailOptions);
