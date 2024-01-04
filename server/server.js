@@ -438,7 +438,11 @@ app.get('/api/approved-projects', (req, res) => {
 
   let sql = 'SELECT * FROM innovation_details WHERE approved = true';
 
-  if (industry) {
+  if (industry && industry.toLowerCase() === 'all') {
+    // If industry is set to "All," fetch all approved projects
+    sql = 'SELECT * FROM innovation_details WHERE approved = true';
+  } else if (industry) {
+    // If industry is specified, add the industry filter
     sql += ` AND industry = '${industry}'`;
   }
 
