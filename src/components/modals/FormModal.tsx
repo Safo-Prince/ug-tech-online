@@ -411,8 +411,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           Hospitalities & Tourism
                         </option>
                         <option value="Information & Communication Technology including Software">
-                          Information & Communication Technology including
-                          Software
+                          Information & Communication Technology including Software
                         </option>
                         <option value="Health & Biotechnology">
                           Health & Biotechnology
