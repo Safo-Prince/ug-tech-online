@@ -58,4 +58,4 @@ export const HomeFilter = [
   { label: "Engineering" },
 ];
 
-export const tableFilter = [{ label: "Approved" }, { label: "Not Approved" }];
+export const tableFilter = [{ label: "All" },{ label: "Approved" }, { label: "Not Approved" }];

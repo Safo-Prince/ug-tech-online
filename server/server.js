@@ -397,13 +397,17 @@ app.get('/api/projects', (req, res) => {
   const filter = req.query.filter;
 
   if (filter) {
-    // Map user-friendly options to filter values
-    const filterValue = filter === 'Approved' ? '1' : (filter === 'Not Approved' ? '0' : '');
+    // Check if the filter is "All" (case-insensitive)
+    if (filter.toLowerCase() !== 'all') {
+      // Map user-friendly options to filter values
+      const filterValue = filter === 'Approved' ? '1' : (filter === 'Not Approved' ? '0' : '');
 
-    // Only add WHERE clause if the filter value is valid
-    if (filterValue !== '') {
-      sql += ` WHERE approved = '${filterValue}'`;
+      // Only add WHERE clause if the filter value is valid
+      if (filterValue !== '') {
+        sql += ` WHERE approved = '${filterValue}'`;
+      }
     }
+    // If filter is "All," fetch all projects without applying a filter
   }
   
 
