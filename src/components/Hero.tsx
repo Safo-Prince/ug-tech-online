@@ -37,12 +37,12 @@ const Hero: React.FC<Props> = ({ title, techId }) => {
                 type="text"
                 name="account-number"
                 id="account-number"
-                className="block  w-full rounded-full border-0 sm:py-1.5 py-1 pr-10 pl-4 text-gray-900 ring-1 focus:ring-[#324c6d]  placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[rgba(255,255,255,0.85)] text-xs  "
+                className="block  w-full rounded-full border-0 py-1.5  pr-10 pl-4 text-gray-900 ring-1 focus:ring-[#324c6d]  placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-[rgba(255,255,255,0.85)] text-xs  "
                 placeholder="search..."
               />
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                 <SearchNormal1
-                  className="sm:h-5 sm:w-5 h-3 w-3  text-gray-400"
+                  className="sm:h-5 sm:w-5 h-5 w-3  text-gray-400"
                   aria-hidden="true"
                 />
               </div>

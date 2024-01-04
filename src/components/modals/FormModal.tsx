@@ -193,7 +193,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-10 w-screen overflow-y-scroll">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -204,7 +204,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6  max-h-[97vh] overflow-y-scroll">
+              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6  max-h-[75vh] overflow-y-scroll">
                 <div className="absolute right-0 top-0  pr-4 pt-4 sm:block">
                   <button
                     type="button"
@@ -266,7 +266,6 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex w-full  rounded-md border  ">
                           <input
-                            required
                             value={formData.newKeyword}
                             onChange={handleInputChange}
                             placeholder="Add Keyword"
@@ -307,7 +306,6 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex  w-full rounded-md border  ">
                           <input
-                            required
                             value={formData.newDeveloper}
                             onChange={handleInputChange}
                             placeholder="Add Developers"

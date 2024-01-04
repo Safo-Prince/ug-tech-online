@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 interface Props {
   setOpen: (arg: boolean) => void;
   onOpen: (arg: boolean) => void;
+  setMobIsOpen: (arg: boolean) => void;
   open: boolean;
 }
 
@@ -60,6 +61,7 @@ const MobileMenu: React.FC<Props> = ({ onOpen, open, setOpen }) => {
                     </div>
                     <div className="relative mt-6 flex-1 px-4  sm:hidden">
                       <Navigation
+                        setMobIsOpen={onOpen}
                         setOpen={() => {
                           setOpen(true);
                         }}
