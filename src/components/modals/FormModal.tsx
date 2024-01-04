@@ -19,7 +19,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     keywords: [],
     newDeveloper: "",
     developers: [],
-    partnerType: "--select partner type---",
+    college: "",
     industry: "",
     applicationAndMarketUtility: "",
     newLink: "",
@@ -370,6 +370,24 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         <option>Full Scale Development</option>
                       </select>
                       <select
+                        id="college"
+                        name="college"
+                        value={formData.college}
+                        onChange={handleInputChange}
+                        className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                        defaultValue="--Select College--"
+                      >
+                        <option disabled>--Select College--</option>
+                        <option>College of Health Science</option>
+                        <option>College of Basic and Applied Science</option>
+                        <option>College of Humanities</option>
+                        <option>College of Education</option>
+                      </select>
+                      <select
+                      id="industry"
+                      name="industry"
+                      value={formData.industry}
+                      onChange={handleInputChange}
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                         defaultValue="--Select industry--"
                       >

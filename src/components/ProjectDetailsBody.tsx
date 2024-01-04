@@ -56,7 +56,7 @@ const ProjectDetailsBody = () => {
     /* @ts-ignore */
   }
   {/* @ts-ignore */}
-  const { innovation_name, description, keyBenefits, applicationAndMarketUtility, keywords, developers, location, status, contact, files, // Assuming files is an array of file paths
+  const { innovation_name, description, keyBenefits, applicationAndMarketUtility, keywords, developers, college, status, contact, files, // Assuming files is an array of file paths
   } = projectDetails;
 
   return (
@@ -157,7 +157,7 @@ const ProjectDetailsBody = () => {
 
           <div>
             <h1 className="font-bold  text-lg mt-4">College</h1>
-            <p className="text-[#56585B] xl:text-lg mt-2">{location}</p>
+            <p className="text-[#56585B] xl:text-lg mt-2">{college}</p>
           </div>
 
           <div>

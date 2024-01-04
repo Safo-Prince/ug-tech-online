@@ -170,7 +170,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     </div>
                     <div>
                       <h1 className="font-bold  text-lg">Industry</h1>
-                      <p className="text-[#56585B] xl:text-lg ">{modalData && modalData.partnerType}</p>
+                      <p className="text-[#56585B] xl:text-lg ">{modalData && modalData.industry}</p>
                     </div>
                     <div className="mt-2">
                       <h1 className="font-bold  text-lg">Application and Market Utility</h1>
@@ -196,7 +196,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                         {/* @ts-ignore */}
                         {modalData.links.split(',').map((link, index) => (
                           <li key={index} className="text-[#007AA0] xl:text-lg">
-                            <a href={link.trim()} target="_blank" rel="noopener noreferrer">
+                            <a href={`https://${link.trim()}`} target="_blank" rel="noopener noreferrer">
                               {`Link ${index + 1}`}
                             </a>
                           </li>

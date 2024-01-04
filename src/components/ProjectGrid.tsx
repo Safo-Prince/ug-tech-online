@@ -5,14 +5,22 @@ import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import ProjectShimmer from "./shimmers/ProjectShimmer";
 
-const ProjectGrid = () => {
+interface ProjectGridProps {
+  selectedFilter: string;
+}
+
+const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter }) => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("https://innovate.ug.edu.gh/api/approved-projects");
+        const url = selectedFilter
+          ? `https://innovate.ug.edu.gh/api/approved-projects?industry=${selectedFilter}`
+          : "https://innovate.ug.edu.gh/api/approved-projects";
+
+        const response = await fetch(url);
         const data = await response.json();
         setProjects(data);
         setIsLoading(false);
@@ -23,7 +31,7 @@ const ProjectGrid = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [selectedFilter]);
 
   return (
     <>

@@ -434,7 +434,13 @@ app.get('/api/projects', (req, res) => {
 
 // Route to get only approved projects
 app.get('/api/approved-projects', (req, res) => {
-  let sql = 'SELECT * FROM innovation_details WHERE approved = true'; // Adjust this based on your data structure
+  const { industry } = req.query;
+
+  let sql = 'SELECT * FROM innovation_details WHERE approved = true';
+
+  if (industry) {
+    sql += ` AND industry = '${industry}'`;
+  }
 
   db.query(sql, async (err, results) => {
     if (err) {
@@ -457,6 +463,7 @@ app.get('/api/approved-projects', (req, res) => {
     }
   });
 });
+
 
 
 // Update the approved status in the database
@@ -510,17 +517,18 @@ app.post('/api/approve-project/:id', async (req, res) => {
               subject: 'New Approved Project',
               text: `Dear Sir,
 
-              An innovation project has been greenlit and uploaded to the UG Innovations Portal by the ORID Innovation Assessment team.
+An innovation project has been greenlit and uploaded to the UG Innovations Portal by the ORID Innovation Assessment team.
               
-              To view the details and provide your invaluable insights, click: Access https://innovate.ug.edu.gh/project-details/${projectId}
+To view the details and provide your invaluable insights, click: Access https://innovate.ug.edu.gh/project-details/${projectId}
               
-              Your feedback is crucial in propelling this project forward. If you have any comments or misgivings about the project, please let us know. Thank you
+Your feedback is crucial in propelling this project forward. If you have any comments or misgivings about the project, please let us know. Thank you
               
-              Best regards,
+Best regards,
               
-              UG Innovations Portal Assessment Team
+UG Innovations Portal Assessment Team
               `,
             };
+    
 
             await transporter.sendMail(proVCMailOptions);
             console.log('Email sent to Pro VC successfully');
@@ -576,14 +584,14 @@ app.post('/api/pend-project/:id', async (req, res) => {
             subject: 'Project Still Under Review',
             text: `Dear Applicant,
 
-            Your Innovation application has been successfully received.
+Your Innovation application has been successfully received.
             
-            Our team is currently reviewing your submission. If additional information is needed, we'll be in touch. Expect another email soon regarding the status of your application. Thank you.
+Our team is currently reviewing your submission. If additional information is needed, we'll be in touch. Expect another email soon regarding the status of your application. Thank you.
             
             
-            Best regards,
+Best regards,
             
-            UG Innovations and Technology Team`,
+UG Innovations and Technology Team`,
           };
 
           try {

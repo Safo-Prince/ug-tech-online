@@ -27,7 +27,7 @@ const AdminTable: React.FC = () => {
       <div className=" shadow ring-1 ring-black ring-opacity-5 overflow-x-scroll sm:rounded-lg mt-4 ">
         <table className="min-w-full divide-y divide-gray-300   border-b">
           <TableHeader columns={columns} />
-          {/* @ts-ignore */}
+          
           <TableBody selectedFilter={selectedFilter} />
         </table>
         <div className="absolute right-1/2 translate-x-1/2 ">
