@@ -6,7 +6,11 @@ import Pagination from "./Pagination";
 import ProjectGrid from "./ProjectGrid";
 import { HomeFilter } from "../constants/constants";
 
-const Main = () => {
+interface Props {
+  searchQuery: string;
+}
+
+const Main = ({ searchQuery }: Props) => {
   const [selectedFilter, setSelectedFilter] = useState("");
 
   const handleSelectFilter = (filter: string) => {
@@ -19,7 +23,7 @@ const Main = () => {
         <Filter options={HomeFilter} onSelectFilter={handleSelectFilter} />
         <Pagination />
       </div>
-      <ProjectGrid selectedFilter={selectedFilter} />
+      <ProjectGrid selectedFilter={selectedFilter} searchQuery={searchQuery} />
     </div>
   );
 };

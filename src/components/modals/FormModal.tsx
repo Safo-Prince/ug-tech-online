@@ -7,9 +7,10 @@ import { Plus, X } from "@phosphor-icons/react";
 interface Props {
   open: boolean;
   setOpen: (arg: boolean) => void;
+  setSubmissionOpen: (arg: boolean) => void;
 }
 
-const FormModal: React.FC<Props> = ({ open, setOpen }) => {
+const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   const [buttonText, setButtonText] = useState("submit");
   const [formData, setFormData] = useState({
     innovation_name: "",
@@ -30,6 +31,27 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     files: [],
   });
 
+  const clearInputField = () => {
+    setFormData({
+      innovation_name: "",
+      description: "",
+      keyBenefits: "",
+      newKeyword: "",
+      keywords: [],
+      newDeveloper: "",
+      developers: [],
+      college: "",
+      industry: "",
+      applicationAndMarketUtility: "",
+      newLink: "",
+      links: [],
+      email: "",
+      contact: "",
+      status: "",
+      files: [],
+    });
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -45,8 +67,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   const handleAddKeyword = () => {
     const newKeyword = formData.newKeyword.trim();
 
-    {/* @ts-ignore */}
-    if (newKeyword !== "") { setFormData((prevData) => ({
+    {
+      /* @ts-ignore */
+    }
+    if (newKeyword !== "") {
+      setFormData((prevData) => ({
         ...prevData,
         keywords: [...prevData.keywords, newKeyword],
         newKeyword: "", // clear the input after adding a keyword
@@ -57,7 +82,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -69,9 +96,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   const handleAddDeveloper = () => {
     const newDeveloper = formData.newDeveloper.trim();
 
-
-    {/* @ts-ignore */}
-    if (newDeveloper !== "") { setFormData((prevData) => ({
+    {
+      /* @ts-ignore */
+    }
+    if (newDeveloper !== "") {
+      setFormData((prevData) => ({
         ...prevData,
         developers: [...prevData.developers, newDeveloper],
         newDeveloper: "", // clear the input after adding a developer
@@ -79,8 +108,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     }
   };
 
-  
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveDeveloper = (index) => {
     setFormData((prevData) => {
       const newDevelopers = [...prevData.developers];
@@ -92,9 +122,11 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
   const handleAddLink = () => {
     const newLink = formData.newLink.trim();
 
-
-    {/* @ts-ignore */}
-    if (newLink !== "") { setFormData((prevData) => ({
+    {
+      /* @ts-ignore */
+    }
+    if (newLink !== "") {
+      setFormData((prevData) => ({
         ...prevData,
         links: [...prevData.links, newLink],
         newLink: "", // clear the input after adding a link
@@ -102,8 +134,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     }
   };
 
- 
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveLink = (index) => {
     setFormData((prevData) => {
       const newLinks = [...prevData.links];
@@ -116,17 +149,23 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
     /* @ts-ignore */
   }
   const handleFileChange = (e: FormEvent) => {
-    {/* @ts-ignore */}
+    {
+      /* @ts-ignore */
+    }
     const selectedFiles = Array.from(e.target.files);
-    
-    {/* @ts-ignore */}
-    setFormData((prevData) => ({ ...prevData,
+
+    {
+      /* @ts-ignore */
+    }
+    setFormData((prevData) => ({
+      ...prevData,
       files: [...prevData.files, ...selectedFiles],
     }));
   };
 
- 
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const handleRemoveFile = (index) => {
     setFormData((prevData) => {
       const newFiles = [...prevData.files];
@@ -151,7 +190,9 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       // Append other form data properties
       Object.keys(formData).forEach((key) => {
         if (key !== "files") {
-          {/* @ts-ignore */}
+          {
+            /* @ts-ignore */
+          }
           formDataToSend.append(key, formData[key]);
         }
       });
@@ -164,8 +205,10 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
       if (response.ok) {
         console.log("Form submitted successfully");
         setOpen(false);
+        setSubmissionOpen(true);
         // Refresh the page to clear input fields
-        window.location.reload();
+        clearInputField();
+        // window.location.reload();
       } else {
         console.error("Error submitting form");
       }
@@ -252,7 +295,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                       />
-                      <textarea
+                      {/* <textarea
                         required
                         placeholder="Key Benefits"
                         rows={2}
@@ -261,14 +304,54 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         value={formData.keyBenefits}
                         onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                      />
-                      {/* Add Keyword */}
+                      /> */}
+
+                      {/* add key benefits */}
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex w-full  rounded-md border  ">
                           <input
                             value={formData.newKeyword}
                             onChange={handleInputChange}
-                            placeholder="Add Keyword"
+                            placeholder="Add Key Benefit(s)"
+                            name="keyBenefits"
+                            className="block  w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleAddKeyword}
+                            className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
+                          >
+                            <Plus size={20} color="#d6cdcd" />
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-1 grid-rows-1 w-full gap-1 ">
+                          {formData.keywords.map((item, index) => (
+                            <span
+                              key={index}
+                              className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
+                            >
+                              <span>
+                                {/* @ts-ignore */}
+                                {/* @ts-ignore */}
+                                {item}
+                              </span>
+                              <X
+                                size={12}
+                                className="cursor-pointer"
+                                onClick={() => handleRemoveKeyword(index)}
+                              />
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      {/* Add Keyword */}
+
+                      <div className="flex  flex-col space-y-1 items-center space-x-2">
+                        <div className="flex w-full  rounded-md border  ">
+                          <input
+                            value={formData.newKeyword}
+                            onChange={handleInputChange}
+                            placeholder="Add Keyword(s)"
                             name="newKeyword"
                             className="block  w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
@@ -280,7 +363,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             <Plus size={20} color="#d6cdcd" />
                           </button>
                         </div>
-                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1 ">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-1 w-full gap-1 ">
                           {formData.keywords.map((item, index) => (
                             <span
                               key={index}
@@ -289,7 +372,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -308,7 +392,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           <input
                             value={formData.newDeveloper}
                             onChange={handleInputChange}
-                            placeholder="Add Developers"
+                            placeholder="Add Developer(s)"
                             name="newDeveloper"
                             className="block w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
@@ -320,7 +404,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                             <Plus size={20} color="#d6cdcd" />
                           </button>
                         </div>
-                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1 ">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-1 w-full gap-1 ">
                           {formData.developers.map((item, index) => (
                             <span
                               key={index}
@@ -329,7 +413,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -381,11 +466,12 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                         <option>College of Humanities</option>
                         <option>College of Education</option>
                       </select>
+
                       <select
-                      id="industry"
-                      name="industry"
-                      value={formData.industry}
-                      onChange={handleInputChange}
+                        id="industry"
+                        name="industry"
+                        value={formData.industry}
+                        onChange={handleInputChange}
                         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                         defaultValue="--Select industry--"
                       >
@@ -448,7 +534,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                           </button>
                         </div>
 
-                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-3 w-full gap-1  ">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 grid-rows-1 w-full gap-1  ">
                           {formData.links.map((item, index) => (
                             <span
                               key={index}
@@ -457,7 +543,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5 ? `${item.slice(0, 7)}...`
+                                {item.length > 5
+                                  ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X

@@ -7,11 +7,16 @@ import ProjectShimmer from "./shimmers/ProjectShimmer";
 
 interface ProjectGridProps {
   selectedFilter: string;
+  searchQuery: string;
 }
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({
+  selectedFilter,
+  searchQuery,
+}) => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(searchQuery);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -42,10 +47,10 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter }) => {
           ))}
         </div>
       ) : (
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8"
-        >{/* @ts-ignore */}
-          {projects.map((project) => ( <ProjectCard key={project.id} project={project} />
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 xl:gap-x-8 max-w-7xl mx-auto px-6 lg:px-8">
+          {/* @ts-ignore */}
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
       )}

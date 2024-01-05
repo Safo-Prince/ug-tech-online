@@ -33,7 +33,12 @@ export default function Administrator(props: any) {
           return;
         }}
       />
-      <Hero title="List of Applicants" />
+      <Hero
+        title="List of Applicants"
+        setSearchQuery={() => {
+          return;
+        }}
+      />
       <AdminTable />
       <Footer />
     </div>
