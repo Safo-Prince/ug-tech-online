@@ -369,9 +369,18 @@ app.post('/submit-form', upload.array('files', 3), async (req, res) => {
 
       const adminMailOptions = {
         from: 'sipp@ug.edu.gh',
-        to: 'irondicjonathan@@gmail.com', // Use your admin email
+        to: 'mnhutchful@ug.edu.gh, DAdobeaAntwiOwusu@ug.edu.gh', // admin mails
         subject: 'New Innovation Submission',
-        text: 'A new innovation has been uploaded.',
+        text: `
+        Dear Administrator
+
+You are receiving this automated notification to inform you that a new Innovation Application has been submitted and is awaiting your review.
+        
+To access the Innovation Application for evaluation, please click on the following link to visit the Innovations Portal: https://innovate.ug.edu.gh
+        
+Your prompt attention to this matter is appreciated to ensure timely assessment of the submitted innovation.
+        
+Thank you.`,
       };
 
       try {
@@ -515,7 +524,20 @@ app.post('/api/approve-project/:id', async (req, res) => {
             from: 'sipp@ug.edu.gh',
             to: userEmail,
             subject: 'Project Approval',
-            text: 'Your project has been approved. Congratulations!',
+            text: `
+            Dear Applicant,
+
+We are thrilled to inform you that your Innovation has been approved for showcasing on our main Innovations Portal. Your idea has passed our evaluation process with flying colors and is now set to be featured for industry partnerships.
+
+To view your Innovation on our Innovations Portal and explore its visibility for potential collaborations, kindly click on the following link: https://innovate.ug.edu.gh
+
+Your dedication to fostering innovation within our organization is commendable, and we believe your idea holds significant potential for industry partnerships.
+
+Thank you for your valuable contribution to our innovative landscape. We're excited about the possibilities your Innovation brings.
+
+Best regards,
+
+UG Innovations Assessment Team`,
           };
 
           try {
