@@ -388,7 +388,7 @@ app.post('/submit-form', upload.array('files', 3), async (req, res) => {
 
 
 
-// Route to get project data from the database
+
 // Route to get project data from the database with filter
 app.get('/api/projects', (req, res) => {
   let sql = 'SELECT * FROM innovation_details';
@@ -438,22 +438,19 @@ app.get('/api/projects', (req, res) => {
 
 // Route to get only approved projects
 app.get('/api/approved-projects', (req, res) => {
-  const { industry } = req.query;
+  const { industry, search } = req.query;
 
   let sql = 'SELECT * FROM innovation_details WHERE approved = true';
 
   if (industry && industry.toLowerCase() === 'all') {
-    // If industry is set to "All," fetch all approved projects
     sql = 'SELECT * FROM innovation_details WHERE approved = true';
   } else if (industry) {
-    // If industry is specified, add the industry filter
     sql += ` AND industry = '${industry}'`;
   }
 
   // Apply search logic
   if (search) {
-    // Adjust the SQL query to include the search condition
-    sql += ` AND (column1 LIKE '%${search}%' OR column2 LIKE '%${search}%' OR ...)`;
+    sql += ` AND (innovation_name LIKE '%${search}%' OR description LIKE '%${search}%' OR keyWords LIKE '%${search}%')`;
   }
 
   db.query(sql, async (err, results) => {
@@ -477,6 +474,7 @@ app.get('/api/approved-projects', (req, res) => {
     }
   });
 });
+
 
 
 
