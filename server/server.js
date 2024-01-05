@@ -615,7 +615,7 @@ app.post('/api/pend-project/:id', async (req, res) => {
           const userMailOptions = {
             from: 'sipp@ug.edu.gh',
             to: userEmail,
-            subject: 'Project Still Under Review',
+            subject: 'Application under review',
             text: `Dear Applicant,
 
 Your Innovation application has been successfully received.
