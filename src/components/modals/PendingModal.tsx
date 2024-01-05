@@ -70,7 +70,10 @@ const PendingModal: React.FC<Props> = ({ open, setOpen }) => {
                   </div>
                 </div>
                 <div className="flex justify-around mt-5 space-x-5">
-                  <button className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                  >
                     Cancel
                   </button>
                   <button
