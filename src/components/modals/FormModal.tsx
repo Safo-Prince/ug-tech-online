@@ -15,7 +15,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   const [formData, setFormData] = useState({
     innovation_name: "",
     description: "",
-    keyBenefits: "",
+    newKeyBenefit: "",
+    keyBenefits: [],
     newKeyword: "",
     keywords: [],
     newDeveloper: "",
@@ -35,7 +36,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     setFormData({
       innovation_name: "",
       description: "",
-      keyBenefits: "",
+      newKeyBenefit: "",
+      keyBenefits: [],
       newKeyword: "",
       keywords: [],
       newDeveloper: "",
@@ -70,21 +72,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     {
       /* @ts-ignore */
     }
-    if (newKeyword !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        keywords: [...prevData.keywords, newKeyword],
+    {/* @ts-ignore */}
+    if (newKeyword !== "") { setFormData((prevData) => ({...prevData, keywords: [...prevData.keywords, newKeyword],
         newKeyword: "", // clear the input after adding a keyword
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
-  {
-    /* @ts-ignore */
-  }
+ 
+  {/* @ts-ignore */}
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -93,24 +89,42 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     });
   };
 
+
+
+  const handleAddKeyBenefit = () => {
+    const newKeyBenefit = formData.newKeyBenefit.trim();
+  
+    {/* @ts-ignore */}
+    if (newKeyBenefit !== "") {setFormData((prevData) => ({...prevData,
+        keyBenefits: [...prevData.keyBenefits, newKeyBenefit],
+        newKeyBenefit: "", // clear the input after adding a key benefit
+      }));
+    }
+  };
+  
+  {/* @ts-ignore */}
+  const handleRemoveKeyBenefit = (index) => {
+    setFormData((prevData) => {
+      const newKeyBenefits = [...prevData.keyBenefits];
+      newKeyBenefits.splice(index, 1);
+      return { ...prevData, keyBenefits: newKeyBenefits };
+    });
+  };
+  
+
   const handleAddDeveloper = () => {
     const newDeveloper = formData.newDeveloper.trim();
 
-    {
-      /* @ts-ignore */
-    }
-    if (newDeveloper !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        developers: [...prevData.developers, newDeveloper],
+    {/* @ts-ignore */}
+    if (newDeveloper !== "") {setFormData((prevData) => ({...prevData,developers: [...prevData.developers, newDeveloper],
         newDeveloper: "", // clear the input after adding a developer
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+ 
+
+  {/* @ts-ignore */}
   const handleRemoveDeveloper = (index) => {
     setFormData((prevData) => {
       const newDevelopers = [...prevData.developers];
@@ -125,18 +139,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     {
       /* @ts-ignore */
     }
-    if (newLink !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        links: [...prevData.links, newLink],
+    {/* @ts-ignore */}
+    if (newLink !== "") {setFormData((prevData) => ({...prevData,links: [...prevData.links, newLink],
         newLink: "", // clear the input after adding a link
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+ 
+  {/* @ts-ignore */}
   const handleRemoveLink = (index) => {
     setFormData((prevData) => {
       const newLinks = [...prevData.links];
@@ -149,23 +160,18 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     /* @ts-ignore */
   }
   const handleFileChange = (e: FormEvent) => {
-    {
-      /* @ts-ignore */
-    }
+    {/* @ts-ignore */}
     const selectedFiles = Array.from(e.target.files);
 
     {
       /* @ts-ignore */
     }
-    setFormData((prevData) => ({
-      ...prevData,
-      files: [...prevData.files, ...selectedFiles],
+    {/* @ts-ignore */}
+    setFormData((prevData) => ({...prevData,files: [...prevData.files, ...selectedFiles],
     }));
   };
 
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveFile = (index) => {
     setFormData((prevData) => {
       const newFiles = [...prevData.files];
@@ -190,9 +196,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
       // Append other form data properties
       Object.keys(formData).forEach((key) => {
         if (key !== "files") {
-          {
-            /* @ts-ignore */
-          }
+          {/* @ts-ignore */}
           formDataToSend.append(key, formData[key]);
         }
       });
@@ -310,22 +314,22 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                       <div className="flex  flex-col space-y-1 items-center space-x-2">
                         <div className="flex w-full  rounded-md border  ">
                           <input
-                            value={formData.newKeyword}
+                            value={formData.newKeyBenefit}
                             onChange={handleInputChange}
                             placeholder="Add Key Benefit(s)"
-                            name="keyBenefits"
+                            name="newKeyBenefit"
                             className="block  w-full  rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm  ring-inset placeholder:text-gray-400 focus:ring-0 ring-0 sm:text-sm sm:leading-6"
                           />
                           <button
                             type="button"
-                            onClick={handleAddKeyword}
+                            onClick={handleAddKeyBenefit}
                             className="border-2 border-dotted border-stone-200 py-1 px-1 rounded-md hover:border-[#1391B3]"
                           >
                             <Plus size={20} color="#d6cdcd" />
                           </button>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-1 grid-rows-1 w-full gap-1 ">
-                          {formData.keywords.map((item, index) => (
+                          {formData.keyBenefits.map((item, index) => (
                             <span
                               key={index}
                               className="py-1 px-1.5 bg-[#E6F1F4] text-[#1391B3] text-sm rounded-md flex space-x-1 items-center justify-between cursor-"
@@ -338,7 +342,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <X
                                 size={12}
                                 className="cursor-pointer"
-                                onClick={() => handleRemoveKeyword(index)}
+                                onClick={() => handleRemoveKeyBenefit(index)}
                               />
                             </span>
                           ))}
@@ -372,8 +376,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -413,8 +416,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X
@@ -543,8 +545,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
+                                {item.length > 5 ? `${item.slice(0, 7)}...`
                                   : item}
                               </span>
                               <X

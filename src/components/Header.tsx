@@ -39,6 +39,7 @@ const Header: React.FC<Props> = ({ setOpen }) => {
             size="25"
             color="black"
           />
+          {/* @ts-ignore */}
           <MobileMenu
             onOpen={setMobIsOpen}
             open={mobOIsPen}

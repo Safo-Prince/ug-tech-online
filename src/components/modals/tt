@@ -1,0 +1,29 @@
+const handleAddKeyBenefit = () => {
+    const newKeyBenefit = formData.newKeyBenefit.trim();
+
+    {
+      /* @ts-ignore */
+    }
+    if (newKeyBenefit !== "") {
+      setFormData((prevData) => ({
+        ...prevData,
+        KeyBenefits: [...prevData.keyBenefits, newKeyBenefit],
+        newKeyBenefit: "", // clear the input after adding a key benefit
+      }));
+    }
+  };
+
+
+  {
+    /* @ts-ignore */
+  }
+  {
+    /* @ts-ignore */
+  }
+  const handleRemoveKeyBenefit = (index) => {
+    setFormData((prevData) => {
+      const newKeyBenefits = [...prevData.keyBenefits];
+      newKeyBenefits.splice(index, 1);
+      return { ...prevData, keyBenefits: newKeyBenefits };
+    });
+  };

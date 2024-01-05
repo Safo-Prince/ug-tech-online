@@ -61,6 +61,7 @@ const ProjectDetailsBody = () => {
 
   return (
     <>
+    {/* @ts-ignore */}
     <Hero title= {innovation_name} techId="SOA 03" />
 
       <Notification
@@ -108,7 +109,20 @@ const ProjectDetailsBody = () => {
           <div>
             <h1 className="font-bold   text-lg">Key Benefits:</h1>
             <ul className="list-inside list-disc mt-2 ">
-              <li className="text-[#56585B] xl:text-lg">{keyBenefits}</li>
+              
+              <ul className="list-disc list-inside ">
+            {/* @ts-ignore */}
+            {typeof projectDetails.keyBenefits === "string" && projectDetails.keyBenefits.length > 0 ? ( projectDetails.keyBenefits.split(",").map((keyBenefits) => (
+                <li key={keyBenefits.trim()} className="text-[#56585B] xl:text-lg">
+                  {keyBenefits.trim()}
+                </li>
+              ))
+            ) : (
+              <li className="text-[#56585B] xl:text-lg">
+                No keywords available
+              </li>
+            )}
+          </ul>
             </ul>
           </div>
           {/* ... Additional project details */}

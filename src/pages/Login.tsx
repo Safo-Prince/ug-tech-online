@@ -12,6 +12,7 @@ const Login: React.FC = () => {
           return;
         }}
       />
+      {/* @ts-ignore */}
       <Hero title="UG Online Technologies Portal" />
       <LoginForm />
       <Footer />
