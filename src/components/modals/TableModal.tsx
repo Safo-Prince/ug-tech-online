@@ -5,6 +5,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 interface Props {
+  setPendingOpen: (arg: boolean) => void;
+  setApprovalOpen: (arg: boolean) => void;
+  setProjectName: (arg: string) => void;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   rowData: {
@@ -16,20 +19,38 @@ interface Props {
   };
 }
 
-const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
+const TableModal: React.FC<Props> = ({
+  open,
+  setOpen,
+  rowData,
+  setApprovalOpen,
+  setProjectName,
+  setPendingOpen,
+}) => {
+  const [buttonText, setButtonText] = useState("Accept");
   const [modalData, setModalData] = useState<any | null>(null);
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [openModal, setOpenModal] = useState(false);
- {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
- {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchModalData = async () => {
       try {
-        {/* @ts-ignore */}
-        const response = await fetch(`https://innovate.ug.edu.gh/api/projects/${rowData.id}`);
+        {
+          /* @ts-ignore */
+        }
+        const response = await fetch(
+          `https://innovate.ug.edu.gh/api/projects/${rowData.id}`
+        );
         const data = await response.json();
         setModalData(data);
         setIsLoading(false);
@@ -45,6 +66,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
   }, [rowData]);
 
   const handleApproval = async () => {
+    setButtonText("Accepting...");
     try {
       // Call the API endpoint to update the approval status
       const response = await fetch(
@@ -59,7 +81,10 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
       if (data.success) {
         console.log("Project approved successfully");
         // Reload the page
-        window.location.reload();
+        setOpen(false);
+        setApprovalOpen(true);
+        setProjectName(modalData.innovation_name);
+        setButtonText("Accept");
       } else {
         console.error("Error approving project");
       }
@@ -69,6 +94,8 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
   };
 
   const handlePending = async () => {
+    setOpen(false);
+    setPendingOpen(true);
     try {
       // Call the API endpoint to update the approval status
       const response = await fetch(
@@ -82,8 +109,6 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
       const data = await response.json();
       if (data.success) {
         console.log("Project pended successfully");
-        // Reload the page
-        window.location.reload();
       } else {
         console.error("Error approving project");
       }
@@ -152,7 +177,11 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                       </h1>
                       <ul className="list-disc list-inside text-left">
                         {/* @ts-ignore */}
-                        {modalData && modalData.developers && modalData.developers.split(",").map((developer, index) => (
+                        {modalData &&
+                          modalData.developers &&
+                          modalData.developers
+                            .split(",")
+                            .map((developer, index) => (
                               <li
                                 key={index}
                                 className="text-[#56585B] xl:text-lg"
@@ -164,33 +193,39 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                       </ul>
                     </div>
                     <div className="mt-2">
-                      <h1 className="font-bold  text-lg">Development status</h1>
-                      <p className="text-[#56585B] xl:text-lg ">
+                      <h1 className="font-bold  text-lg text-left">
+                        Development status
+                      </h1>
+                      <p className="text-[#56585B] xl:text-lg text-left ">
                         {modalData && modalData.status}
                       </p>
                     </div>
                     <div>
-                      <h1 className="font-bold  text-lg">Industry</h1>
-                      <p className="text-[#56585B] xl:text-lg ">
+                      <h1 className="font-bold  text-lg text-left">Industry</h1>
+                      <p className="text-[#56585B] xl:text-lg text-left">
                         {modalData && modalData.industry}
                       </p>
                     </div>
                     <div className="mt-2">
-                      <h1 className="font-bold  text-lg">
+                      <h1 className="font-bold  text-lg text-left">
                         Application and Market Utility
                       </h1>
-                      <p className="text-[#56585B] xl:text-lg ">
+                      <p className="text-[#56585B] xl:text-lg  text-left">
                         {modalData && modalData.applicationAndMarketUtility}
                       </p>
                     </div>
-                    
+
                     <div className="mt-2">
                       <h1 className="font-bold   text-lg text-left">
                         Key Benefits:
                       </h1>
                       <ul className="list-disc list-inside text-left">
                         {/* @ts-ignore */}
-                        {modalData && modalData.keyBenefits && modalData.keyBenefits.split(",").map((keyBenefits, index) => (
+                        {modalData &&
+                          modalData.keyBenefits &&
+                          modalData.keyBenefits
+                            .split(",")
+                            .map((keyBenefits, index) => (
                               <li
                                 key={index}
                                 className="text-[#56585B] xl:text-lg"
@@ -203,23 +238,31 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     </div>
 
                     <div className="mt-2">
-                      <h1 className="font-bold text-lg">Relevant links:</h1>
+                      <h1 className="font-bold text-lg text-left">
+                        Relevant links:
+                      </h1>
                       {modalData && modalData.links && (
-                        <ul className="list-disc list-inside">
-                        {/* @ts-ignore */}
-                        {modalData.links.split(",").map((link, index) => (
-                          <li key={index} className="text-[#007AA0] xl:text-lg">
-                            <a
-                              href={link.trim().startsWith("https://") ? link.trim() : `https://${link.trim()}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                        <ul className="list-disc list-inside text-left">
+                          {/* @ts-ignore */}
+                          {modalData.links.split(",").map((link, index) => (
+                            <li
+                              key={index}
+                              className="text-[#007AA0] xl:text-lg"
                             >
-                              {`Link ${index + 1}`}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                      
+                              <a
+                                href={
+                                  link.trim().startsWith("https://")
+                                    ? link.trim()
+                                    : `https://${link.trim()}`
+                                }
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {`Link ${index + 1}`}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
                       )}
                       {!modalData ||
                         (!modalData.links && (
@@ -231,13 +274,17 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
 
                     <div>
                       <h1 className="font-bold text-lg">Images:</h1>
-                      <div className="flex space-x-2">
+                      <div className="flex  justify-center items-center w-full space-y-4   flex-col ">
                         {/* @ts-ignore */}
-                        {modalData && modalData.files && modalData.files.split(",").map((filePath, index) => (
+                        {modalData &&
+                          modalData.files &&
+                          modalData.files
+                            .split(",")
+                            .map((filePath, index) => (
                               <img
                                 key={index}
                                 src={`https://innovate.ug.edu.gh/${filePath.trim()}`}
-                                className="w-28 h rounded-lg"
+                                className="w-full aspect-[16/9] rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                                 alt={`Image ${index + 1}`}
                               />
                             ))}
@@ -256,7 +303,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                         onClick={handleApproval}
                         className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
-                        Accept
+                        {buttonText}
                       </button>
                       <button
                         onClick={handlePending}

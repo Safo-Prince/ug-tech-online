@@ -5,10 +5,13 @@ import { Check } from "@phosphor-icons/react";
 
 interface Props {
   open: boolean;
-  setOpen: (arg: boolean) => void;
+  projectName?: string;
 }
-{/* @ts-ignore */}
-const AprrovalModal: React.FC<Props> = ({ open, setOpen }) => {
+{
+  /* @ts-ignore */
+}
+const AprrovalModal: React.FC<Props> = ({ open, projectName }) => {
+  console.log(projectName);
   return (
     <Transition.Root static show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {}}>
@@ -44,10 +47,10 @@ const AprrovalModal: React.FC<Props> = ({ open, setOpen }) => {
                         <Check weight="bold" size={30} color="white" />
                       </div>
 
-                      <h1 className=" text-lg font-bold text-center mt-4">
-                        You have approved Quad-pedal Robot
+                      <h1 className=" text-sm font-bold text-center mt-4">
+                        You have approved {projectName}
                       </h1>
-                      <p className="text-base text-center mt-4 text-[#3D3D3D]">
+                      <p className="text-xs text-center mt-4 text-[#3D3D3D]">
                         The developers of this project will be notified.
                       </p>
                     </div>

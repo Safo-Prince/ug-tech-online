@@ -1,16 +1,25 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Eye } from "iconsax-react";
-{/* @ts-ignore */}
-import { DotsThreeVertical } from "@phosphor-icons/react";
+{
+  /* @ts-ignore */
+}
 
 import TableModal from "./modals/TableModal";
 import TableShimmer from "./shimmers/TableShimmer";
 
 interface Props {
   selectedFilter: string;
+  setApprovalOpen: (arg: boolean) => void;
+  setProjectName: (arg: string) => void;
+  setPendingOpen: (arg: boolean) => void;
 }
-const TableBody: React.FC<Props> = ({ selectedFilter }) => {
+const TableBody: React.FC<Props> = ({
+  selectedFilter,
+  setApprovalOpen,
+  setProjectName,
+  setPendingOpen,
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [tableData, setTableData] = useState<any[]>([]);
@@ -57,6 +66,9 @@ const TableBody: React.FC<Props> = ({ selectedFilter }) => {
         setOpen={setOpenModal}
         open={openModal}
         rowData={selectedRow}
+        setApprovalOpen={setApprovalOpen}
+        setProjectName={setProjectName}
+        setPendingOpen={setPendingOpen}
       />
 
       {isLoading ? (
@@ -66,7 +78,7 @@ const TableBody: React.FC<Props> = ({ selectedFilter }) => {
           {tableData.map((rowData) => (
             <tr key={rowData.project_id} className="px-10">
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-              {`UGI 0${rowData.id}`}
+                {`UGI 0${rowData.id}`}
               </td>
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 {rowData.upload_date}
@@ -78,7 +90,7 @@ const TableBody: React.FC<Props> = ({ selectedFilter }) => {
                 {rowData.status}
               </td>
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-              {rowData.approved === 1 ? 'Approved' : 'Not Approved'}
+                {rowData.approved === 1 ? "Approved" : "Not Approved"}
               </td>
               <td className="py-4 pl-4 pr-3 sm:pl-6">
                 <div className="flex items-center space-x-1">
