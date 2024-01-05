@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,33 +16,39 @@ interface Props {
   };
 }
 
-
-
-
 const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
-
   const [modalData, setModalData] = useState<any | null>(null);
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [openModal, setOpenModal] = useState(false);
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
   {
     /* @ts-ignore */
   }
-  {/* @ts-ignore */}
+  {
+    /* @ts-ignore */
+  }
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchModalData = async () => {
       try {
-        {/* @ts-ignore */}
-        const response = await fetch(`https://innovate.ug.edu.gh/api/projects/${rowData.id}`);
+        {
+          /* @ts-ignore */
+        }
+        const response = await fetch(
+          `https://innovate.ug.edu.gh/api/projects/${rowData.id}`
+        );
         const data = await response.json();
         setModalData(data);
         setIsLoading(false);
@@ -61,39 +66,48 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
   const handleApproval = async () => {
     try {
       // Call the API endpoint to update the approval status
-      const response = await fetch(`https://innovate.ug.edu.gh/api/approve-project/${modalData && modalData.id}`, {
-        method: 'POST',
-      });
+      const response = await fetch(
+        `https://innovate.ug.edu.gh/api/approve-project/${
+          modalData && modalData.id
+        }`,
+        {
+          method: "POST",
+        }
+      );
       const data = await response.json();
       if (data.success) {
-        console.log('Project approved successfully');
+        console.log("Project approved successfully");
         // Reload the page
         window.location.reload();
       } else {
-        console.error('Error approving project');
+        console.error("Error approving project");
       }
     } catch (error) {
-      console.error('Error approving project:', error);
+      console.error("Error approving project:", error);
     }
   };
-
 
   const handlePending = async () => {
     try {
       // Call the API endpoint to update the approval status
-      const response = await fetch(`https://innovate.ug.edu.gh/api/pend-project/${modalData && modalData.id}`, {
-        method: 'POST',
-      });
+      const response = await fetch(
+        `https://innovate.ug.edu.gh/api/pend-project/${
+          modalData && modalData.id
+        }`,
+        {
+          method: "POST",
+        }
+      );
       const data = await response.json();
       if (data.success) {
-        console.log('Project pended successfully');
+        console.log("Project pended successfully");
         // Reload the page
         window.location.reload();
       } else {
-        console.error('Error approving project');
+        console.error("Error approving project");
       }
     } catch (error) {
-      console.error('Error approving project:', error);
+      console.error("Error approving project:", error);
     }
   };
 
@@ -123,7 +137,7 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6 max-h-[95vh] w-full  overflow-y-scroll">
+              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6 max-h-[70vh] w-full  overflow-y-scroll">
                 <div className="absolute right-0 top-0  pr-4 pt-4 sm:block">
                   <button
                     type="button"
@@ -144,91 +158,137 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                     </Dialog.Title>
                     <div className="border border-stone-500 mt-3 mb-3 " />
                     <div>
-                      <h1 className="font-bold  text-lg mt-4">Description</h1>
-                      <p className="text-[#56585B] xl:text-lg ">
-                      {modalData && modalData.description}
+                      <h1 className="font-bold  text-lg mt-4 text-left">
+                        Description
+                      </h1>
+                      <p className="text-[#56585B] xl:text-lg text-left">
+                        {modalData && modalData.description}
                       </p>
                     </div>
                     <div className="">
-                      <h1 className="font-bold text-lg">Developers:</h1>
-                      <ul className="list-disc list-inside">
-
+                      <h1 className="font-bold text-lg text-left">
+                        Developers:
+                      </h1>
+                      <ul className="list-disc list-inside text-left">
                         {/* @ts-ignore */}
-                        {modalData && modalData.developers && modalData.developers.split(',').map((developer, index) => (
-                            <li key={index} className="text-[#56585B] xl:text-lg">
-                              {developer.trim()} {/* Trim to remove any leading/trailing whitespaces */}
-                            </li>
-                          ))}
+                        {modalData &&
+                          modalData.developers &&
+                          modalData.developers
+                            .split(",")
+                            .map((developer, index) => (
+                              <li
+                                key={index}
+                                className="text-[#56585B] xl:text-lg"
+                              >
+                                {developer.trim()}{" "}
+                                {/* Trim to remove any leading/trailing whitespaces */}
+                              </li>
+                            ))}
                       </ul>
                     </div>
                     <div className="mt-2">
                       <h1 className="font-bold  text-lg">Development status</h1>
                       <p className="text-[#56585B] xl:text-lg ">
-                      {modalData && modalData.status}
-
+                        {modalData && modalData.status}
                       </p>
                     </div>
                     <div>
                       <h1 className="font-bold  text-lg">Industry</h1>
-                      <p className="text-[#56585B] xl:text-lg ">{modalData && modalData.industry}</p>
-                    </div>
-                    <div className="mt-2">
-                      <h1 className="font-bold  text-lg">Application and Market Utility</h1>
                       <p className="text-[#56585B] xl:text-lg ">
-                      {modalData && modalData.applicationAndMarketUtility}
-                      
+                        {modalData && modalData.industry}
                       </p>
                     </div>
                     <div className="mt-2">
-                      <h1 className="font-bold   text-lg">Key Benefits:</h1>
-                      <ul className="list-inside list-disc ">
-                        <li className="text-[#56585B] xl:text-lg">
-                        {modalData && modalData.keyBenefits}
-                        </li>
-                       
-                      </ul>
+                      <h1 className="font-bold  text-lg">
+                        Application and Market Utility
+                      </h1>
+                      <p className="text-[#56585B] xl:text-lg ">
+                        {modalData && modalData.applicationAndMarketUtility}
+                      </p>
                     </div>
-                    
                     <div className="mt-2">
-                    <h1 className="font-bold text-lg">Relevant links:</h1>
-                    {modalData && modalData.links && (
-                      <ul className="list-disc list-inside">
-                        {/* @ts-ignore */}
-                        {modalData.links.split(',').map((link, index) => (
-                          <li key={index} className="text-[#007AA0] xl:text-lg">
-                            <a href={`https://${link.trim()}`} target="_blank" rel="noopener noreferrer">
-                              {`Link ${index + 1}`}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {!modalData || !modalData.links && (
-                      <p className="text-[#56585B] xl:text-lg">No relevant links available.</p>
-                    )}
-                  </div>
-
-
-
-                  <div>
-                    <h1 className="font-bold text-lg">Images:</h1>
-                    <div className="flex space-x-2">
-                      {/* @ts-ignore */}
-                      {modalData && modalData.files && modalData.files.split(',').map((filePath, index) => (
-                        <img key={index} src={`https://innovate.ug.edu.gh/${filePath.trim()}`} className="w-28 h rounded-lg" alt={`Image ${index + 1}`} />
-                      ))}
+                      <h1 className="font-bold  text-lg text-left">Overview</h1>
+                      <p className="text-[#56585B] xl:text-lg text-left">
+                        {modalData && modalData.applicationAndMarketUtility}
+                      </p>
                     </div>
-                    {!modalData || !modalData.files && (
-                      <p className="text-[#56585B] xl:text-lg">No images available.</p>
-                    )}
-                  </div>
+                    <div className="mt-2">
+                      <h1 className="font-bold   text-lg text-left">
+                        Key Benefits:
+                      </h1>
+                      <ul className="list-inside list-disc text-left">
+                        <li className="text-[#56585B] xl:text-lg">
+                          {modalData && modalData.keyBenefits}
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="mt-2">
+                      <h1 className="font-bold text-lg">Relevant links:</h1>
+                      {modalData && modalData.links && (
+                        <ul className="list-disc list-inside">
+                          {/* @ts-ignore */}
+                          {modalData.links.split(",").map((link, index) => (
+                            <li
+                              key={index}
+                              className="text-[#007AA0] xl:text-lg"
+                            >
+                              <a
+                                href={`https://${link.trim()}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {`Link ${index + 1}`}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {!modalData ||
+                        (!modalData.links && (
+                          <p className="text-[#56585B] xl:text-lg">
+                            No relevant links available.
+                          </p>
+                        ))}
+                    </div>
+
+                    <div>
+                      <h1 className="font-bold text-lg">Images:</h1>
+                      <div className="flex space-x-2">
+                        {/* @ts-ignore */}
+                        {modalData &&
+                          modalData.files &&
+                          modalData.files
+                            .split(",")
+                            .map((filePath, index) => (
+                              <img
+                                key={index}
+                                src={`https://innovate.ug.edu.gh/${filePath.trim()}`}
+                                className="w-28 h rounded-lg"
+                                alt={`Image ${index + 1}`}
+                              />
+                            ))}
+                      </div>
+                      {!modalData ||
+                        (!modalData.files && (
+                          <p className="text-[#56585B] xl:text-lg">
+                            No images available.
+                          </p>
+                        ))}
+                    </div>
 
                     <div className="space-y-3 flex flex-col items-start"></div>
                     <div className="flex justify-around mt-5 space-x-5">
-                      <button onClick={handleApproval} className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >
+                      <button
+                        onClick={handleApproval}
+                        className="  rounded-md bg-[#153D6D] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#48627f]å focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
                         Accept
                       </button>
-                      <button onClick={handlePending} className="rounded-md bg-[#F46969] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#f19494]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <button
+                        onClick={handlePending}
+                        className="rounded-md bg-[#F46969] w-full py-2.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#f19494]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
                         Pending
                       </button>
                     </div>

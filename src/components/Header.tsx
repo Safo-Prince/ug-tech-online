@@ -30,7 +30,7 @@ const Header: React.FC<Props> = ({ setOpen }) => {
           />
 
           <div className="hidden sm:block">
-            <Navigation setOpen={setOpen} />
+            <Navigation setMobIsOpen={setMobIsOpen} setOpen={setOpen} />
           </div>
 
           <HambergerMenu

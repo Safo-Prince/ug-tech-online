@@ -6,9 +6,10 @@ import { Handshake, User } from "@phosphor-icons/react";
 
 interface Props {
   setOpen: (arg: boolean) => void;
+  setMobIsOpen: (arg: boolean) => void;
 }
 
-const Navigation: React.FC<Props> = ({ setOpen }) => {
+const Navigation: React.FC<Props> = ({ setOpen, setMobIsOpen }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -18,7 +19,7 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
 
   return (
     <>
-      {(pathname === "/" || pathname === "/project-details") && (
+      {pathname !== "/admin" && pathname !== "/login" && (
         <ul className=" flex sm:flex-row flex-col sm:items-center  sm:gap-x-3 font-lato font-medium sm:text-lg text-sm space-y-3 sm:space-y-0  text-[#f2f2f2 ] border-red-200  ">
           {headerNavigation.map((item, index) => (
             <li key={index}>
@@ -51,7 +52,10 @@ const Navigation: React.FC<Props> = ({ setOpen }) => {
           </li>
           <li>
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setMobIsOpen(false);
+                setOpen(true);
+              }}
               className="rounded-full py-1.5 px-2 sm:px-3.5 sm:py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white flex items-center justify-center space-x-1 "
             >
               <Add size="20" color="white " className="self-center" />

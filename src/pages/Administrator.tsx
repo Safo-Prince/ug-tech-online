@@ -7,7 +7,7 @@ import axios from "axios";
 import * as React from "react";
 //import AprrovalModal from "../components/modals/ApprovalModal";
 
-const baseURL = 'https://innovate.ug.edu.gh/loginstatus';
+const baseURL = "https://innovate.ug.edu.gh/loginstatus";
 
 {
   /* @ts-ignore */
@@ -15,29 +15,32 @@ const baseURL = 'https://innovate.ug.edu.gh/loginstatus';
 /* @ts-ignore */
 export default function Administrator(props: any) {
   const [authStatus, setAuthStatus] = React.useState(null);
-  React.useEffect(()=>{
+  React.useEffect(() => {
     axios.get(baseURL).then((response) => {
       setAuthStatus(response.data);
     });
   });
   console.log(authStatus);
-  if(authStatus==false) {
-    history.pushState({urlPath:''},"",'/login')
+  if (authStatus == false) {
+    history.pushState({ urlPath: "" }, "", "/login");
     //window.location.reload()
   }
 
   return (
-    <div className="flex flex-col sm:h-screen">
+    <div className="flex flex-col sm:min-h-screen justify-between">
       <Header
         setOpen={() => {
           return;
         }}
       />
-      <Hero title="List of Applicants" />
+      <Hero
+        title="List of Applicants"
+        setSearchQuery={() => {
+          return;
+        }}
+      />
       <AdminTable />
       <Footer />
     </div>
   );
-};
-
-
+}

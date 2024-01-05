@@ -8,11 +8,17 @@ import ProjectShimmer from "./shimmers/ProjectShimmer";
 interface ProjectGridProps {
   selectedFilter: string;
   search: string;
+  searchQuery: string;
 }
 
 const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter, search }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({
+  selectedFilter,
+  searchQuery,
+}) => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(searchQuery);
 
   useEffect(() => {
     const fetchProjects = async () => {
