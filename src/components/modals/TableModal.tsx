@@ -29,27 +29,18 @@ const TableModal: React.FC<Props> = ({
 }) => {
   const [buttonText, setButtonText] = useState("Accept");
   const [modalData, setModalData] = useState<any | null>(null);
-  {
-    /* @ts-ignore */
-  }
+ {/* @ts-ignore */}
   const [openModal, setOpenModal] = useState(false);
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchModalData = async () => {
       try {
-        {
-          /* @ts-ignore */
-        }
-        const response = await fetch(
-          `https://innovate.ug.edu.gh/api/projects/${rowData.id}`
+        {/* @ts-ignore */}
+        const response = await fetch(`https://innovate.ug.edu.gh/api/projects/${rowData.id}`
         );
         const data = await response.json();
         setModalData(data);
@@ -177,11 +168,7 @@ const TableModal: React.FC<Props> = ({
                       </h1>
                       <ul className="list-disc list-inside text-left">
                         {/* @ts-ignore */}
-                        {modalData &&
-                          modalData.developers &&
-                          modalData.developers
-                            .split(",")
-                            .map((developer, index) => (
+                        {modalData && modalData.developers && modalData.developers.split(",").map((developer, index) => (
                               <li
                                 key={index}
                                 className="text-[#56585B] xl:text-lg"
@@ -221,11 +208,7 @@ const TableModal: React.FC<Props> = ({
                       </h1>
                       <ul className="list-disc list-inside text-left">
                         {/* @ts-ignore */}
-                        {modalData &&
-                          modalData.keyBenefits &&
-                          modalData.keyBenefits
-                            .split(",")
-                            .map((keyBenefits, index) => (
+                        {modalData && modalData.keyBenefits && modalData.keyBenefits.split(",").map((keyBenefits, index) => (
                               <li
                                 key={index}
                                 className="text-[#56585B] xl:text-lg"
@@ -276,11 +259,7 @@ const TableModal: React.FC<Props> = ({
                       <h1 className="font-bold text-lg">Images:</h1>
                       <div className="flex  justify-center items-center w-full space-y-4   flex-col ">
                         {/* @ts-ignore */}
-                        {modalData &&
-                          modalData.files &&
-                          modalData.files
-                            .split(",")
-                            .map((filePath, index) => (
+                        {modalData && modalData.files && modalData.files.split(",").map((filePath, index) => (
                               <img
                                 key={index}
                                 src={`https://innovate.ug.edu.gh/${filePath.trim()}`}
