@@ -7,18 +7,17 @@ import ProjectShimmer from "./shimmers/ProjectShimmer";
 
 interface ProjectGridProps {
   selectedFilter: string;
+  search: string;
 }
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter, search }) => {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const url = selectedFilter
-          ? `https://innovate.ug.edu.gh/api/approved-projects?industry=${selectedFilter}`
-          : "https://innovate.ug.edu.gh/api/approved-projects";
+        const url = `https://innovate.ug.edu.gh/api/projects?filter=${selectedFilter}&search=${search}`;
 
         const response = await fetch(url);
         const data = await response.json();
@@ -31,7 +30,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter }) => {
     };
 
     fetchProjects();
-  }, [selectedFilter]);
+  }, [selectedFilter, search]);
 
   return (
     <>

@@ -450,6 +450,12 @@ app.get('/api/approved-projects', (req, res) => {
     sql += ` AND industry = '${industry}'`;
   }
 
+  // Apply search logic
+  if (search) {
+    // Adjust the SQL query to include the search condition
+    sql += ` AND (column1 LIKE '%${search}%' OR column2 LIKE '%${search}%' OR ...)`;
+  }
+
   db.query(sql, async (err, results) => {
     if (err) {
       console.error('Error fetching approved projects:', err);
