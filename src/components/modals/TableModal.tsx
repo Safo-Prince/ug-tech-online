@@ -183,20 +183,22 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                         {modalData && modalData.applicationAndMarketUtility}
                       </p>
                     </div>
-                    <div className="mt-2">
-                      <h1 className="font-bold  text-lg text-left">Overview</h1>
-                      <p className="text-[#56585B] xl:text-lg text-left">
-                        {modalData && modalData.applicationAndMarketUtility}
-                      </p>
-                    </div>
+                    
                     <div className="mt-2">
                       <h1 className="font-bold   text-lg text-left">
                         Key Benefits:
                       </h1>
-                      <ul className="list-inside list-disc text-left">
-                        <li className="text-[#56585B] xl:text-lg">
-                          {modalData && modalData.keyBenefits}
-                        </li>
+                      <ul className="list-disc list-inside text-left">
+                        {/* @ts-ignore */}
+                        {modalData && modalData.keyBenefits && modalData.keyBenefits.split(",").map((keyBenefits, index) => (
+                              <li
+                                key={index}
+                                className="text-[#56585B] xl:text-lg"
+                              >
+                                {keyBenefits.trim()}{" "}
+                                {/* Trim to remove any leading/trailing whitespaces */}
+                              </li>
+                            ))}
                       </ul>
                     </div>
 
@@ -204,22 +206,20 @@ const TableModal: React.FC<Props> = ({ open, setOpen, rowData }) => {
                       <h1 className="font-bold text-lg">Relevant links:</h1>
                       {modalData && modalData.links && (
                         <ul className="list-disc list-inside">
-                          {/* @ts-ignore */}
-                          {modalData.links.split(",").map((link, index) => (
-                            <li
-                              key={index}
-                              className="text-[#007AA0] xl:text-lg"
+                        {/* @ts-ignore */}
+                        {modalData.links.split(",").map((link, index) => (
+                          <li key={index} className="text-[#007AA0] xl:text-lg">
+                            <a
+                              href={link.trim().startsWith("https://") ? link.trim() : `https://${link.trim()}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
-                              <a
-                                href={`https://${link.trim()}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {`Link ${index + 1}`}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
+                              {`Link ${index + 1}`}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                      
                       )}
                       {!modalData ||
                         (!modalData.links && (
