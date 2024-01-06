@@ -89,275 +89,23 @@ app.post('/submit-form', upload.array('files', 3), async (req, res) => {
         },
       });
 
-      const htmlTemplate = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-      <head>
-      <!--[if gte mso 9]>
-      <xml>
-        <o:OfficeDocumentSettings>
-          <o:AllowPNG/>
-          <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-      </xml>
-      <![endif]-->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="x-apple-disable-message-reformatting">
-        <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
-        <title></title>
-        
-          <style type="text/css">
-            @media only screen and (min-width: 520px) {
-        .u-row {
-          width: 500px !important;
-        }
-        .u-row .u-col {
-          vertical-align: top;
-        }
       
-        .u-row .u-col-50 {
-          width: 250px !important;
-        }
-      
-        .u-row .u-col-100 {
-          width: 500px !important;
-        }
-      
-      }
-      
-      @media (max-width: 520px) {
-        .u-row-container {
-          max-width: 100% !important;
-          padding-left: 0px !important;
-          padding-right: 0px !important;
-        }
-        .u-row .u-col {
-          min-width: 320px !important;
-          max-width: 100% !important;
-          display: block !important;
-        }
-        .u-row {
-          width: 100% !important;
-        }
-        .u-col {
-          width: 100% !important;
-        }
-        .u-col > div {
-          margin: 0 auto;
-        }
-      }
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      
-      table,
-      tr,
-      td {
-        vertical-align: top;
-        border-collapse: collapse;
-      }
-      
-      p {
-        margin: 0;
-      }
-      
-      .ie-container table,
-      .mso-container table {
-        table-layout: fixed;
-      }
-      
-      * {
-        line-height: inherit;
-      }
-      
-      a[x-apple-data-detectors='true'] {
-        color: inherit !important;
-        text-decoration: none !important;
-      }
-      
-      table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: underline; }
-          </style>
-        
-        
-      
-      </head>
-      
-      <body class="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #e7e7e7;color: #000000">
-        <!--[if IE]><div class="ie-container"><![endif]-->
-        <!--[if mso]><div class="mso-container"><![endif]-->
-        <table id="u_body" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #e7e7e7;width:100%" cellpadding="0" cellspacing="0">
-        <tbody>
-        <tr style="vertical-align: top">
-          <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-          <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #e7e7e7;"><![endif]-->
-          
-        
-        
-      <div class="u-row-container" style="padding: 0px;background-color: transparent">
-        <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-          <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px;"><tr style="background-color: transparent;"><![endif]-->
-            
-      <!--[if (mso)|(IE)]><td align="center" width="500" style="background-color: #ffffff;width: 500px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-      <div class="u-col u-col-100" style="max-width: 320px;min-width: 500px;display: table-cell;vertical-align: top;">
-        <div style="background-color: #ffffff;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-        <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
-        
-      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-        <tbody>
-          <tr>
-            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-              
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td style="padding-right: 0px;padding-left: 0px;" align="left">
-            
-            <img align="left" border="0" src="images/image-1.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 60%;max-width: 288px;" width="288"/>
-            
-          </td>
-        </tr>
-      </table>
-      
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
-        </div>
-      </div>
-      <!--[if (mso)|(IE)]></td><![endif]-->
-            <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-          </div>
-        </div>
-        </div>
-        
-      
-      
-        
-        
-      <div class="u-row-container" style="padding: 0px;background-color: transparent">
-        <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-          <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px;"><tr style="background-color: transparent;"><![endif]-->
-            
-      <!--[if (mso)|(IE)]><td align="center" width="500" style="background-color: #ecf0f1;width: 500px;padding: 16px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-      <div class="u-col u-col-100" style="max-width: 320px;min-width: 500px;display: table-cell;vertical-align: top;">
-        <div style="background-color: #ecf0f1;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-        <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 16px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
-        
-      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-        <tbody>
-          <tr>
-            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-              
-        <div style="font-size: 14px; color: #6b6b6b; line-height: 140%; text-align: left; word-wrap: break-word;">
-          <p style="line-height: 140%;">Dear Innovator,</p>
-      <p style="line-height: 140%;"> </p>
-      <p style="line-height: 140%;">Your application has been received. </p>
-      <p style="line-height: 140%;">It will go through an approval process.</p>
-        </div>
-      
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
-        </div>
-      </div>
-      <!--[if (mso)|(IE)]></td><![endif]-->
-            <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-          </div>
-        </div>
-        </div>
-        
-      
-      
-        
-        
-      <div class="u-row-container" style="padding: 0px;background-color: transparent">
-        <div class="u-row" style="margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
-          <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px;"><tr style="background-color: transparent;"><![endif]-->
-            
-      <!--[if (mso)|(IE)]><td align="center" width="250" style="background-color: #ffffff;width: 250px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-      <div class="u-col u-col-50" style="max-width: 320px;min-width: 250px;display: table-cell;vertical-align: top;">
-        <div style="background-color: #ffffff;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-        <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
-        
-      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-        <tbody>
-          <tr>
-            <td style="overflow-wrap:break-word;word-break:break-word;padding:16px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
-              
-        <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
-          <div>
-      <div><a href="https://orid.ug.edu.gh/">+233-(0)303-930436</a></div>
-      <div><a href="https://orid.ug.edu.gh/">+233-(0)302-</a><a href="https://orid.ug.edu.gh/">213850</a></div>
-      <div title="Location"> </div>
-      </div>
-        </div>
-      
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
-        </div>
-      </div>
-      <!--[if (mso)|(IE)]></td><![endif]-->
-      <!--[if (mso)|(IE)]><td align="center" width="250" style="background-color: #ffffff;width: 250px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-      <div class="u-col u-col-50" style="max-width: 320px;min-width: 250px;display: table-cell;vertical-align: top;">
-        <div style="background-color: #ffffff;height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-        <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
-        
-      <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-        <tbody>
-          <tr>
-            <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-              
-        <div style="font-size: 14px; line-height: 140%; text-align: right; word-wrap: break-word;">
-          <div><a href="http://orid@ug.edu.gh/">orid@ug.edu.gh</a></div>
-      <div title="Location"><a href="https://www.google.com.gh/maps/place/Legon+Centre+for+International+Affairs+and+Diplomacy,+University+of+Ghana,+Botanical+Gardens+Rd,+Accra/@5.6521685,-0.1841788,19z/data=!4m7!1m4!3m3!1s0x0fdf9c86dc2b3e93:0xf2c110cbc16a70a3!2sLegon+Centre+for+International+Affairs+and+Diplomacy,+University+of+Ghana,+Botanical+Gardens+Rd,+Accra!3b1!3m1!1s0x0fdf9c86dc2b3e93:0xf2c110cbc16a70a3?hl=en">P.O. Box LG 1142<br />Legon, Accra</a></div>
-        </div>
-      
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
-        </div>
-      </div>
-      <!--[if (mso)|(IE)]></td><![endif]-->
-            <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-          </div>
-        </div>
-        </div>
-        
-      
-      
-          <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-        </tbody>
-        </table>
-        <!--[if mso]></div><![endif]-->
-        <!--[if IE]></div><![endif]-->
-      </body>
-      
-      </html>
-      
-`;
 
       const userMailOptions = {
         from: 'sipp@ug.edu.gh',
         to: formData.email,
-        subject: 'Innovation Submission Received',
-        html: htmlTemplate,
+        subject: 'Innovation Submission Received and Under Review',
+        text: `
+        Dear Applicant,
+
+Your Innovation application has been successfully received.
+
+Our team is currently reviewing your submission. If additional information is needed, we'll be in touch. Expect another email soon regarding the status of your application. Thank you.
+
+
+Best regards,
+
+UG Innovations and Technology Team`,
       };
 
       try {
@@ -507,7 +255,7 @@ app.post('/api/approve-project/:id', async (req, res) => {
           res.status(500).json({ error: 'Internal Server Error' });
         } else {
           const userEmail = results[0]?.email;
-          console.log(userEmail)
+          //console.log(userEmail)
 
           // Send an email to the associated email address
           const transporter = nodemailer.createTransport({
@@ -599,7 +347,7 @@ app.post('/api/pend-project/:id', async (req, res) => {
           res.status(500).json({ error: 'Internal Server Error' });
         } else {
           const userEmail = results[0]?.email;
-          console.log(userEmail)
+          //console.log(userEmail)
 
           // Send an email to the associated email address
           const transporter = nodemailer.createTransport({
@@ -616,16 +364,23 @@ app.post('/api/pend-project/:id', async (req, res) => {
             from: 'sipp@ug.edu.gh',
             to: userEmail,
             subject: 'Application under review',
-            text: `Dear Applicant,
+            text: `Dear Sir/Madam,
 
-Your Innovation application has been successfully received.
+            Your submission to UG Partnerships portal is currently pending. Our Assessment Team has reviewed your submission and identified that further information is required to proceed with the assessment.
             
-Our team is currently reviewing your submission. If additional information is needed, we'll be in touch. Expect another email soon regarding the status of your application. Thank you.
+            Below, you'll find comments from our Assessment Team regarding the additional information needed for your application. We kindly ask you to review these comments and provide the requested details at your earliest convenience.
             
+            [Insert Comments ]
             
-Best regards,
+            Your prompt attention to this matter will enable us to move forward with the assessment of your submission 
             
-UG Innovations and Technology Team`,
+            Should you have any questions or need clarification on the required information, please don't hesitate to reach out to us. 
+            
+            Thank you for your cooperation.
+            
+            Best regards,
+            
+            UG Partnerships Assessment Team`,
           };
 
           try {
@@ -705,12 +460,29 @@ app.post('/api/submit-meeting-form', async (req, res) => {
           },
         });
 
-        const mailOptions = {
-          from: 'sipp@ug.edu.gh',
-          to: 'irondicjonathan@gmail.com',  // Replace with the admin's email
-          subject: 'New Meeting Form Submission',
-          text: `A new meeting form has been submitted. Details: ${JSON.stringify(formData)}`,
-        };
+        const subject = 'Meeting Request - ' + formData.innovation_name;
+const text = `
+Title: Meeting Request - ${formData.innovation_name}
+
+Dear Administrator,
+
+A meeting has been requested in relation to ${formData.innovation_name} by a potential investor. Please find below their details:
+
+Company Name: ${formData.company_name}
+Contact Person Name: ${formData.contact_person_name}
+Phone Number: ${formData.phone_number}
+User Email: ${formData.user_email}
+Purpose: ${formData.purpose}
+
+Thank you
+`;
+
+const mailOptions = {
+  from: 'sipp@ug.edu.gh',
+  to: 'mnhutchful@ug.edu.gh, DAdobeaAntwiOwusu@ug.edu.gh', // admin mails
+  subject: subject,
+  text: text,
+};
 
         try {
           const emailResult = await transporter.sendMail(mailOptions);
