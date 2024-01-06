@@ -15,6 +15,7 @@ const PendingModal: React.FC<Props> = ({ open, setOpen }) => {
 
   const handleSend = () => {
     setButtonText("Sending...");
+    
   };
   return (
     <Transition.Root static show={open} as={Fragment}>

@@ -57,7 +57,7 @@ const TableBody: React.FC<Props> = ({
     setSelectedRow(rowData);
   };
 
-  console.log(selectedFilter);
+  
 
   return (
     <>

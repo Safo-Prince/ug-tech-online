@@ -17,6 +17,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter, searchQuery }
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        console.log(selectedFilter)
         const url = selectedFilter
           ? `https://innovate.ug.edu.gh/api/approved-projects?industry=${selectedFilter}&search=${searchQuery}`
           : `https://innovate.ug.edu.gh/api/approved-projects?search=${searchQuery}`;

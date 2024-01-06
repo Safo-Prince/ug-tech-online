@@ -479,29 +479,29 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                       >
                         <option disabled>--Select industry--</option>
                         <option value="Agri-Business">Agri-Business</option>
-                        <option value="Arts & Crafts">Arts & Crafts</option>
-                        <option value="Foods & Beverages">
-                          Foods & Beverages
+                        <option value="Arts and Crafts">Arts and Crafts</option>
+                        <option value="Foods and Beverages">
+                          Foods and Beverages
                         </option>
                         <option value="Banking,Financial Services including insurances">
                           Banking,Financial Services including insurances
                         </option>
-                        <option value="Environment & Sanitation">
-                          Environment & Sanitation
+                        <option value="Environment and Sanitation">
+                          Environment and Sanitation
                         </option>
                         <option value="Energy & Climate Change">
-                          Energy & Climate Change
+                          Energy and Climate Change
                         </option>
                         <option value="Engineering">Engineering</option>
-                        <option value="Hospitalities & Tourism">
-                          Hospitalities & Tourism
+                        <option value="Hospitalities and Tourism">
+                          Hospitalities and Tourism
                         </option>
-                        <option value="Information & Communication Technology including Software">
-                          Information & Communication Technology including
+                        <option value="Information and Communication Technology including Software">
+                          Information and Communication Technology including
                           Software
                         </option>
-                        <option value="Health & Biotechnology">
-                          Health & Biotechnology
+                        <option value="Health and Biotechnology">
+                          Health and Biotechnology
                         </option>
                       </select>
 

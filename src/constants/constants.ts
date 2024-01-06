@@ -42,17 +42,17 @@ export const columns = [
 export const HomeFilter = [
   { label: "All" },
   { label: "Agri-Business" },
-  { label: "Arts & Crafts" },
-  { label: "Foods & Beverages" },
+  { label: "Arts and Crafts" },
+  { label: "Foods and Beverages" },
   { label: "Banking,Financial Services including insurances" },
-  { label: "Environment & Sanitation" },
-  { label: "Energy & Climate Change" },
+  { label: "Environment and Sanitation" },
+  { label: "Energy and Climate Change" },
   { label: "Engineering" },
-  { label: "Hospitalities & Tourism" },
+  { label: "Hospitalities and Tourism" },
   {
-    label: "Information & Communication Technology including Software",
+    label: "Information and Communication Technology including Software",
   },
-  { label: "Health & Biotechnology" },
+  { label: "Health and Biotechnology" },
   { label: "Engineering" },
 ];
 
