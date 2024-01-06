@@ -363,24 +363,24 @@ app.post('/api/pend-project/:id', async (req, res) => {
           const userMailOptions = {
             from: 'sipp@ug.edu.gh',
             to: userEmail,
-            subject: 'Application under review',
+            subject: 'Request for Additional Information - UG Innovation & Technology Portal',
             text: `Dear Sir/Madam,
 
-            Your submission to UG Partnerships portal is currently pending. Our Assessment Team has reviewed your submission and identified that further information is required to proceed with the assessment.
+Your submission to UG Innovation & Technology portal is currently pending. Our Assessment Team has reviewed your submission and identified that further information is required to proceed with the assessment.
             
-            Below, you'll find comments from our Assessment Team regarding the additional information needed for your application. We kindly ask you to review these comments and provide the requested details at your earliest convenience.
+Below, you'll find comments from our Assessment Team regarding the additional information needed for your application. We kindly ask you to review these comments and provide the requested details at your earliest convenience.
             
-            [Insert Comments ]
+[Insert Comments ]
             
-            Your prompt attention to this matter will enable us to move forward with the assessment of your submission 
+Your prompt attention to this matter will enable us to move forward with the assessment of your submission 
             
-            Should you have any questions or need clarification on the required information, please don't hesitate to reach out to us. 
+Should you have any questions or need clarification on the required information, please don't hesitate to reach out to us. 
             
-            Thank you for your cooperation.
+Thank you for your cooperation.
             
-            Best regards,
+Best regards,
             
-            UG Partnerships Assessment Team`,
+UG Innovations Portal Assessment Team`,
           };
 
           try {
