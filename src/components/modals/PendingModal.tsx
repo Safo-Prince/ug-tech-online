@@ -6,16 +6,18 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 interface Props {
   open: boolean;
   setOpen: (arg: boolean) => void;
+  ProjectId: string;
 }
 {
   /* @ts-ignore */
 }
-const PendingModal: React.FC<Props> = ({ open, setOpen }) => {
+const PendingModal: React.FC<Props> = ({ open, setOpen, ProjectId }) => {
   const [buttonText, setButtonText] = useState("Send");
+
+  console.log(ProjectId);
 
   const handleSend = () => {
     setButtonText("Sending...");
-    
   };
   return (
     <Transition.Root static show={open} as={Fragment}>

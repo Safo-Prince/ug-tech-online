@@ -14,6 +14,7 @@ const AdminTable: React.FC = () => {
   const [projectName, setProjectName] = useState("");
 
   const [pendingOpen, setPendingOpen] = useState(false);
+  const [ProjectId, setProjectId] = useState("");
 
   const [selectedFilter, setSelectedFilter] = useState("project-name");
 
@@ -34,7 +35,11 @@ const AdminTable: React.FC = () => {
   return (
     <div className="mx-auto w-full sm:max-w-7xl py-16 sm:py-20 lg:px-8 px-6   h-full relative">
       <AprrovalModal open={approvalOpen} projectName={projectName} />
-      <PendingModal open={pendingOpen} setOpen={setPendingOpen} />
+      <PendingModal
+        open={pendingOpen}
+        setOpen={setPendingOpen}
+        ProjectId={ProjectId}
+      />
 
       <div className="flex sm:flex-row flex-col justify-between  items-center">
         {/* @ts-ignore */}
@@ -50,6 +55,7 @@ const AdminTable: React.FC = () => {
             setApprovalOpen={setApprovalOpen}
             setProjectName={setProjectName}
             setPendingOpen={setPendingOpen}
+            setProjectId={setProjectId}
           />
         </table>
         <div className="absolute right-1/2 translate-x-1/2 ">

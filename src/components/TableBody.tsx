@@ -13,12 +13,14 @@ interface Props {
   setApprovalOpen: (arg: boolean) => void;
   setProjectName: (arg: string) => void;
   setPendingOpen: (arg: boolean) => void;
+  setProjectId: (arg: string) => void;
 }
 const TableBody: React.FC<Props> = ({
   selectedFilter,
   setApprovalOpen,
   setProjectName,
   setPendingOpen,
+  setProjectId,
 }) => {
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,9 +57,8 @@ const TableBody: React.FC<Props> = ({
   const handleOpenModal = (rowData: any) => {
     setOpenModal(true);
     setSelectedRow(rowData);
+    setProjectId(rowData.innovation_name);
   };
-
-  
 
   return (
     <>
@@ -93,14 +94,9 @@ const TableBody: React.FC<Props> = ({
                 {rowData.approved === 1 ? "Approved" : "Not Approved"}
               </td>
               <td className="py-4 pl-4 pr-3 sm:pl-6">
-                <div className="flex items-center space-x-1">
-                  <button onClick={() => handleOpenModal(rowData)}>
-                    <Eye size="25" color="black" className="cursor-pointer" />
-                  </button>
-                  {/* <button>
-                    <DotsThreeVertical size={25} />
-                  </button> */}
-                </div>
+                <button onClick={() => handleOpenModal(rowData)}>
+                  <Eye size="25" color="black" className="cursor-pointer" />
+                </button>
               </td>
             </tr>
           ))}
