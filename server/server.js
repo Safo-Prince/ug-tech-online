@@ -330,6 +330,7 @@ UG Innovations Portal Assessment Team
 
 app.post('/api/pend-project/:id', async (req, res) => {
   const projectId = req.params.id;
+  const { messageContent } = req.body;
 
   
   const updateSql = `UPDATE innovation_details SET approved = false WHERE id = ${projectId}`;
@@ -370,7 +371,7 @@ Your submission to UG Innovation & Technology portal is currently pending. Our A
             
 Below, you'll find comments from our Assessment Team regarding the additional information needed for your application. We kindly ask you to review these comments and provide the requested details at your earliest convenience.
             
-[Insert Comments ]
+${ messageContent }
             
 Your prompt attention to this matter will enable us to move forward with the assessment of your submission 
             
