@@ -3,22 +3,58 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-interface Props {
-  open: boolean;
-  setOpen: (arg: boolean) => void;
-  ProjectId: string;
+
+{/* @ts-ignore */}
+interface Props { open: boolean; setOpen: (arg: boolean) => void; ProjectId: number;
 }
 {
   /* @ts-ignore */
 }
 const PendingModal: React.FC<Props> = ({ open, setOpen, ProjectId }) => {
   const [buttonText, setButtonText] = useState("Send");
+  const [messageContent, setMessageContent] = useState("");
 
-  console.log(ProjectId);
 
-  const handleSend = () => {
+  //console.log(ProjectId);
+
+  const handleSend = async () => {
     setButtonText("Sending...");
+  
+    try {
+      const requestBody = {
+        // other data you want to send
+        messageContent: messageContent,
+      };
+      console.log(messageContent)
+
+  
+      const response = await fetch(
+        `https://innovate.ug.edu.gh/api/pend-project/${ProjectId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        console.log("Project Pended successfully");
+        setOpen(false);
+        setButtonText("Sent");
+        window.location.reload();
+      } else {
+        console.error("Error Pending project");
+      }
+    } catch (error) {
+      console.error("Error Pending project:", error);
+    }
   };
+
+
   return (
     <Transition.Root static show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {}}>
@@ -58,18 +94,18 @@ const PendingModal: React.FC<Props> = ({ open, setOpen, ProjectId }) => {
                 </div>
                 <div className="flex sm:items-start w-full ">
                   <div className="mt-3 text-center  sm:mt-0 sm:text-left w-full">
-                    <div className=" flex flex-col justify-center items-center sm:mt-10 mt-5">
-                      <textarea
-                        required
-                        placeholder="Message"
-                        rows={6}
-                        name="message"
-                        id="message"
-                        // value={formData.description}
-                        // onChange={handleInputChange}
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
-                      />
-                    </div>
+                  <div className="flex flex-col justify-center items-center sm:mt-10 mt-5">
+                    <textarea
+                      required
+                      placeholder="Message"
+                      rows={6}
+                      name="message"
+                      id="message"
+                      value={messageContent}
+                      onChange={(e) => setMessageContent(e.target.value)}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
+                    />
+                  </div>
                   </div>
                 </div>
                 <div className="flex justify-around mt-5 space-x-5">

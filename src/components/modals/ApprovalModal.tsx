@@ -11,7 +11,7 @@ interface Props {
   /* @ts-ignore */
 }
 const AprrovalModal: React.FC<Props> = ({ open, projectName }) => {
-  console.log(projectName);
+  //console.log(projectName);
   return (
     <Transition.Root static show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={() => {}}>

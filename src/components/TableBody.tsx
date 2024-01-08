@@ -57,7 +57,7 @@ const TableBody: React.FC<Props> = ({
   const handleOpenModal = (rowData: any) => {
     setOpenModal(true);
     setSelectedRow(rowData);
-    setProjectId(rowData.innovation_name);
+    setProjectId(rowData.id);
   };
 
   return (

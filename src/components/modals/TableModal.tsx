@@ -87,25 +87,7 @@ const TableModal: React.FC<Props> = ({
   const handlePending = async () => {
     setOpen(false);
     setPendingOpen(true);
-    try {
-      // Call the API endpoint to update the approval status
-      const response = await fetch(
-        `https://innovate.ug.edu.gh/api/pend-project/${
-          modalData && modalData.id
-        }`,
-        {
-          method: "POST",
-        }
-      );
-      const data = await response.json();
-      if (data.success) {
-        console.log("Project pended successfully");
-      } else {
-        console.error("Error approving project");
-      }
-    } catch (error) {
-      console.error("Error approving project:", error);
-    }
+    
   };
 
   return (

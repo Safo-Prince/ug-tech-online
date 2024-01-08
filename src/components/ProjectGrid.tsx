@@ -24,7 +24,12 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ selectedFilter, searchQuery }
 
         const response = await fetch(url);
         const data = await response.json();
-        setProjects(data);
+
+        const dataArray = Array.isArray(data) ? data : [data];
+        const sortedData = dataArray.sort((a, b) => b.id - a.id);
+
+        {/* @ts-ignore */}
+        setProjects(sortedData);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching projects:", error);
