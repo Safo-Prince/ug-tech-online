@@ -176,7 +176,7 @@ const ProjectDetailsBody = () => {
 
           <div>
             <h1 className="font-bold  text-lg mt-4">Contact</h1>
-            <p className="text-[#56585B] xl:text-lg mt-2">{contact}</p>
+            <p className="text-[#56585B] xl:text-lg mt-2">Tel.:0302 213850 (Ext. 2717); <br></br>Email: orid-ipatt@ug.edu.gh</p>
           </div>
 
           <button
