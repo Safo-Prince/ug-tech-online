@@ -550,7 +550,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           placeholder="If 'Other,' please specify the industry "
                           className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
                           type="text"
-                          name="other_partner_type"
+                          name="other_industry_type"
                           // value={formData.secondary_partners}
                           // onChange={handleInputChange}
                         />
