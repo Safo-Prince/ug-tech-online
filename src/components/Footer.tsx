@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <p className="text-[#EAEAEB] text-center sm:text-right tracking-normal font-normal font-lato text-base ">
-            UG TechOnline &copy; 2021
+          UG ORID &copy; 2024
           </p>
         </motion.div>
       </motion.div>
