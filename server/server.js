@@ -295,7 +295,7 @@ UG Innovations Assessment Team`,
             // Send an email to the Pro VC (replace 'provc@example.com' with the actual Pro VC email address)
             const proVCMailOptions = {
               from: 'sipp@ug.edu.gh',
-              to: 'irondicjonathan@gmail.com', // Replace with the Pro VC email address
+              to: 'FAsante@ug.edu.gh', // Replace with the Pro VC email address
               subject: 'New Approved Project',
               text: `Dear Sir,
 
