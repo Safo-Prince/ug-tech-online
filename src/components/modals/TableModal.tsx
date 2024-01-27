@@ -71,7 +71,7 @@ const TableModal: React.FC<Props> = ({
   const handleSaveClick = async (field: keyof EditedFields) => {
     try {
 
-      console.log('Sending data to backend:', { field, value: editedFields[field].value });
+      
 
       {/* @ts-ignore */}
       const response = await fetch(`https://innovate.ug.edu.gh/api/update-field/${rowData.id}`,
@@ -90,8 +90,8 @@ const TableModal: React.FC<Props> = ({
   
       const data = await response.json();
       if (data.success) {
-        console.log(`Field ${field} updated successfully`);
-        
+        alert(`${field} updated successfully`);
+        window.location.reload();
         setEditedFields((prevFields) => ({
           ...prevFields,
           [field]: { ...prevFields[field], isEditing: false },
