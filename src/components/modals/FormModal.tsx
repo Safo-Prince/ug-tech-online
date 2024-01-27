@@ -69,21 +69,14 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   const handleAddKeyword = () => {
     const newKeyword = formData.newKeyword.trim();
 
-    {
-      /* @ts-ignore */
-    }
-    if (newKeyword !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        keywords: [...prevData.keywords, newKeyword],
+    {/* @ts-ignore */}
+    if (newKeyword !== "") {setFormData((prevData) => ({...prevData,keywords: [...prevData.keywords, newKeyword],
         newKeyword: "", // clear the input after adding a keyword
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveKeyword = (index) => {
     setFormData((prevData) => {
       const newKeywords = [...prevData.keywords];
@@ -95,21 +88,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   const handleAddKeyBenefit = () => {
     const newKeyBenefit = formData.newKeyBenefit.trim();
 
-    {
-      /* @ts-ignore */
-    }
-    if (newKeyBenefit !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
+    {/* @ts-ignore */}
+    if (newKeyBenefit !== "") {setFormData((prevData) => ({...prevData,
         keyBenefits: [...prevData.keyBenefits, newKeyBenefit],
         newKeyBenefit: "", // clear the input after adding a key benefit
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveKeyBenefit = (index) => {
     setFormData((prevData) => {
       const newKeyBenefits = [...prevData.keyBenefits];
@@ -120,21 +107,14 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
 
   const handleAddDeveloper = () => {
     const newDeveloper = formData.newDeveloper.trim();
-    {
-      /* @ts-ignore */
-    }
-    if (newDeveloper !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        developers: [...prevData.developers, newDeveloper],
+    {/* @ts-ignore */}
+    if (newDeveloper !== "") {setFormData((prevData) => ({...prevData,developers: [...prevData.developers, newDeveloper],
         newDeveloper: "", // clear the input after adding a developer
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveDeveloper = (index) => {
     setFormData((prevData) => {
       const newDevelopers = [...prevData.developers];
@@ -146,21 +126,15 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   const handleAddLink = () => {
     const newLink = formData.newLink.trim();
 
-    {
-      /* @ts-ignore */
-    }
-    if (newLink !== "") {
-      setFormData((prevData) => ({
-        ...prevData,
-        links: [...prevData.links, newLink],
+    
+    {/* @ts-ignore */}
+    if (newLink !== "") {setFormData((prevData) => ({...prevData,links: [...prevData.links, newLink],
         newLink: "", // clear the input after adding a link
       }));
     }
   };
 
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveLink = (index) => {
     setFormData((prevData) => {
       const newLinks = [...prevData.links];
@@ -173,16 +147,12 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
     /* @ts-ignore */
   }
   const handleFileChange = (e: FormEvent) => {
-    {
-      /* @ts-ignore */
-    }
+    {/* @ts-ignore */}
     const selectedFiles = Array.from(e.target.files);
 
-    {
-      /* @ts-ignore */
-    }
-    setFormData((prevData) => ({
-      ...prevData,
+   
+    {/* @ts-ignore */}
+    setFormData((prevData) => ({...prevData,
       files: [...prevData.files, ...selectedFiles],
     }));
   };
@@ -190,9 +160,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
   {
     /* @ts-ignore */
   }
-  {
-    /* @ts-ignore */
-  }
+  {/* @ts-ignore */}
   const handleRemoveFile = (index) => {
     setFormData((prevData) => {
       const newFiles = [...prevData.files];
@@ -216,11 +184,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
 
       // Append other form data properties
       Object.keys(formData).forEach((key) => {
-        {
-          /* @ts-ignore */
-        }
-        if (key !== "files") {
-          formDataToSend.append(key, formData[key]);
+        {/* @ts-ignore */}
+        if (key !== "files") {formDataToSend.append(key, formData[key]);
         }
       });
 
@@ -301,7 +266,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                         required
                         type="text"
                         name="innovation_name"
-                        placeholder="Enter your Technology or Innovation"
+                        placeholder="Enter your technology or innovation"
                         value={formData.innovation_name}
                         onChange={handleInputChange}
                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#153D6D] sm:text-sm sm:leading-6"
@@ -399,9 +364,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
-                                  : item}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`: item}
                               </span>
                               <X
                                 size={12}
@@ -440,9 +403,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
-                                  : item}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`: item}
                               </span>
                               <X
                                 size={12}
@@ -464,8 +425,8 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           -- select status --
                         </option>
                         <option>TRL 1 - Basic Principles Observed</option>
-                        <option> TRL 2 - Technology Concept Formulated</option>
-                        <option>TRL 3 - Proof of Concept Validated</option>
+                        <option> TRL 2 -Technology Concept Formulated</option>
+                        <option>TRL 3 - 3Proof of Concept Validated</option>
                         <option>TRL 4 - Technology Validated In Lab</option>
                         <option>
                           TRL 5 - Technology Validated in Relevant Environment
@@ -475,13 +436,13 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                           Environment
                         </option>
                         <option>
-                          TRL 7 - System Prototype Demonstrated in Operational
+                          TRL 7 -System Prototype Demonstrated in Operational
                           Environment
                         </option>
                         <option>
-                          TRL 8 - Actual System Completed and Qualified
+                          TRL 8 -Actual System Completed and Qualified
                         </option>
-                        <option>TRL 9 - Full Scale Development</option>
+                        <option>TRL 9 -Full Scale Development</option>
                       </select>
                       <select
                         id="college"
@@ -588,9 +549,7 @@ const FormModal: React.FC<Props> = ({ open, setOpen, setSubmissionOpen }) => {
                               <span>
                                 {/* @ts-ignore */}
                                 {/* @ts-ignore */}
-                                {item.length > 5
-                                  ? `${item.slice(0, 7)}...`
-                                  : item}
+                                {item.length > 5 ? `${item.slice(0, 7)}...`: item}
                               </span>
                               <X
                                 size={12}
