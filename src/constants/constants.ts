@@ -44,7 +44,7 @@ export const HomeFilter = [
   { label: "Agri-Business" },
   { label: "Arts and Crafts" },
   { label: "Foods and Beverages" },
-  { label: "Banking,Financial Services including insurances" },
+  { label: "Banking,Financial Services including Insurances" },
   { label: "Environment and Sanitation" },
   { label: "Energy and Climate Change" },
   { label: "Engineering" },
@@ -56,4 +56,8 @@ export const HomeFilter = [
   { label: "Engineering" },
 ];
 
-export const tableFilter = [{ label: "All" },{ label: "Approved" }, { label: "Not Approved" }];
+export const tableFilter = [
+  { label: "All" },
+  { label: "Approved" },
+  { label: "Not Approved" },
+];
