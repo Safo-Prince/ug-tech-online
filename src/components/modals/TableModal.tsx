@@ -70,9 +70,6 @@ const TableModal: React.FC<Props> = ({
 
   const handleSaveClick = async (field: keyof EditedFields) => {
     try {
-
-      
-
       {/* @ts-ignore */}
       const response = await fetch(`https://innovate.ug.edu.gh/api/update-field/${rowData.id}`,
         {
