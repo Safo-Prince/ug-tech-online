@@ -20,6 +20,8 @@ const LoginForm: React.FC = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
+  
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -36,11 +38,12 @@ const LoginForm: React.FC = () => {
       if (response.ok) {
         setLoginError(false);
         setIsLoading(false);
+        localStorage.setItem("auth_token", credentials.email);
         navigate("/admin");
       } else {
         setLoginError(true);
         setIsLoading(false);
-        alert("Wrong Credentials")
+        alert("Wrong Credentials");
       }
     } catch (error) {
       console.error("Error:", error);

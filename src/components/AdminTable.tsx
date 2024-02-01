@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Filter from "./Filter";
 import TableBody from "./TableBody";
 import Pagination from "./Pagination";
@@ -8,10 +8,12 @@ import { columns } from "../constants/constants";
 import AprrovalModal from "./modals/ApprovalModal";
 import PendingModal from "./modals/PendingModal";
 import { tableFilter } from "../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 const AdminTable: React.FC = () => {
   const [approvalOpen, setApprovalOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
+  const navigate = useNavigate();
 
   const [pendingOpen, setPendingOpen] = useState(false);
   const [ProjectId, setProjectId] = useState("");
@@ -22,7 +24,20 @@ const AdminTable: React.FC = () => {
     setSelectedFilter(filter);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("auth_token");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("auth_token") === null) navigate("/login");
+  }, []);
+
+  useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (approvalOpen) {
         setApprovalOpen(false);
@@ -36,7 +51,10 @@ const AdminTable: React.FC = () => {
     <div className="mx-auto w-full sm:max-w-7xl py-16 sm:py-20 lg:px-8 px-6   h-full relative">
       <AprrovalModal open={approvalOpen} projectName={projectName} />
       {/* @ts-ignore */}
-      <PendingModal open={pendingOpen} setOpen={setPendingOpen} ProjectId={ProjectId}
+      <PendingModal
+        open={pendingOpen}
+        setOpen={setPendingOpen}
+        ProjectId={ProjectId}
       />
 
       <div className="flex sm:flex-row flex-col justify-between  items-center">

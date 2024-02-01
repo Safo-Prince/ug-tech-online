@@ -17,6 +17,11 @@ const Navigation: React.FC<Props> = ({ setOpen, setMobIsOpen }) => {
     window.open("https://partnerships.ug.edu.gh", "_blank");
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem("auth_token");
+    navigate("/");
+  };
+
   return (
     <>
       {pathname !== "/admin" && pathname !== "/login" && (
@@ -71,7 +76,7 @@ const Navigation: React.FC<Props> = ({ setOpen, setMobIsOpen }) => {
             Administrator
           </h1>
           <button
-            onClick={() => navigate("/")}
+            onClick={handleSignOut}
             className="rounded-full px-3.5 py-2 bg-[#324c6d] hover:bg-[#536c8e] text-white text-sm flex items-center space-x-2 self-center"
           >
             <span>Log Out</span>
