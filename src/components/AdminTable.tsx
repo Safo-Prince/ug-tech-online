@@ -51,10 +51,7 @@ const AdminTable: React.FC = () => {
     <div className="mx-auto w-full sm:max-w-7xl py-16 sm:py-20 lg:px-8 px-6   h-full relative">
       <AprrovalModal open={approvalOpen} projectName={projectName} />
       {/* @ts-ignore */}
-      <PendingModal
-        open={pendingOpen}
-        setOpen={setPendingOpen}
-        ProjectId={ProjectId}
+      <PendingModal open={pendingOpen} setOpen={setPendingOpen} ProjectId={ProjectId}
       />
 
       <div className="flex sm:flex-row flex-col justify-between  items-center">
